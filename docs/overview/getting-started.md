@@ -9,7 +9,7 @@ In order to use Blockfrost hosted API, you need to create an account first.
 
 ![Blockfrost.io landing page](/img/frontend_landing.png)
 
-When [creating a Blockfrost.io account](https://blockfrost.io/auth/signin) you can use your email or single sing-on through Google, GitHub and GitLab. With an account, you can start building your apps.
+When [creating a Blockfrost.io account](https://blockfrost.io/auth/signin) you can use your email or Single Sing-On through Google, GitHub and GitLab. With an account, you can start building your apps!
 
 :::info
 We use password-less login. No need to worry about losing or storing any passwords!

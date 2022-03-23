@@ -5,19 +5,19 @@ id: plans-and-billing
 
 ## Plans
 
-Our offering is comprised of 4 plans at the moment, starting with the `FREE` plan, which will be free forever, up to `ENTERPRISE` which can be purchased by [contacting our support](/docs/support).
+Our offering is comprised of 4 plans at the moment, starting with the *STARTER* plan, which will be free forever, up to *ENTERPRISE* which can be purchased by [contacting our support](/docs/support).
 
 :::tip
 The higher the plan the more features, projects, higher request per day and storage capabilities.
 :::
 
-Some capabilities, such as Premium Submit (`DEVELOPER` and `ENTERPRISE`) and Whitelisting/Custom rate limiting (`ENTERPRISE`) are only available in higher tiers.
+Some capabilities, such as Premium Submit (*DEVELOPER* and *ENTERPRISE*) and Whitelisting/Custom rate limiting (*ENTERPRISE*) are only available in higher tiers.
 
 ![Blockfrost.io plans](/img/frontend_plans.png)
 
 ### Upgrading plan
 
-You have to be logged in order to perform the upgrade. You can upgrade your plan any time through clicking on you current plan name in the [dashboard](https://blockfrost.io/dashboard) or directly through [here](https://blockfrost.io/dashboard/plans) and then clicking `Upgrade plan`.
+You have to be logged in order to perform the upgrade. You can upgrade your plan any time through clicking on you current plan name in the [dashboard](https://blockfrost.io/dashboard) or directly through [here](https://blockfrost.io/dashboard/plans) and then clicking **Upgrade plan**.
 
 :::tip
 If you wish to upgrade to Enterprise plan, please [contact our support](/docs/support#contacting-support).
@@ -25,25 +25,25 @@ If you wish to upgrade to Enterprise plan, please [contact our support](/docs/su
 
 ![Blockfrost.io plans](/img/frontend_upgrade.png)
 
-Then update your billing details and click `CONTINUE`.
+Then update your billing details and click **CONTINUE**.
 
 ![Blockfrost.io plans](/img/frontend_upgrade_details.png)
 
 :::tip
-If you're EU VAT registered, fill out `VAT` field to be eligible for tax deduction.
+If you're EU VAT registered, fill out VAT field to be eligible for tax deduction.
 :::
 
 And finally your card.
 
 ![Blockfrost.io plans](/img/frontend_upgrade_card.png)
 
-Click `SUBSCRIBE`and you're all set!
+Click **SUBSCRIBE** and you're all set!
 
 ### Downgrading plan
 
-You have to be logged in order to perform the downgrade. Click `DOWNGRADE` and confirm your payment method.
+You have to be logged in order to perform the downgrade. Click **Downgrade plan** and confirm your payment method.
 
-To be able to perform downgrade, make sure the number of your projects is smaller or the size of the new Plan (e.g. 1 in case of FREE and 3 in case of HOBBY). Otherwise, the button for downgrade will not be available.
+To be able to perform downgrade, make sure the number of your projects is smaller or the size of the new Plan (e.g. 1 in case of *STARTER* and 3 in case of *HOBBY*). Otherwise, the button for downgrade will not be available.
 
 ![Blockfrost.io plans](/img/frontend_downgrade.png)
 
@@ -53,12 +53,12 @@ You won't be charged again during downgrading. On the contrary, any unspent amou
 
 ### Cancelling subscription
 
-You have to be logged in order to perform the cancellation. Click `CANCEL SUBSCRIPTION` and confirm your choice after carefully reading and acknowledging the popup.
+You have to be logged in order to perform the cancellation. Click **CANCEL SUBSCRIPTION** and confirm your choice after carefully reading and acknowledging the popup.
 
 To be able to cancel subscription, make sure the number of your projects is smaller or the size of the new Plan (i.e. 0 or 1).
 
 :::danger
-Cancelling plan is effective immediate. Your plan will be downgraded to the `FREE` quota immediately.
+Cancelling plan is effective immediate. Your plan will be downgraded to the *STARTER* quota immediately.
 :::
 
 ![Blockfrost.io plans](/img/frontend_cancel.png)
@@ -97,7 +97,7 @@ When downgrading or upgrading, any unspent amount from your current plan will tr
 
 ### Updating payment card
 
-You have to be logged in order to perform the update. You can update your card by clicking clicking `UPDATE CARD` in the [dashboard](https://blockfrost.io/dashboard) or directly through [here](https://blockfrost.io/dashboard/plans/update).
+You have to be logged in order to perform the update. You can update your card by clicking clicking **UPDATE CARD** in the [dashboard](https://blockfrost.io/dashboard) or directly through [here](https://blockfrost.io/dashboard/plans/update).
 
 ![Blockfrost.io plans](/img/frontend_card_update.png)
 
