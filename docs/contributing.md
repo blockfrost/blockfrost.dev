@@ -14,7 +14,7 @@ Not only we welcome community contributions, we do incentivize them via Blockfro
 
 ### Process
 
-- Blockfrost will publish bounties, in form of [GitHub issues](https://github.com/blockfrost/blockfrost.dev/issues?q=is%3Aopen+label%3A%22Bounty+5+ADA%22+label%3A%22Bounty+10+ADA%22+label%3A%22Bounty+20+ADA%22+label%3A%22Bounty+50+ADA%22+), which are then up for grabs
+- Blockfrost will publish bounties, in form of [GitHub issues](https://github.com/blockfrost/blockfrost.dev/issues?q=is%3Aopen+is%3Aissue+label%3ABounty%21), which are then up for grabs
 - Before creating a PR, make sure that the issue is clear enough to be addressed, if not, open up a discussion in the issue
 - Fork the repository, open a draft pull request and link it to the issue you are addressing
 - Please adhere to [Contribution Rules](/docs/contributing#contribution-rules)
