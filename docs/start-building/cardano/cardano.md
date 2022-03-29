@@ -236,7 +236,7 @@ curl -H "project_id: $PROJECT_ID" \
   {
     "tx_hash": "e067ca567df4920f4ac3babc4d805d2afe860e21aa7f6f78dbe8538caf9d8262",
     "tx_index": 0,
-    "block_height": ,
+    "block_height": 2287021,
     "block_time": 1612383646
   }
 ]
