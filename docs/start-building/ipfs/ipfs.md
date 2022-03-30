@@ -46,7 +46,7 @@ curl "https://ipfs.blockfrost.io/api/v0/ipfs/add" \
 
 Once we have uploaded the file, we get back the `name`, `ipfs_hash` (CID) and its `size` in Bytes. The most important part, of course, is the `ipfs_hash` or CID, however you want to call it. We'll be using this in all our other calls.
 
-:::tip
+:::warning
 Added files which are not pinned will be garbage collected. If you wish them to persist, always pin them immediately after the upload and verify that they've been successfully pinned after a few minutes.
 :::
 
