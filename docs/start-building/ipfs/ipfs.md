@@ -20,11 +20,11 @@ For a detailed overview of IPFS, please visit their fantastic [docs](https://doc
 This section covers using IPFS in Blockfrost.
 
 :::note
-Don't forget to `EXPORT` the `PROJECT_ID` first when trying examples in this guide!
+Don't forget to `export` the `PROJECT_ID` first when trying examples in this guide!
 
 ```bash
 # Don't forget to replace the PROJECT_ID with yours!
-export PROJECT_ID=testnetEnrkKWDwlA9hV4IajI4ILrFdsHJpIqNC
+export PROJECT_ID=ipfsEnrkKWDwlA9hV4IajI4ILrFdsHJpIqNC
 ```
 
 :::
