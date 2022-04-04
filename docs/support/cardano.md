@@ -34,11 +34,10 @@ However, since we don't know what may your intentions be, we allow you to both q
 
 single address: https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1{address}/get
 
-whole account: https://docs.blockfrost.io/#tag/Cardano-Accounts/paths/~1accounts~1{stake_address}~1addresses~1assets/get (read the sidenote!)
+whole account: https://docs.blockfrost.io/#tag/Cardano-Accounts/paths/~1accounts~1{stake_address}~1addresses~1assets/get (read the caution!)
 
 :::caution
-sidenote:
-bear in mind what we write in the description - Be careful, as an account could be part of a mangled address and does not necessarily mean the addresses are owned by user as the account
+Be careful, as an account could be part of a mangled address, but that does not necessarily mean the addresses are owned by the same user as the account.
 :::
 
 :::info
