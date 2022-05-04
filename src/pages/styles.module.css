@@ -10,6 +10,8 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  /* for some reason the template sets word-wrap: word-break to body */
+  word-wrap: initial; 
 }
 
 @media screen and (max-width: 966px) {
@@ -23,6 +25,28 @@
   align-items: center;
   justify-content: center;
 }
+
+/* Responsive navigation buttons on landing page */
+.heroBanner .buttons + .buttons {
+  margin-top: 16px;
+}
+
+.heroBanner .buttons a {
+  margin-left: 0.5ch;
+}
+
+@media screen and (max-width: 768px) {
+  .heroBanner .buttons {
+   flex-direction: column;
+  }
+  .heroBanner .buttons a {
+    width: 90%;
+  }
+  .heroBanner .buttons a + a {
+    margin-top: 8px;
+  }
+}
+/* END  */
 
 .features {
   display: flex;
