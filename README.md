@@ -9,4 +9,4 @@
 
 This is the repository of the [Blockfrost Development Hub](https://blockfrost.dev/).
 
-All contributions to this documentation are welcome! :rocket: Please follow the [contributing]("https://blockfrost.dev/docs/contributing) guide.
+All contributions to this documentation are welcome! :rocket: Please follow the [contributing](https://blockfrost.dev/docs/contributing) guide.
