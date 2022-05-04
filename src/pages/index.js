@@ -66,7 +66,7 @@ export default function Home() {
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p>
-          &nbsp;
+          <br />
           <div className={styles.buttons}>
             <Link
               className={clsx(
@@ -77,7 +77,6 @@ export default function Home() {
             >
               Getting started
             </Link>
-            &nbsp; &nbsp;
             <Link
               className={clsx(
                 "button  button--primary button--lg",
@@ -87,7 +86,6 @@ export default function Home() {
             >
               Start building
             </Link>
-            &nbsp; &nbsp;
             <Link
               className={clsx(
                 "button  button--primary button--lg",
@@ -98,7 +96,6 @@ export default function Home() {
               Discover SDKs
             </Link>
           </div>
-          &nbsp;
           <div className={styles.buttons}>
             <Link
               className={clsx(
@@ -109,7 +106,6 @@ export default function Home() {
             >
               OpenAPI reference
             </Link>
-            &nbsp; &nbsp;
             <Link
               className={clsx(
                 "button button--outline button--primary button--lg",
