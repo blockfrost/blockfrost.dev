@@ -1,0 +1,98 @@
+---
+title: Check signatures
+id: webhooks-signatures
+---
+
+Blockfrost signs the webhook events it sends to your endpoints by including a signature in each event’s `Blockfrost-Signature` header. This allows you to verify that the events were sent by Blockfrost, not by a third party. You can verify signatures either using our official SDKs, or manually using your own solution.
+
+Before you can verify signatures, you need to retrieve your webhook's authentication token from your Dashboard’s Webhooks settings.
+
+## Using SDK
+
+The fastest way to verify the webhook signature is to use built-in helper function from Blockfrost SDK.
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs>
+<TabItem value="js" label="Javascript (Node.js)">
+
+```typescript
+import { verifyWebhookSignature, SignatureVerificationError } from "@blockfrost/blockfrost-js";
+
+// You will find your webhook's secret auth token in your webhook settings in the Blockfrost Dashboard
+const authToken = 'WEBHOOK-AUTH-TOKEN';
+const app = express();
+
+app.post('/webhook', express.json({ type: 'application/json' }), (request, response) => {
+  try {
+    const isValid = verifyWebhookSignature(
+      JSON.stringify(request.body), // stringified request.body
+      request.headers["blockfrost-signature"],
+      authToken,
+      600 // optional param to customize maximum allowed age of the webhook event, defaults to 600s
+    );
+    if (!isValid) {
+      console.log("Signature is not valid!");
+    } else {
+      // Valid signature, process the event
+    }
+  } catch (err) {
+    if (err instanceof SignatureVerificationError) {
+      // If parsing of Blockfrost-Signature header fails it will throw SignatureVerificationError
+      console.log(`SignatureVerificationError: ${err.message}`);
+    } else {
+      // Other errors
+      console.error(err);
+    }
+  }
+}
+
+app.listen(6666, () => console.log('Running on port 6666'));
+```
+
+</TabItem>
+
+</Tabs>
+
+## Verifying the signature manually
+
+`Blockfrost-Signature` header contains an unix timestamp with the time of firing the request (prefixed by `t=`) and a signature (prefixed by schema version, currently `v1=`).
+
+Signature itself (part after `v1=`) is created by concatenating:
+
+- The unix timestamp (as a string)
+- The character `.`
+- The request's JSON payload
+
+Then HMAC with the SHA256 hash function is computed. The concatenated string is used as a message.
+
+`Blockfrost-Signature` header example:
+
+```
+t=1648550558,v1=162381a59040c97d9b323cdfec02facdfce0968490ec1732f5d938334c1eed4e
+```
+
+Although it’s recommended to use our SDKs to verify webhook event signatures, you can create a custom solution by following these steps.
+
+### 1. Parse the timestamp and signature from the header
+
+Split the header, using the , character as the separator, to get a list of elements. Then split each element, using the = character as the separator, to get a prefix and value pair.
+
+The value for the prefix t corresponds to the timestamp, and v1 corresponds to the signature. You can discard all other elements.
+
+### 2. Prepare the `signature_payload`
+
+Prepare the `signature_payload` by concatenating:
+
+- The unix timestamp (as a string)
+- The character `.`
+- The request's JSON payload
+
+### 3. Compute the expected signature
+
+Compute an HMAC with the SHA256 hash function. Use the webhook's authentication token as the key, and use the `signature_payload` string as the message.
+
+### 4. Compare the signatures
+
+Compare the signature from the `Blockfrost-Signature` header to the expected signature. For an equality match, compute the difference between the current timestamp and the received timestamp, then decide if the difference is within your tolerance.

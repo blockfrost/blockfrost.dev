@@ -25,6 +25,20 @@ module.exports = {
         "start-building/cardano/cardano",
         "start-building/ipfs/ipfs",
         "start-building/milkomeda",
+        {
+          type: "category",
+          label: "Webhooks",
+          link: {
+            type: "doc",
+            id: "start-building/webhooks/webhooks-intro",
+          },
+          items: [
+            "start-building/webhooks/using-webhooks",
+            "start-building/webhooks/webhooks-events",
+            "start-building/webhooks/webhooks-conditions",
+            "start-building/webhooks/webhooks-signatures",
+          ],
+        },
         "start-building/tips-tricks",
       ],
     },
