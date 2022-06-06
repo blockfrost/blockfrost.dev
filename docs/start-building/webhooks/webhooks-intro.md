@@ -16,8 +16,9 @@ Rather than periodically fetching for blockchain data (polling) and processing a
 Setting up a webhook is easy! Here's overview of the steps you need to take.
 
 1. Figure out what events and under what conditions does your application need to be notified about (transactions to a specific address, transactions with a specific asset, minted blocks, delegations to a stake pool...). See [Events overview](./webhooks-events) for a breakdown of supported events and [Trigger conditions](./webhooks-conditions) for more information about trigger conditions.
-2. Create a HTTP endpoint on your backend where you'll process incoming events and trigger actions you want to perform. Format of the payload for each event can be found in [Events overview](./webhooks-events). Don't forget to verify that the event originated from Blockfrost, not a third party. See [Check signatures](./webhooks-signatures).
-3. Deploy your webhook endpoint so it is accessible via HTTPS URL from the Internet.
-4. Set up a new Blockfrost Webhook in [Blockfrost Dashboard](https://blockfrost.io/dashboard). Select the event your apps needs and create necessary [Trigger conditions](./webhooks-conditions).
+2. Create a HTTP endpoint on your backend where you'll process incoming events and trigger actions you want to perform. Payload structure for each event can be found in [Events overview](./webhooks-events).
+3. Don't forget to verify that the event originated from Blockfrost, not a third party. See [Check signatures](./webhooks-signatures).
+4. Deploy your webhook endpoint so it is accessible via HTTPS URL from the Internet.
+5. Set up a new Blockfrost Webhook in [Blockfrost Dashboard](https://blockfrost.io/dashboard). Select the event your apps needs and create necessary [Trigger conditions](./webhooks-conditions).
 
 To learn more, see [Using webhooks](./using-webhooks).
