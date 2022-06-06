@@ -52,7 +52,7 @@ For example, if you want to be notified when a payment is received on an address
 </table>
 
 :::tip
-Blockfrost Webhooks support stake a addresses as a receiver or a sender. All addresses belonging the same account will match the account's stake address.
+Blockfrost Secure Webhooks support stake addresses as a receiver or a sender. All addresses belonging the same account will match the account's stake address.
 :::
 
 ### Block event

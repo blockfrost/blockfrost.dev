@@ -3,7 +3,7 @@ title: Events overview
 id: webhooks-events
 ---
 
-Blockfrost Webhooks support various events such as Transaction, Block and Delegation. Data for each event are sent in `payload` field of the webhook request's JSON body.
+Blockfrost Secure Webhooks support various events such as Transaction, Block and Delegation. Data for each event are sent in `payload` field of the webhook request's JSON body.
 
 Each request's body has following fields:
 
@@ -23,7 +23,7 @@ Transaction event contains array of transactions matching your conditions. Every
 
 :::tip
 Fields `tx`, `inputs` and `outputs` match the same schema as one returned by Blockfrost API.
-For detailed description of each field check Blockfrost API documentation for [Transaction](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}/get) and transaction's [inputs and outputs](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}~1utxos/get).
+For detailed description of each field check Blockfrost API documentation for [Transaction](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}/get) and [transaction's inputs and outputs](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}~1utxos/get).
 :::
 
 #### Example of a webhook request with a transaction event

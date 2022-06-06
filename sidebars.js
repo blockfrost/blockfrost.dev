@@ -27,7 +27,7 @@ module.exports = {
         "start-building/milkomeda",
         {
           type: "category",
-          label: "Webhooks",
+          label: "Secure Webhooks",
           link: {
             type: "doc",
             id: "start-building/webhooks/webhooks-intro",
