@@ -3,13 +3,13 @@ title: Check signatures
 id: webhooks-signatures
 ---
 
-Blockfrost signs the webhook events it sends to your endpoints by including a signature in each event’s `Blockfrost-Signature` header. This allows you to verify that the events were sent by Blockfrost, not by a third party. You can verify signatures either using our official SDKs, or manually using your own solution.
+Blockfrost signs the webhook events it sends to your endpoints. The signature is included in a request's `Blockfrost-Signature` header. This allows you to verify that the events were sent by Blockfrost, not by a third party. You can verify signatures either using our official SDKs, or manually using your own solution.
 
 Before you can verify signatures, you need to retrieve your webhook's authentication token from your Dashboard’s Webhooks settings.
 
 ## Using SDK
 
-The fastest way to verify the webhook signature is to use built-in helper function from Blockfrost SDK.
+The fastest way to verify the webhook signature is to use built-in helper function from [Blockfrost SDKs](/docs/sdks).
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";

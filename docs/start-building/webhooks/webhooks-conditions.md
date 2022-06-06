@@ -3,11 +3,13 @@ title: Trigger conditions
 id: webhooks-conditions
 ---
 
-Optionally you can create up to 5 trigger conditions for the webhook. Only events that met all of the conditions will be sent to your endpoint. Condition rule consist of a field, a value and an operator. You can choose from predefined conditions fields or create a custom JSONPath query extracting the data you want to match.
+Optionally you can create up to 5 trigger conditions for the webhook. Only events that met all of the conditions will be sent to your endpoint. Condition rule consist of a field, a value and an operator. You can choose from predefined conditions fields or create a custom JSONPath query extracting the field you want to match.
 
 ## Predefined conditions
 
-The easiest way to create a condition is to select a field from a list of predefined fields for each event type. For an example if you want to be notified when a payment is received on an address then after selecting trigger type "Transaction" you will be able to create a rule for a field "Receiver", paste the address to the input and you are all set.
+The easiest way to create a condition is to select a field from a list of predefined fields for each event type.
+
+For example, if you want to be notified when a payment is received on an address, then after selecting trigger type "Transaction" you will be able to create a rule for a field "Receiver", paste the address to the input and you are all set.
 
 ### Transaction event
 
