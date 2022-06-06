@@ -5,6 +5,18 @@ id: webhooks-events
 
 Blockfrost Webhooks support various events such as Transaction, Block and Delegation. Data for each event are sent in `payload` field of the webhook request's JSON body.
 
+Each request's body has following fields:
+
+`id` - Unique identifier of the webhook request. Each request, even coming from the same webhook, will have distinct ID.
+
+`created` - Unix timestamp (in seconds) with a time when our system detected the event.
+
+`webhook_id` - Identifier of the Webhook, matching ID you see in [Blockfrost Dashboard](https://blockfrost.io/dashboard).
+
+`type` - Type of the event.
+
+`payload` - Event data. For the exact format of each event's payload see breakdown below.
+
 ## Transaction
 
 Transaction event contains array of transactions matching your conditions. Every transaction object contains 3 fields: `tx`, `inputs` and `outputs`.
