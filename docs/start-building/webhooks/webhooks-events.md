@@ -27,7 +27,7 @@ It may happen that Cardano network rollbacks few blocks, invalidating the event 
 
 Transaction event is dispatched every time new block is minted.
 
-Transaction event contains array of transactions matching your conditions. Every transaction object contains 3 fields: `tx`, `inputs` and `outputs`.
+Transaction event contains an array of transactions matching your conditions. Every transaction object contains 3 fields: `tx`, `inputs` and `outputs`.
 
 :::tip
 Fields `tx`, `inputs` and `outputs` match the same schema as one returned by Blockfrost API.
@@ -108,13 +108,13 @@ For detailed description of each field check Blockfrost API documentation for [T
 
 ## Block
 
-Block event is dispatched every time new block is minted.
+Block event is dispatched every time a new block is minted.
 
 Block event payload consist of [Block](https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1{hash_or_number}/get) data.
 
 :::tip
 Schema of the payload data is the same as returned by Blockfrost API.
-For detailed description check Blockfrost API documentation for [Block](https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1{hash_or_number}/get).
+For a detailed description check Blockfrost API documentation for [Block](https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1{hash_or_number}/get).
 :::
 
 #### Example of a webhook request with a block event
@@ -148,10 +148,10 @@ For detailed description check Blockfrost API documentation for [Block](https://
 
 ## Epoch
 
-Epoch event is dispatched on epoch switch.
+Epoch event is dispatched on epoch switch. The event's payload contains information about a current epoch that has just started and a previous epoch that has ended.
 
 :::tip
-Event payload consist of object with two fields `previous_epoch` and `current_epoch`.
+Event payload consist of an object with two fields `current_epoch` and `previous_epoch`.
 `previous_epoch` contains [full Epoch data](https://docs.blockfrost.io/#tag/Cardano-Epochs/paths/~1epochs~1latest/get), while `current_epoch` contains only `epoch`, `start_time` and `end_time` fields.
 :::
 

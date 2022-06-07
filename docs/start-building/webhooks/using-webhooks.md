@@ -13,7 +13,7 @@ It may happen that Cardano network rollbacks few blocks, invalidating the event 
 Let's say you set up a Secure Webhook for a transaction event with the number of required confirmations set to 0. The transaction you are interested in gets included in a block, thus you will be notified about the transaction. Then the block is rolled back and the same transaction is included in a new block. You will receive another transaction event with the same transaction hash, but the hash of the block in which the transaction was included will differ from the first event).
 :::
 
-We recommend verifying that the event you received have not been rolled back or increasing the number of required confirmations before the event is send to your endpoint.
+We recommend verifying that the event you received has not been rolled back or increasing the number of required confirmations before the event is sent to your endpoint.
 
 ## Retries
 
