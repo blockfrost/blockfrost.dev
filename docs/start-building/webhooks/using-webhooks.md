@@ -15,4 +15,17 @@ Let's say you set up a Secure Webhook for a transaction event with the number of
 
 We recommend verifying that the event you received have not been rolled back or increasing the number of required confirmations before the event is send to your endpoint.
 
-## Retry on failed request
+## Retries
+
+In case of your Webhook endpoint is responding with one of following error status codes 400, 408, 413, 429, 500, 502, 503, 504, 521, 522 or 524 Blockfrost will resend the request 2 more times with few seconds delay between each request.
+
+:::tip
+To help you with troubleshooting problems with your endpoint check the list of recent failed requests in Secure Webhook settings in [Blockfrost Dashboard](https://blockfrost.io/dashboard).
+:::
+
+If your webhook endpoint doesn't quickly respond with a status code `200 OK` then the request will time out.
+
+:::caution
+To prevent unexpected problems your application should be prepared for a scenario in which the webhook request never arrives.
+To keep your app fully functioning and still provide a good user experience you can manually fetch the data via traditional [Blockfrost API](https://docs.blockfrost.io).
+:::
