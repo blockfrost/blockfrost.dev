@@ -3,7 +3,7 @@ title: Events overview
 id: webhooks-events
 ---
 
-Blockfrost Secure Webhooks support various events such as Transaction, Block and Delegation. Data for each event are sent in `payload` field of the webhook request's JSON body.
+Blockfrost Secure Webhooks support various events such as Transaction, Block, Epoch and Delegation. Data for each event are sent in `payload` field of the webhook request's JSON body.
 
 Each request's body has following fields:
 
@@ -13,15 +13,19 @@ Each request's body has following fields:
 
 `webhook_id` - Identifier of the Webhook, matching ID you see in [Blockfrost Dashboard](https://blockfrost.io/dashboard).
 
+`api_version` - Version of Event objects (current version is `1`) affecting a schema of a webhook's payload.
+
 `type` - Type of the event.
 
 `payload` - Event data. For the exact format of each event's payload see breakdown below.
 
-:::note
+:::caution
 It may happen that Cardano network rollbacks few blocks, invalidating the event that has been sent. Due to rollbacks you may receive the same event multiple times. To learn more see [Rollbacks](http://localhost:3000/docs/start-building/webhooks/using-webhooks#rollbacks-and-a-required-number-of-confirmations).
 :::
 
 ## Transaction
+
+Transaction event is dispatched every time new block is minted.
 
 Transaction event contains array of transactions matching your conditions. Every transaction object contains 3 fields: `tx`, `inputs` and `outputs`.
 
@@ -37,6 +41,7 @@ For detailed description of each field check Blockfrost API documentation for [T
   "id": "cd153e0a-2561-4761-9fa1-98b62937438e",
   "webhook_id": "cf68eb9c-635f-415e-a5a8-6233638f28d6",
   "created": 1647611209,
+  "api_version": 1,
   "type": "transaction",
   "payload": [
     {
@@ -103,6 +108,8 @@ For detailed description of each field check Blockfrost API documentation for [T
 
 ## Block
 
+Block event is dispatched every time new block is minted.
+
 Block event payload consist of [Block](https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1{hash_or_number}/get) data.
 
 :::tip
@@ -117,6 +124,7 @@ For detailed description check Blockfrost API documentation for [Block](https://
   "id": "47668401-c3a4-42d4-bac1-ad46515924a3",
   "webhook_id": "cf68eb9c-635f-415e-a5a8-6233638f28d7",
   "created": 1650013856,
+  "api_version": 1,
   "type": "block",
   "payload": {
     "time": 1650013853,
@@ -138,7 +146,49 @@ For detailed description check Blockfrost API documentation for [Block](https://
 }
 ```
 
+## Epoch
+
+Epoch event is dispatched on epoch switch.
+
+:::tip
+Event payload consist of object with two fields `previous_epoch` and `current_epoch`.
+`previous_epoch` contains [full Epoch data](https://docs.blockfrost.io/#tag/Cardano-Epochs/paths/~1epochs~1latest/get), while `current_epoch` contains only `epoch`, `start_time` and `end_time` fields.
+:::
+
+#### Example of a webhook request with an epoch event
+
+```json
+{
+  "id": "47668401-c3a4-42d4-bac1-ad46515924a3",
+  "webhook_id": "cf68eb9c-635f-415e-a5a8-6233638f28d7",
+  "created": 1650013856,
+  "api_version": 1,
+  "type": "epoch",
+  "payload": {
+    "previous_epoch": {
+      "epoch": 342,
+      "start_time": 1653947091,
+      "end_time": 1654379091,
+      "first_block_time": 1653947172,
+      "last_block_time": 1654379048,
+      "block_count": 20990,
+      "tx_count": 470464,
+      "output": "117853542835571922",
+      "fees": "163696811862",
+      "active_stake": "24660991673767486"
+    },
+    "current_epoch": {
+      "epoch": 343,
+      "start_time": 1654379091,
+      "end_time": 1654811091
+    }
+  }
+}
+```
+
 ## Delegation
+
+Delegation event is dispatched every time new block is minted.
 
 Delegations are part of a transactions, which is why they are grouped by a transaction where they are included.
 Delegation event payload is an array of objects where each object consist of `tx` field with [a transaction data](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}/get) and `delegations` field with a list of [delegations](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}~1delegations/get) that match the conditions for given transaction. List of delegations is expanded with pool data.
@@ -157,6 +207,7 @@ Note that the original `pool_id` field is removed from the delegation object.
   "id": "275d9b57-2605-4b89-b1cc-ab53a1b4f063",
   "created": 1647541011,
   "webhook_id": "cf68eb9c-635f-415e-a5a8-6233638f28d6",
+  "api_version": 1,
   "type": "delegation",
   "payload": [
     {

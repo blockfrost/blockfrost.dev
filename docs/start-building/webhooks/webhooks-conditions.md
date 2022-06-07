@@ -3,7 +3,7 @@ title: Trigger conditions
 id: webhooks-conditions
 ---
 
-Optionally you can create up to 5 trigger conditions for the webhook. Only events that met all of the conditions will be sent to your endpoint. Condition rule consist of a field, a value and an operator. You can choose from predefined conditions fields or create a custom JSONPath query extracting the field you want to match.
+Optionally you can create up to 5 trigger conditions for the webhook. Only events that met all of the conditions will be sent to your endpoint. Condition rule consist of a field, a value and an operator. You can choose from predefined condition fields or create a custom JSONPath query extracting the field you want to match.
 
 ## Predefined conditions
 
@@ -95,6 +95,25 @@ Blockfrost Secure Webhooks support stake addresses as a receiver or a sender. Al
   </tr>
 
 </table>
+
+### Epoch event
+
+<table>
+  <tr>
+    <th>Field</th>
+    <th>Description</th>
+    <th>Example</th>
+  </tr>
+  <tr>
+    <td>epoch number</td>
+    <td>number of the current epoch</td>
+    <td>340</td>
+  </tr>
+</table>
+
+:::tip
+In order to receive notifications every time new epoch starts do not set any condition.
+:::
 
 ### Delegation event
 
