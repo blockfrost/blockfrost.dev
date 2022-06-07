@@ -17,6 +17,10 @@ Each request's body has following fields:
 
 `payload` - Event data. For the exact format of each event's payload see breakdown below.
 
+:::note
+It may happen that Cardano network rollbacks few blocks, invalidating the event that has been sent. Due to rollbacks you may receive the same event multiple times. To learn more see [Rollbacks](http://localhost:3000/docs/start-building/webhooks/using-webhooks#rollbacks-and-a-required-number-of-confirmations).
+:::
+
 ## Transaction
 
 Transaction event contains array of transactions matching your conditions. Every transaction object contains 3 fields: `tx`, `inputs` and `outputs`.
