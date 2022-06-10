@@ -9,7 +9,7 @@ Webhooks enable Blockfrost to push real-time notifications to your application. 
 
 ## Why use webhooks over traditional API
 
-Rather than periodically fetching for blockchain data (polling) and processing all these data, which may not be relevant for your application, you can set up Blockfrost Secure Webhooks. With Secure Webhooks you'll be notified only with the data that matters to your application making it faster and requiring less work on your end.
+Rather than periodically fetching a blockchain data (polling) and processing all the data, which may not be relevant to your application, you can set up Blockfrost Secure Webhooks. With Secure Webhooks you will be notified only with the data that matters to your application making it faster and requiring less work on your end.
 
 ## Create your first Secure Webhook
 
