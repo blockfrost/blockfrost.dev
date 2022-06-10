@@ -151,7 +151,7 @@ For a detailed description check Blockfrost API documentation for [Block](https:
 Epoch event is dispatched on epoch switch. The event's payload contains information about a current epoch that has just started and a previous epoch that has ended.
 
 :::tip
-Event payload consist of an object with two fields `current_epoch` and `previous_epoch`.
+Event payload consist of an object with two fields `previous_epoch` and `current_epoch`.
 `previous_epoch` contains [full Epoch data](https://docs.blockfrost.io/#tag/Cardano-Epochs/paths/~1epochs~1latest/get), while `current_epoch` contains only `epoch`, `start_time` and `end_time` fields.
 :::
 
@@ -159,28 +159,28 @@ Event payload consist of an object with two fields `current_epoch` and `previous
 
 ```json
 {
-  "id": "47668401-c3a4-42d4-bac1-ad46515924a3",
-  "webhook_id": "cf68eb9c-635f-415e-a5a8-6233638f28d7",
-  "created": 1650013856,
+  "id": "5ffcaf65-7961-4377-9741-fa0c76176a4b",
+  "webhook_id": "b592db93-ec26-4ecc-8800-8a14b3a2806f",
+  "created": 1654811689,
   "api_version": 1,
   "type": "epoch",
   "payload": {
     "previous_epoch": {
-      "epoch": 342,
-      "start_time": 1653947091,
-      "end_time": 1654379091,
-      "first_block_time": 1653947172,
-      "last_block_time": 1654379048,
-      "block_count": 20990,
-      "tx_count": 470464,
-      "output": "117853542835571922",
-      "fees": "163696811862",
-      "active_stake": "24660991673767486"
-    },
-    "current_epoch": {
       "epoch": 343,
       "start_time": 1654379091,
-      "end_time": 1654811091
+      "end_time": 1654811091,
+      "first_block_time": 1654379116,
+      "last_block_time": 1654811087,
+      "block_count": 20994,
+      "tx_count": 463239,
+      "output": "106038169691018243",
+      "fees": "162340782180",
+      "active_stake": "24538091587045780"
+    },
+    "current_epoch": {
+      "epoch": 344,
+      "start_time": 1654811091,
+      "end_time": 1655243091
     }
   }
 }
