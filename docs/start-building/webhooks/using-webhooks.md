@@ -17,7 +17,7 @@ We recommend verifying that the event you received has not been rolled back or i
 
 ## Retries
 
-In case of your Webhook endpoint is responding with one of following error status codes 400, 408, 413, 429, 500, 502, 503, 504, 521, 522 or 524 Blockfrost will resend the request 2 more times with few seconds delay between each request.
+In case of your Webhook endpoint is responding with one of following error status codes 400, 408, 413, 429, 500, 502, 503, 504, 521, 522 or 524 Blockfrost will resend the request 2 more times with few seconds delay between each request. Body of the request is the same between retries, the ID of the retried request will be the same as the ID of the original request that have failed.
 
 :::tip
 To help you with troubleshooting problems with your endpoint check the list of recent failed requests in Secure Webhook settings in [Blockfrost Dashboard](https://blockfrost.io/dashboard).

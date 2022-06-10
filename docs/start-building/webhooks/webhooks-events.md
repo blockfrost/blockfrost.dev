@@ -7,7 +7,7 @@ Blockfrost Secure Webhooks support various events such as Transaction, Block, Ep
 
 Each request's body has following fields:
 
-`id` - Unique identifier of the webhook request. Each request, even coming from the same webhook, will have distinct ID.
+`id` - Unique identifier of the webhook request. Each request, even coming from the same webhook, will have distinct ID. However, requests that fail are retried multiple times with the same ID. To learn more, see [Retries](./using-webhooks#retries).
 
 `created` - Unix timestamp (in seconds) with a time when our system detected the event.
 
@@ -20,7 +20,7 @@ Each request's body has following fields:
 `payload` - Event data. For the exact format of each event's payload see breakdown below.
 
 :::caution
-It may happen that Cardano network rollbacks few blocks, invalidating the event that has been sent. Due to rollbacks you may receive the same event multiple times. To learn more see [Rollbacks](http://localhost:3000/docs/start-building/webhooks/using-webhooks#rollbacks-and-a-required-number-of-confirmations).
+It may happen that Cardano network rollbacks few blocks, invalidating the event that has been sent. Due to rollbacks you may receive the same event multiple times. To learn more see [Rollbacks](./using-webhooks#rollbacks-and-a-required-number-of-confirmations).
 :::
 
 ## Transaction
