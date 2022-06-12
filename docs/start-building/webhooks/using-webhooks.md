@@ -3,59 +3,16 @@ title: Using Webhooks
 id: using-webhooks
 ---
 
-## Set up your first Secure Webhook
+## Add a new Secure Webhook
 
-### Create new Secure Webhook
+To create a new Secure Webhook go to [Blockfrost Dashboard](https://blockfrost.io/dashboard) and click on "Add webhook" button. In the webhook settings fill the webhook name, select the trigger event your app needs and create necessary [Trigger conditions](./webhooks-conditions). Do not worry about not getting everything right, you can update the settings anytime.
 
-Set up a new Secure Webhook in [Blockfrost Dashboard](https://blockfrost.io/dashboard). In the webhook settings select the event your app needs and create necessary [Trigger conditions](./webhooks-conditions).
+The webhook's endpoint URL should be set to a publicly accessible HTTPS URL, where you will process the events sent via webhook request. If you do not have your backend exposed to the web, follow the steps in [Test your webhook](using-webhooks#test-your-webhook) to test with a web server running on your local machine.
 
-The webhook's endpoint should be set to an URL where you will process the events sent via webhook request. If you do not have your backend exposed to the web follow steps in [Test your webhook](using-webhooks#test-your-webhook) to test with a web server running on your local machine.
+### Rollbacks and a required number of confirmations
 
-### Process a webhook request
-
-Create a HTTP endpoint on your backend where you will process incoming events and trigger actions you want to execute.
-The endpoint must accept `POST` requests with a data in JSON format and return a successful status code (`2xx`).
-
-Each request's body is an object with several fields. The event type is stored in `type` field. The event itself is included in `payload` field. For the complete structure of a webhook request see [Events overview](./webhooks-events).
-
-### Check signatures
-
-Don't forget to verify that the event originated from Blockfrost, not a third party just pretending to be Blockfrost. See [Check signatures](./webhooks-signatures).
-
-### Test your webhook
-
-#### Webhook.site
-
-The easiest way to explore the data sent via a webhook is to point it to a service such as [Webhook.site](https://webhook.site).
-It generates a random URL and shows every request sent to this address along with the request's body.
-
-#### Local web server
-
-In order to test Secure Webhooks with your endpoint implementation running on your local HTTP dev server you need to expose it to the web. Fortunately a service like [Loophole.cloud](https://loophole.cloud/) will set it up for you.
-
-Follow [Loophole documentation](https://loophole.cloud/docs) to download the CLI or the Desktop GUI app, create an account and expose your local HTTP server.
-
-:::note Example
-To expose local web server running on port 3000 via CLI run command `loophole http 3000`.
-In the Webhook settings set the webhook's endpoint to the URL you will see in the output.
-
-```
-$ loophole http 3000
-Loophole - End to end TLS encrypted TCP communication between you and your clients
-Registering your domain... Success!
-Starting local proxy server...  Success!
-Initializing secure tunnel...  Success!
-
-Forwarding https://1a4ab363d5cfd01cccc9fba73777770c.loophole.site -> http://127.0.0.1:3000
-```
-
-:::
-
-## Rollbacks and a required number of confirmations
-
-Events are send to your webhook endpoint after reaching the number of confirmations you specified in Secure Webhook Settings.
-
-It may happen that Cardano network rollbacks few blocks, invalidating the event that has been sent. Due to rollbacks you may receive the same event multiple times.
+Events are sent to your webhook endpoint after reaching the number of confirmations you specified in Secure Webhook Settings.
+It may happen that Cardano network rollbacks few blocks, invalidating events that have been sent. Due to rollbacks you may receive the same event multiple times.
 
 :::note Example
 Let's say you set up a Secure Webhook for a transaction event with the number of required confirmations set to 0. The transaction you are interested in gets included in a block, thus you will be notified about the transaction. Then the block is rolled back and the same transaction is included in a new block. You will receive another transaction event with the same transaction hash, but the hash of the block in which the transaction was included will differ from the first event).
@@ -63,7 +20,118 @@ Let's say you set up a Secure Webhook for a transaction event with the number of
 
 We recommend verifying that the event you received has not been rolled back or increasing the number of required confirmations before the event is sent to your endpoint.
 
-## Retries
+## Process a webhook request
+
+Create a HTTP endpoint on your backend where you will process incoming events and trigger actions you want to execute.
+The endpoint must accept `POST` requests with a data in JSON format and return a successful status code (`2xx`).
+
+Each request's body is an object with several fields. The event type is stored in `type` field. The event itself is included in `payload` field. For the complete structure of a webhook request see [Events overview](./webhooks-events).
+
+Don't forget to verify that the event originated from Blockfrost, not a third party just pretending to be Blockfrost. See [Check signatures](./webhooks-signatures).
+
+Here is a quick example of Node.js Express app that implements `/webhook` endpoint and leverages Blockfrost Node.js SDK to verify the webhook signature:
+
+```typescript
+// Example of Node.js Express app with /webhook endpoint
+// for processing events sent by Blockfrost Secure Webhooks
+import * as express from "express";
+import {
+  verifyWebhookSignature,
+  SignatureVerificationError,
+} from "@blockfrost/blockfrost-js";
+
+// You will find the webhook's secret auth token in the Webhook settings in the Blockfrost Dashboard
+const authToken = "WEBHOOK_AUTH_TOKEN";
+const app = express();
+
+// Define endpoint /webhook that accepts POST requests
+app.post(
+  "/webhook",
+  express.json({ type: "application/json" }),
+  (request, response) => {
+    const signatureHeader = request.headers["blockfrost-signature"];
+
+    // Make sure that Blockfrost-Signature header exists
+    if (!signatureHeader) {
+      console.log("The request is missing Blockfrost-Signature header");
+      return response.status(400).send(`Missing signature header`);
+    }
+
+    try {
+      // Check the webhook signature
+      const isValid = verifyWebhookSignature(
+        JSON.stringify(request.body), // stringified request.body
+        signatureHeader,
+        authToken,
+        600 // optional param to customize maximum allowed age of the webhook event, defaults to 600s
+      );
+
+      if (!isValid) {
+        // Ignore the event if the signature is invalid
+        console.log("Signature is not valid!");
+        response.status(400).send("Signature is not valid!");
+      } else {
+        // Signature is valid
+        const type = request.body.type;
+        const payload = request.body.payload;
+
+        // Process the incoming event
+        switch (type) {
+          case "transaction":
+            // process Transaction event
+            console.log(`Received ${payload.length} transactions`);
+            // loop through the payload (payload is an array of Transaction events)
+            for (const transaction of payload) {
+              console.log(`Transaction ${transaction.tx.hash}`);
+            }
+            break;
+
+          case "block":
+            // process Block event
+            console.log(`Received block hash ${payload.hash}`);
+            break;
+
+          case "delegation":
+            // process Delegation event
+            console.log(`Received ${payload.length} delegations`);
+            // loop through the payload (payload is an array of Delegation events)
+            for (const delegation of payload) {
+              console.log(`Delegation from address ${delegation.address}`);
+            }
+            break;
+
+          case "epoch":
+            // process Epoch event
+            console.log(
+              `Epoch switch from ${payload.previous_epoch.epoch} to ${payload.current_epoch.epoch}`
+            );
+            break;
+
+          default:
+            console.warn(`Unexpected event type ${type}`);
+            break;
+        }
+
+        // Return status code 2xx
+        response.json({ processed: true });
+      }
+    } catch (err) {
+      // Handle possible errors
+      if (err instanceof SignatureVerificationError) {
+        console.log(`SignatureVerificationError: ${err.message}`);
+        response.status(400).send(`SignatureVerificationError`);
+      } else {
+        console.error(err);
+        response.status(400).send(`Unexpected Error`);
+      }
+    }
+  }
+);
+
+app.listen(6666, () => console.log("Running on port 6666"));
+```
+
+### Retries
 
 In case of your webhook endpoint is responding with one of following error status codes 400, 408, 413, 429, 500, 502, 503, 504, 521, 522 or 524 Blockfrost will resend the request 2 more times with few seconds delay between each request. Body of the request is the same between retries, the ID of the retried request will be the same as the ID of the original request that have failed.
 
@@ -74,6 +142,35 @@ To help you with troubleshooting problems with your endpoint check the list of r
 If your webhook endpoint doesn't respond with a successful status code (`2xx`) within few seconds then the request will time out.
 
 :::caution
-To prevent unexpected problems your application should be prepared for a scenario in which the webhook request never arrives.
+To prevent unexpected issues your application should be prepared for a scenario in which the webhook request never arrives.
 To keep your app fully functioning and still provide a good user experience you can manually fetch the data via traditional [Blockfrost API](https://docs.blockfrost.io).
+:::
+
+## Test your webhook
+
+### Webhook.site
+
+The easiest way to explore the data sent via a webhook is to point it to a service such as [Webhook.site](https://webhook.site).
+It generates a random URL and shows every request sent to this address along with the request's body.
+
+### Local web server
+
+In order to test Secure Webhooks with your endpoint implementation running on your local HTTP dev server you need to expose it to the web. Fortunately a service like [Loophole.cloud](https://loophole.cloud/) will set it up for you.
+
+Follow [Loophole documentation](https://loophole.cloud/docs) to download the CLI or the Desktop GUI app, create an account and expose your local HTTP server.
+
+:::note Example
+To expose local web server running on port 6666 via CLI run command `loophole http 6666`.
+In the Webhook settings set the webhook's endpoint to the URL you will see in the output.
+
+```
+$ loophole http 6666
+Loophole - End to end TLS encrypted TCP communication between you and your clients
+Registering your domain... Success!
+Starting local proxy server...  Success!
+Initializing secure tunnel...  Success!
+
+Forwarding https://1a4ab363d5cfd01cccc9fba73777770c.loophole.site -> http://127.0.0.1:6666
+```
+
 :::
