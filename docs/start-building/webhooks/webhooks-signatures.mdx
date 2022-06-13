@@ -18,8 +18,10 @@ import TabItem from "@theme/TabItem";
 <TabItem value="js" label="Javascript (Node.js)">
 
 ```typescript
-import { verifyWebhookSignature, SignatureVerificationError } from "@blockfrost/blockfrost-js";
+const express = require("express");
+const blockfrost = require("@blockfrost/blockfrost-js");
 
+const { verifyWebhookSignature, SignatureVerificationError } = blockfrost;
 // You will find your webhook's secret auth token in your webhook settings in the Blockfrost Dashboard
 const authToken = 'WEBHOOK-AUTH-TOKEN';
 const app = express();

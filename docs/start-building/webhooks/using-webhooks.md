@@ -34,11 +34,10 @@ Here is a quick example of Node.js Express app that implements `/webhook` endpoi
 ```typescript
 // Example of Node.js Express app with /webhook endpoint
 // for processing events sent by Blockfrost Secure Webhooks
-import * as express from "express";
-import {
-  verifyWebhookSignature,
-  SignatureVerificationError,
-} from "@blockfrost/blockfrost-js";
+const express = require("express");
+const blockfrost = require("@blockfrost/blockfrost-js");
+
+const { verifyWebhookSignature, SignatureVerificationError } = blockfrost;
 
 // You will find the webhook's secret auth token in the Webhook settings in the Blockfrost Dashboard
 const authToken = "WEBHOOK_AUTH_TOKEN";
