@@ -79,9 +79,9 @@ Although it’s recommended to use our SDKs to verify webhook event signatures, 
 
 ### 1. Parse the timestamp and signature from the header
 
-Split the header, using the , character as the separator, to get a list of elements. Then split each element, using the = character as the separator, to get a prefix and value pair.
+Split the header, using the `,` character as the separator, to get a list of elements. Then split each element, using the `=` character as the separator, to get a key-value pair.
 
-The value for the prefix t corresponds to the timestamp, and v1 corresponds to the signature. You can discard all other elements.
+The value for the key `t` corresponds to the timestamp, and the value after `v1` corresponds to the signature. The header may contain multiple signatures with same version schema.
 
 ### 2. Prepare the `signature_payload`
 
@@ -93,8 +93,11 @@ Prepare the `signature_payload` by concatenating:
 
 ### 3. Compute the expected signature
 
-Compute an HMAC with the SHA256 hash function. Use the webhook's authentication token as the key, and use the `signature_payload` string as the message.
+Compute an HMAC with the SHA256 hash function. Use the webhook's authentication token as the key, and use the prepared `signature_payload` string as the message.
 
 ### 4. Compare the signatures
 
-Compare the signature from the `Blockfrost-Signature` header to the expected signature. For an equality match, compute the difference between the current timestamp and the received timestamp, then decide if the difference is within your tolerance.
+Compare the computed signature with signatures extracted from the `Blockfrost-Signature`.
+If one of the signatures extracted from `Blockfrost-Signature` matches the computed signature, then compute the difference between the current timestamp and the received timestamp and decide if the difference is within your tolerance.
+By default Blockfrost SDK considers the signature valid if the difference is less than 10 minutes (600 seconds).
+If none of the signatures in `Blockfrost-Signature` header matches the computed signature, or if the difference between the timestamps is larger than the tolerance, the signature is considered invalid.
