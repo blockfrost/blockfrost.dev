@@ -17,7 +17,7 @@ import TabItem from "@theme/TabItem";
 <Tabs>
 <TabItem value="js" label="Javascript (Node.js)">
 
-```typescript
+```javascript
 const express = require("express");
 const blockfrost = require("@blockfrost/blockfrost-js");
 
@@ -75,7 +75,7 @@ Then HMAC with the SHA256 hash function is computed. The concatenated string is 
 t=1648550558,v1=162381a59040c97d9b323cdfec02facdfce0968490ec1732f5d938334c1eed4e
 ```
 
-Although it’s recommended to use our SDKs to verify webhook event signatures, you can create a custom solution by following these steps.
+Although it's recommended to use our SDKs to verify webhook event signatures, you can create a custom solution by following these steps.
 
 ### 1. Parse the timestamp and signature from the header
 

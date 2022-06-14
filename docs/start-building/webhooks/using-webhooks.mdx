@@ -29,9 +29,15 @@ Each request's body is an object with several fields. The event type is stored i
 
 Don't forget to verify that the event originated from Blockfrost, not a third party just pretending to be Blockfrost. See [Check signatures](./webhooks-signatures).
 
-Here is a quick example of Node.js Express app that implements `/webhook` endpoint and leverages Blockfrost Node.js SDK to verify the webhook signature:
+Here is a quick example of web application that implements `/webhook` endpoint and leverages Blockfrost SDK to verify the webhook signature:
 
-```typescript
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs>
+<TabItem value="js" label="Javascript (Node.js)">
+
+```javascript showLineNumbers
 // Example of Node.js Express app with /webhook endpoint
 // for processing events sent by Blockfrost Secure Webhooks
 const express = require("express");
@@ -93,9 +99,11 @@ app.post(
           case "delegation":
             // process Delegation event
             console.log(`Received ${payload.length} delegations`);
-            // loop through the payload (payload is an array of Delegation events)
-            for (const delegation of payload) {
-              console.log(`Delegation from address ${delegation.address}`);
+            // loop through the payload, payload is an array of objects with fields: "tx" (an object) and "delegations" (an array)
+            for (const transaction of payload) {
+              for (const delegation of transaction.delegations) {
+                console.log(`Delegation from address ${delegation.address} inclued in tx ${transaction.tx.hash}`);
+              }
             }
             break;
 
@@ -130,6 +138,83 @@ app.post(
 app.listen(6666, () => console.log("Running on port 6666"));
 ```
 
+</TabItem>
+<TabItem value="py" label="Python (Flask)">
+
+```python showLineNumbers
+# Example of Python Flask app with /webhook endpoint
+# for processing events sent by Blockfrost Secure Webhooks
+from flask import Flask, request, json
+from blockfrost import verify_webhook_signature
+
+SECRET_AUTH_TOKEN = "SECRET-WEBHOOK-AUTH-TOKEN"
+
+app = Flask(__name__)
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    if request.method == 'POST':
+        # Validate webhook signature
+        request_bytes = request.get_data()
+        try:
+            verify_webhook_signature(
+                request_bytes, request.headers['Blockfrost-Signature'], SECRET_AUTH_TOKEN)
+        except SignatureVerificationError as e:
+            # for easier debugging you can access passed header and request_body values (e.header, e.request_body)
+            print('Webhook signature is invalid.', e)
+            return 'Invalid signature', 403
+        
+        # Get the payload as JSON
+        event = request.json
+        
+        print('Received request id {}, webhook_id: {}'.format(
+            event['id'], event['webhook_id']))
+
+        if event['type'] == "transaction":
+            # process Transaction event
+            print('Received {} transactions'.format(len(event['payload'])))
+            # loop through the payload (payload is an array of Transaction events)
+            for transaction in event['payload']:
+                print('Transaction id: {}, block: {} ({})'.format(
+                    transaction['tx']['hash'], transaction['tx']['block'], transaction['tx']['block_height']))
+
+        elif event['type'] == "block":
+            # process Block event
+            print('Received block hash {}'.format(event['payload']['hash']))
+
+        elif event['type'] == "delegation":
+            # process Delegation event
+            print('Received {} delegations'.format(len(event['payload'])))
+            # loop through the payload, payload is an array of objects with fields: "tx" (an object) and "delegations" (an array)
+            for transaction in event['payload']:
+                for delegation in transaction['delegations']:
+                    print('Delegation from an address {} included in tx {}'.format(
+                        delegation['address'], transaction['tx']['hash'])
+                    )
+
+        elif event['type'] == "epoch":
+            # process Epoch event
+            print('Epoch switch from {} to {}'.format(
+                event['payload']['previous_epoch']['epoch'], event['payload']['current_epoch']['epoch']))
+
+        else:
+            # Unexpected event type
+            print('Unexpected event type {}'.format(event['type']))
+
+        return 'Webhook received', 200
+    else:
+        return 'POST Method not supported', 405
+
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=6666)
+
+```
+
+</TabItem>
+</Tabs>
+
 ### Retries
 
 In case of your webhook endpoint is responding with one of following error status codes 400, 408, 413, 429, 500, 502, 503, 504, 521, 522 or 524 Blockfrost will resend the request 2 more times with few seconds delay between each request. Body of the request is the same between retries, the ID of the retried request will be the same as the ID of the original request that have failed.
@@ -160,16 +245,18 @@ Follow [Loophole documentation](https://loophole.cloud/docs) to download the CLI
 
 :::note Example
 To expose local web server running on port 6666 via CLI run command `loophole http 6666`.
-In the Webhook settings set the webhook's endpoint to the URL you will see in the output.
+In the Webhook settings, set the webhook's endpoint to the URL you will see in the output (if you are using [the example](using-webhooks#process-a-webhook-request) do not forget to append `/webhook` at the end).
 
 ```
+
 $ loophole http 6666
 Loophole - End to end TLS encrypted TCP communication between you and your clients
 Registering your domain... Success!
-Starting local proxy server...  Success!
-Initializing secure tunnel...  Success!
+Starting local proxy server... Success!
+Initializing secure tunnel... Success!
 
 Forwarding https://1a4ab363d5cfd01cccc9fba73777770c.loophole.site -> http://127.0.0.1:6666
+
 ```
 
 :::
