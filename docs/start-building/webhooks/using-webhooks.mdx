@@ -61,77 +61,67 @@ app.post(
       console.log("The request is missing Blockfrost-Signature header");
       return response.status(400).send(`Missing signature header`);
     }
-
+    
+    // Validate the webhook signature
     try {
-      // Check the webhook signature
-      const isValid = verifyWebhookSignature(
+      verifyWebhookSignature(
         JSON.stringify(request.body), // stringified request.body
         signatureHeader,
         authToken,
         600 // optional param to customize maximum allowed age of the webhook event, defaults to 600s
       );
-
-      if (!isValid) {
-        // Ignore the event if the signature is invalid
-        console.log("Signature is not valid!");
-        response.status(400).send("Signature is not valid!");
-      } else {
-        // Signature is valid
-        const type = request.body.type;
-        const payload = request.body.payload;
-
-        // Process the incoming event
-        switch (type) {
-          case "transaction":
-            // process Transaction event
-            console.log(`Received ${payload.length} transactions`);
-            // loop through the payload (payload is an array of Transaction events)
-            for (const transaction of payload) {
-              console.log(`Transaction ${transaction.tx.hash}`);
-            }
-            break;
-
-          case "block":
-            // process Block event
-            console.log(`Received block hash ${payload.hash}`);
-            break;
-
-          case "delegation":
-            // process Delegation event
-            console.log(`Received ${payload.length} delegations`);
-            // loop through the payload, payload is an array of objects with fields: "tx" (an object) and "delegations" (an array)
-            for (const transaction of payload) {
-              for (const delegation of transaction.delegations) {
-                console.log(`Delegation from address ${delegation.address} inclued in tx ${transaction.tx.hash}`);
-              }
-            }
-            break;
-
-          case "epoch":
-            // process Epoch event
-            console.log(
-              `Epoch switch from ${payload.previous_epoch.epoch} to ${payload.current_epoch.epoch}`
-            );
-            break;
-
-          default:
-            console.warn(`Unexpected event type ${type}`);
-            break;
-        }
-
-        // Return status code 2xx
-        response.json({ processed: true });
-      }
-    } catch (err) {
-      // Handle possible errors
-      if (err instanceof SignatureVerificationError) {
-        console.log(`SignatureVerificationError: ${err.message}`);
-        response.status(400).send(`SignatureVerificationError`);
-      } else {
-        console.error(err);
-        response.status(400).send(`Unexpected Error`);
-      }
+    } catch (error) {
+      // In case of invalid signature verifyWebhookSignature will throw SignatureVerificationError
+      // # for easier debugging you can access passed signatureHeader and webhookPayload values (error.signatureHeader, error.webhookPayload)
+      console.error(error);
+      return response.status(400).send("Signature is not valid!");
     }
+
+    // Signature is valid
+    const type = request.body.type;
+    const payload = request.body.payload;
+
+    // Process the incoming event
+    switch (type) {
+      case "transaction":
+        // process Transaction event
+        console.log(`Received ${payload.length} transactions`);
+        // loop through the payload (payload is an array of Transaction events)
+        for (const transaction of payload) {
+          console.log(`Transaction ${transaction.tx.hash}`);
+        }
+        break;
+
+      case "block":
+        // process Block event
+        console.log(`Received block hash ${payload.hash}`);
+        break;
+
+      case "delegation":
+        // process Delegation event
+        console.log(`Received ${payload.length} delegations`);
+        // loop through the payload, payload is an array of objects with fields: "tx" (an object) and "delegations" (an array)
+        for (const transaction of payload) {
+          for (const delegation of transaction.delegations) {
+            console.log(`Delegation from address ${delegation.address} inclued in tx ${transaction.tx.hash}`);
+          }
+        }
+        break;
+
+      case "epoch":
+        // process Epoch event
+        console.log(
+          `Epoch switch from ${payload.previous_epoch.epoch} to ${payload.current_epoch.epoch}`
+        );
+        break;
+
+      default:
+        console.warn(`Unexpected event type ${type}`);
+        break;
+    }
+
+    // Return status code 2xx
+    response.json({ processed: true });
   }
 );
 
@@ -166,7 +156,7 @@ def webhook():
         
         # Get the payload as JSON
         event = request.json
-        
+
         print('Received request id {}, webhook_id: {}'.format(
             event['id'], event['webhook_id']))
 
