@@ -17,40 +17,73 @@ import TabItem from "@theme/TabItem";
 <Tabs>
 <TabItem value="js" label="Javascript (Node.js)">
 
-```javascript
+```javascript showLineNumbers
 const express = require("express");
 const blockfrost = require("@blockfrost/blockfrost-js");
-
 const { verifyWebhookSignature, SignatureVerificationError } = blockfrost;
+
 // You will find your webhook's secret auth token in your webhook settings in the Blockfrost Dashboard
-const authToken = 'WEBHOOK-AUTH-TOKEN';
+const SECRET_AUTH_TOKEN = 'WEBHOOK-AUTH-TOKEN';
+
 const app = express();
 
 app.post('/webhook', express.json({ type: 'application/json' }), (request, response) => {
+  // Validate the webhook signature
+  // highlight-start
   try {
-    const isValid = verifyWebhookSignature(
+    verifyWebhookSignature(
       JSON.stringify(request.body), // stringified request.body
-      request.headers["blockfrost-signature"],
-      authToken,
+      signatureHeader,
+      SECRET_AUTH_TOKEN,
       600 // optional param to customize maximum allowed age of the webhook event, defaults to 600s
     );
-    if (!isValid) {
-      console.log("Signature is not valid!");
-    } else {
-      // Valid signature, process the event
-    }
-  } catch (err) {
-    if (err instanceof SignatureVerificationError) {
-      // If parsing of Blockfrost-Signature header fails it will throw SignatureVerificationError
-      console.log(`SignatureVerificationError: ${err.message}`);
-    } else {
-      // Other errors
-      console.error(err);
-    }
+  } catch (error) {
+    // In case of invalid signature verifyWebhookSignature will throw SignatureVerificationError
+    // for easier debugging you can access passed signatureHeader and webhookPayload values (error.signatureHeader, error.webhookPayload)
+    console.error(error);
+    return response.status(400).send("Signature is not valid!");
   }
+  // highlight-end
+
+  // Signature is valid, process the event
 }
 
 app.listen(6666, () => console.log('Running on port 6666'));
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```python showLineNumbers
+from flask import Flask, request, json
+from blockfrost import verify_webhook_signature
+
+# You will find your webhook's secret auth token in your webhook settings in the Blockfrost Dashboard
+SECRET_AUTH_TOKEN = "SECRET-WEBHOOK-AUTH-TOKEN"
+
+app = Flask(__name__)
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    # Validate the webhook signature
+    request_bytes = request.get_data()
+    # highlight-start
+    try:
+        verify_webhook_signature(
+            request_bytes, request.headers['Blockfrost-Signature'], SECRET_AUTH_TOKEN)
+    except SignatureVerificationError as e:
+        # In case of invalid signature verify_webhook_signature will raise SignatureVerificationError
+        # for easier debugging you can access passed header and request_body values (e.header, e.request_body)
+        print('Webhook signature is invalid.', e)
+        return 'Invalid signature', 403
+    # highlight-end
+
+    # Signature is valid, process the event
+   
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=6666)
+
 ```
 
 </TabItem>
