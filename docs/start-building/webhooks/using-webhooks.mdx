@@ -31,6 +31,10 @@ Don't forget to verify that the event originated from Blockfrost, not a third pa
 
 Here is a quick example of web application that implements `/webhook` endpoint and leverages Blockfrost SDK to verify the webhook signature:
 
+:::info Missing an example for your favorite language?
+Earn a bounty for contributing an example in your favorite language. Everyone can participate earn a reward for contributions. [Join the Blockfrost Bounty Program now!](https://github.com/blockfrost/blockfrost.dev/issues?q=is%3Aissue+is%3Aopen+label%3ABounty%21)
+:::
+
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
@@ -137,6 +141,7 @@ app.listen(6666, () => console.log("Running on port 6666"));
 from flask import Flask, request, json
 from blockfrost import verify_webhook_signature
 
+# You will find your webhook's secret auth token in your webhook settings in the Blockfrost Dashboard
 SECRET_AUTH_TOKEN = "SECRET-WEBHOOK-AUTH-TOKEN"
 
 app = Flask(__name__)
