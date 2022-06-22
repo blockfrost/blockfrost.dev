@@ -30,7 +30,7 @@ module.exports = {
           label: "Secure Webhooks",
           link: {
             type: "doc",
-            id: "start-building/webhooks/webhooks-intro",
+            id: "start-building/webhooks/webhooks",
           },
           items: [
             "start-building/webhooks/using-webhooks",

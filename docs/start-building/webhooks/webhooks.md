@@ -1,6 +1,6 @@
 ---
 title: Secure Webhooks
-id: webhooks-intro
+id: webhooks
 ---
 
 ## What are webhooks
