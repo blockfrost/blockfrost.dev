@@ -3,13 +3,13 @@ title: Trigger conditions
 id: webhooks-conditions
 ---
 
-Optionally you can create up to 5 trigger conditions for the webhook. Only events that met all of the conditions will be sent to your endpoint. Condition rule consist of a field, a value and an operator. You can choose from predefined condition fields or create a custom JSONPath query extracting the field you want to match.
+Optionally, you can create up to 5 trigger conditions for a webhook. Only events that meet all of the conditions will be sent to your endpoint. A condition rule consist of a field, a value, and an operator. You can choose from predefined condition fields or create a custom JSONPath query extracting the field you want to match.
 
 ## Predefined conditions
 
 The easiest way to create a condition is to select a field from a list of predefined fields for each event type.
 
-For example, if you want to be notified when a payment is received on an address, then after selecting trigger type "Transaction" you will be able to create a rule for a field "Receiver", paste the address to the input and you are all set.
+For example, if you want to be notified when a payment is received on an address, then after selecting trigger type "Transaction" you will be able to create a rule for a field "Receiver", paste the address to the input, and you are all set.
 
 ### Transaction event
 
@@ -21,12 +21,12 @@ For example, if you want to be notified when a payment is received on an address
   </tr>
   <tr>
     <td>recipient</td>
-    <td>Bech32 encoded address or stake address of the recipient (entry in transaction's outputs)</td>
+    <td>Bech32 encoded address or stake address of the recipient (entry in transaction outputs)</td>
     <td>addr1q8q8gdh8j229a683ghk4rd5u5tj2mmq9gh2fk3cxe8c20gjk4gdu3...<br />stake1u9t25x7gs7rzxnstrvqdc7qzkt7c95mcus52tsfmazsem6q8xwujq</td>
   </tr>
   <tr>
     <td>sender</td>
-    <td>Bech32 encoded address or stake address (entry in transaction's inputs)</td>
+    <td>Bech32 encoded address or stake address (entry in transaction inputs)</td>
     <td>addr1q8q8gdh8j229a683ghk4rd5u5tj2mmq9gh2fk3cxe8c20gjk4gdu3...<br />stake1u9t25x7gs7rzxnstrvqdc7qzkt7c95mcus52tsfmazsem6q8xwujq</td>
   </tr>
   <tr>
@@ -52,7 +52,7 @@ For example, if you want to be notified when a payment is received on an address
 </table>
 
 :::tip
-Blockfrost Secure Webhooks support stake addresses as a receiver or a sender. All addresses belonging the same account will match the account's stake address.
+Blockfrost Secure Webhooks support stake addresses as either a receiver or a sender. All addresses belonging to the same account will match the account stake address.
 :::
 
 ### Block event
@@ -112,7 +112,7 @@ Blockfrost Secure Webhooks support stake addresses as a receiver or a sender. Al
 </table>
 
 :::tip
-In order to receive notifications every time new epoch starts do not set any condition.
+In order to receive notifications every time a new epoch starts, do not set any condition.
 :::
 
 ### Delegation event
@@ -136,11 +136,11 @@ In order to receive notifications every time new epoch starts do not set any con
 You can make use of JSONPath query to specify the JSON field that should be extracted and matched against a specified value.
 
 :::tip
-To help you prepare the query use built-in JSONPath Query editor. The editor is preloaded with a sample data. It matches your JSONPath query and shows the extracted field value in real time.
+To help you prepare the query, use built-in JSONPath Query editor. The editor is preloaded with a sample data. It matches your JSONPath query and shows the extracted field value in real time.
 :::
 
-You can match all types of values: strings, numbers, booleans, floats and null. Numeric values are automatically detected making use of operators such as <, <=, >, >= possible.
-If the extracted value is an array then only one of the array's items needs to match the specified value in order to satisfy the condition.
+You can match all types of values: strings, numbers, booleans, floats, and null. Numeric values are automatically detected making use of operators such as <, <=, >, >= possible.
+If the extracted value is an array, then only one of the array items needs to match the specified value in order to satisfy the condition.
 
 <!-- To match null type "null" in the input. -->
 
@@ -163,7 +163,7 @@ Sends a request to the endpoint every time a new asset is minted or burned.
 
 #### Transaction consumed specific UTXO
 
-Sends a request to the endpoint once the UTXO (transaction's hash) is used as an input in another transaction.
+Sends a request to the endpoint once the UTXO (transaction hash) is used as an input in another transaction.
 
 - Trigger event: Transaction
 - JSONPath Query: `$.inputs..tx_hash`
@@ -174,7 +174,7 @@ Sends a request to the endpoint once the UTXO (transaction's hash) is used as an
 
 #### Stake Pool saturation over 90%
 
-Sends a request for every delegation which results in stake pool saturation being above 90 %.
+Sends a request for every delegation that results in stake pool saturation being above 90 %.
 
 - Trigger event: Delegation
 - JSONPath Query: `$.pool.live_saturation `

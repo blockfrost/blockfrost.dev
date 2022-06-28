@@ -3,35 +3,35 @@ title: Events overview
 id: webhooks-events
 ---
 
-Blockfrost Secure Webhooks support various events such as Transaction, Block, Epoch and Delegation. Data for each event are sent in `payload` field of the webhook request's JSON body.
+Blockfrost Secure Webhooks support various events such as Transaction, Block, Epoch and Delegation. Data for each event is sent in the `payload` field of the webhook request JSON body.
 
-Each request's body has following fields:
+Each request body has the following fields:
 
-`id` - Unique identifier of the webhook request. Each request, even coming from the same webhook, will have distinct ID. However, requests that fail are retried multiple times with the same ID. To learn more, see [Retries](./using-webhooks#retries).
+`id` - Unique identifier of the webhook request. Each request, even coming from the same webhook, will have a distinct ID. However, requests that fail are retried multiple times with the same ID. To learn more, see [Retries](./using-webhooks#retries).
 
-`created` - Unix timestamp (in seconds) with a time when our system detected the event.
+`created` - Unix timestamp (in seconds) with the time when our system detected the event.
 
-`webhook_id` - Identifier of the Webhook, matching ID you see in [Blockfrost Dashboard](https://blockfrost.io/dashboard).
+`webhook_id` - Identifier of the Webhook, matching the ID you see in [Blockfrost Dashboard](https://blockfrost.io/dashboard).
 
-`api_version` - Version of Event objects (current version is `1`) affecting a schema of a webhook's payload.
+`api_version` - Version of Event objects (current version is `1`) affecting the schema of a webhook payload.
 
 `type` - Type of the event.
 
-`payload` - Event data. For the exact format of each event's payload see breakdown below.
+`payload` - Event data. For the exact format of each event payload, see breakdown below.
 
 :::caution
-It may happen that Cardano network rollbacks few blocks, invalidating the event that has been sent. Due to rollbacks you may receive the same event multiple times. To learn more see [Rollbacks](./using-webhooks#rollbacks-and-a-required-number-of-confirmations).
+It may happen that Cardano network rollbacks a few blocks, invalidating the event that has been sent. Due to rollbacks, you may receive the same event multiple times. To learn more see [Rollbacks](./using-webhooks#rollbacks-and-a-required-number-of-confirmations).
 :::
 
 ## Transaction
 
-Transaction event is dispatched every time new block is minted.
+A transaction event is dispatched every time a new block is minted.
 
-Transaction event contains an array of transactions matching your conditions. Every transaction object contains 3 fields: `tx`, `inputs` and `outputs`.
+A transaction event contains an array of transactions matching your conditions. Every transaction object contains 3 fields: `tx`, `inputs` and `outputs`.
 
 :::tip
 Fields `tx`, `inputs` and `outputs` match the same schema as one returned by Blockfrost API.
-For detailed description of each field check Blockfrost API documentation for [Transaction](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}/get) and [transaction's inputs and outputs](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}~1utxos/get).
+For detailed description of each field, see Blockfrost API documentation for [Transaction](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}/get) and [transaction inputs and outputs](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}~1utxos/get).
 :::
 
 #### Example of a webhook request with a transaction event
@@ -108,12 +108,12 @@ For detailed description of each field check Blockfrost API documentation for [T
 
 ## Block
 
-Block event is dispatched every time a new block is minted.
+A block event is dispatched every time a new block is minted.
 
-Block event payload consist of [Block](https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1{hash_or_number}/get) data.
+A block event payload consist of [Block](https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1{hash_or_number}/get) data.
 
 :::tip
-Schema of the payload data is the same as returned by Blockfrost API.
+Schema of the payload data is the same as that returned by the Blockfrost API.
 For a detailed description check Blockfrost API documentation for [Block](https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1{hash_or_number}/get).
 :::
 
@@ -148,7 +148,7 @@ For a detailed description check Blockfrost API documentation for [Block](https:
 
 ## Epoch
 
-Epoch event is dispatched on epoch switch. The event's payload contains information about a current epoch that has just started and a previous epoch that has ended.
+An epoch event is dispatched on an epoch switch. An event payload contains information about a current epoch that has just started and a previous epoch that has ended.
 
 :::tip
 Event payload consist of an object with two fields `previous_epoch` and `current_epoch`.
@@ -188,13 +188,13 @@ Event payload consist of an object with two fields `previous_epoch` and `current
 
 ## Delegation
 
-Delegation event is dispatched every time new block is minted.
+A delegation event is dispatched every time a new block is minted.
 
-Delegations are part of a transactions, which is why they are grouped by a transaction where they are included.
-Delegation event payload is an array of objects where each object consist of `tx` field with [a transaction data](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}/get) and `delegations` field with a list of [delegations](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}~1delegations/get) that match the conditions for given transaction. List of delegations is expanded with pool data.
+Delegations are part of transactions, which is why they are grouped by the transaction where they are included.
+A delegation event payload is an array of objects where each object consist of `tx` field with [a transaction data](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}/get) and `delegations` field with a list of [delegations](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}~1delegations/get) that match the conditions for given transaction. List of delegations is expanded with pool data.
 
 :::tip
-Field `tx` matches the same schema as [Transaction](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}/get) returned by Blockfrost API.
+Field `tx` matches the same schema as [Transaction](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}/get) returned by the Blockfrost API.
 List of `delegations` matches [Transaction delegations certificates](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}~1delegations/get) with one enhancement. Each delegation includes `pool` field containing [a stake pool data](https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools~1{pool_id}/get).
 
 Note that the original `pool_id` field is removed from the delegation object.

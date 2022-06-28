@@ -3,9 +3,9 @@ title: Check signatures
 id: webhooks-signatures
 ---
 
-Blockfrost signs the webhook events it sends to your endpoints. The signature is included in a request's `Blockfrost-Signature` header. This allows you to verify that the events were sent by Blockfrost, not by a third party. You can verify signatures either using our official SDKs, or manually using your own solution.
+Blockfrost signs the webhook events it sends to your endpoints. The signature is included in a request `Blockfrost-Signature` header. This allows you to verify that the events were sent by Blockfrost, not by a third party. You can verify signatures either using our official SDKs, or manually using your own solution.
 
-Before you can verify signatures, you need to retrieve your webhook's authentication token from your Secure Webhook settings.
+Before you can verify signatures, you need to retrieve your webhook authentication token from your Secure Webhook settings.
 
 ## Using SDK
 
@@ -22,7 +22,7 @@ const express = require("express");
 const blockfrost = require("@blockfrost/blockfrost-js");
 const { verifyWebhookSignature, SignatureVerificationError } = blockfrost;
 
-// You will find your webhook's secret auth token in your webhook settings in the Blockfrost Dashboard
+// You will find your webhook secret auth token in your webhook settings in the Blockfrost Dashboard
 const SECRET_AUTH_TOKEN = 'WEBHOOK-AUTH-TOKEN';
 
 const app = express();
@@ -58,7 +58,7 @@ app.listen(6666, () => console.log('Running on port 6666'));
 from flask import Flask, request, json
 from blockfrost import verify_webhook_signature
 
-# You will find your webhook's secret auth token in your webhook settings in the Blockfrost Dashboard
+# You will find your webhook secret auth token in your webhook settings in the Blockfrost Dashboard
 SECRET_AUTH_TOKEN = "SECRET-WEBHOOK-AUTH-TOKEN"
 
 app = Flask(__name__)
@@ -79,7 +79,7 @@ def webhook():
     # highlight-end
 
     # Signature is valid, process the event
-   
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=6666)
@@ -98,7 +98,7 @@ Signature itself (part after `v1=`) is created by concatenating:
 
 - The unix timestamp (as a string)
 - The character `.`
-- The request's JSON payload
+- The request JSON payload
 
 Then HMAC with the SHA256 hash function is computed. The concatenated string is used as a message.
 
@@ -108,13 +108,13 @@ Then HMAC with the SHA256 hash function is computed. The concatenated string is 
 t=1648550558,v1=162381a59040c97d9b323cdfec02facdfce0968490ec1732f5d938334c1eed4e
 ```
 
-Although it's recommended to use our SDKs to verify webhook event signatures, you can create a custom solution by following these steps.
+Although it is recommended to use our SDKs to verify webhook event signatures, you can create a custom solution by following these steps.
 
 ### 1. Parse the timestamp and signature from the header
 
 Split the header, using the `,` character as the separator, to get a list of elements. Then split each element, using the `=` character as the separator, to get a key-value pair.
 
-The value for the key `t` corresponds to the timestamp, and the value after `v1` corresponds to the signature. The header may contain multiple signatures with same version schema.
+The value for the key `t` corresponds to the timestamp, and the value after `v1` corresponds to the signature. The header may contain multiple signatures with the same version schema.
 
 ### 2. Prepare the `signature_payload`
 
@@ -122,15 +122,15 @@ Prepare the `signature_payload` by concatenating:
 
 - The unix timestamp (as a string)
 - The character `.`
-- The request's JSON payload
+- The request JSON payload
 
 ### 3. Compute the expected signature
 
-Compute an HMAC with the SHA256 hash function. Use the webhook's authentication token as the key, and use the prepared `signature_payload` string as the message.
+Compute an HMAC with the SHA256 hash function. Use the webhook authentication token as the key, and use the prepared `signature_payload` string as the message.
 
 ### 4. Compare the signatures
 
 Compare the computed signature with signatures extracted from the `Blockfrost-Signature`.
 If one of the signatures extracted from `Blockfrost-Signature` matches the computed signature, then compute the difference between the current timestamp and the received timestamp and decide if the difference is within your tolerance.
-By default Blockfrost SDK considers the signature valid if the difference is less than 10 minutes (600 seconds).
+By default, the Blockfrost SDK considers the signature valid if the difference is less than 10 minutes (600 seconds).
 If none of the signatures in `Blockfrost-Signature` header matches the computed signature, or if the difference between the timestamps is larger than the tolerance, the signature is considered invalid.
