@@ -196,8 +196,6 @@ A delegation event payload is an array of objects where each object consist of `
 :::tip
 Field `tx` matches the same schema as [Transaction](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}/get) returned by the Blockfrost API.
 List of `delegations` matches [Transaction delegations certificates](https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1{hash}~1delegations/get) with one enhancement. Each delegation includes `pool` field containing [a stake pool data](https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools~1{pool_id}/get).
-
-Note that the original `pool_id` field is removed from the delegation object.
 :::
 
 #### Example of a webhook request with a delegation event
@@ -245,6 +243,7 @@ Note that the original `pool_id` field is removed from the delegation object.
           "index": 0,
           "cert_index": 0,
           "address": "stake1uyhxaawwu3cnmuun5j4jzz8scxg3a6svnmcpuszg8leqqsgkcjlea",
+          "pool_id": "pool1df9rj4n0t3zlpak7xnh4ue6t3yh9zlw7a02w4l8askp77up25rt",
           "active_epoch": 329,
           "pool": {
             "pool_id": "pool1df9rj4n0t3zlpak7xnh4ue6t3yh9zlw7a02w4l8askp77up25rt",
