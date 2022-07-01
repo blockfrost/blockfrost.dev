@@ -29,7 +29,6 @@ const app = express();
 
 app.post('/webhook', express.json({ type: 'application/json' }), (request, response) => {
   // Validate the webhook signature
-  // highlight-start
   try {
     verifyWebhookSignature(
       JSON.stringify(request.body), // stringified request.body
@@ -39,11 +38,10 @@ app.post('/webhook', express.json({ type: 'application/json' }), (request, respo
     );
   } catch (error) {
     // In case of invalid signature verifyWebhookSignature will throw SignatureVerificationError
-    // for easier debugging you can access passed signatureHeader and webhookPayload values (error.signatureHeader, error.webhookPayload)
+    // for easier debugging you can access passed signatureHeader and webhookPayload values (error.detail.signatureHeader, error.detail.webhookPayload)
     console.error(error);
     return response.status(400).send("Signature is not valid!");
   }
-  // highlight-end
 
   // Signature is valid, process the event
 }
@@ -67,7 +65,6 @@ app = Flask(__name__)
 def webhook():
     # Validate the webhook signature
     request_bytes = request.get_data()
-    # highlight-start
     try:
         verify_webhook_signature(
             request_bytes, request.headers['Blockfrost-Signature'], SECRET_AUTH_TOKEN)
@@ -76,7 +73,6 @@ def webhook():
         # for easier debugging you can access passed header and request_body values (e.header, e.request_body)
         print('Webhook signature is invalid.', e)
         return 'Invalid signature', 403
-    # highlight-end
 
     # Signature is valid, process the event
 
