@@ -10,6 +10,16 @@ module.exports = {
   organizationName: "blockfrost",
   projectName: "blockfrost.dev",
   themeConfig: {
+    metadata: [
+      {
+        name: "og:image",
+        content: "https://blockfrost.io/images/logo_full.png",
+      },
+      {
+        name: "twitter:image",
+        content: "https://blockfrost.io/images/logo_full.png",
+      },
+    ],
     colorMode: {
       defaultMode: "light",
       disableSwitch: false,
