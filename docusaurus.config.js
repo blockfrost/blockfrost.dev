@@ -125,4 +125,5 @@ module.exports = {
       "data-domain": "blockfrost.dev",
     },
   ],
+  plugins: [require.resolve("@cmfcmf/docusaurus-search-local")],
 };
