@@ -17,6 +17,7 @@ slug: /start-building
 - All hex encoded values are lower case.
 - Examples are not based on real data. Any resemblance to actual events is purely coincidental.
 - We allow to upload files up to 100MB of size to IPFS. This might increase in the future.
+- We allow maximum of 100 queued pins per IPFS user.
 
 :::caution
 Keep in mind we use pagination (100 items per default) and that it starts from page 1, unlike traditional indexing.
@@ -44,11 +45,13 @@ Each network has its own token. Using token created for another network will res
 
 ### Limits
 
-There are two types of limits we are enforcing:
+There are three types of limits we are enforcing:
 
 The first depends on your plan and is the number of request we allow per day. We defined the day from midnight to midnight of UTC time.
 
 The second is rate limiting. We limit an end user, distinguished by IP address, to 10 requests per second. On top of that, we allow each user to send burst of 500 requests, which cools off at rate of 10 requests per second. In essence, a user is allowed to make another whole burst after (currently) 500/10 = 50 seconds. E.g. if a user attempts to make a call 3 seconds after whole burst, 30 requests will be processed. We believe this should be sufficient for most of the use cases. If it is not and you have a specific use case, please get in touch with us, and we will make sure to take it into account as much as we can.
+
+The third is applicable to IPFS only. There is a maximum of allowed queued items scheduled to be pinned. Once an item becomes pinned (changes state from `queued` to `pinned`), you can call the pin operation again, adding additional item(s) to the queue.
 
 :::tip
 If you'd like to use higher limits or whitelist IPs, please upgrade to Enterprise plan by [contacting our support](/docs/support#contacting-support).
@@ -63,7 +66,9 @@ The following are HTTP status code your application might receive when reaching 
 - HTTP 403 return code is used when the request is not authenticated.
 - HTTP 404 return code is used when the resource doesn't exist.
 - HTTP 418 return code is used when the user has been auto-banned for flooding too much after previously receiving error code 402 or 429.
-- HTTP 425 return code is used when the user has submitted a transaction when the mempool is already full, not accepting new txs straight away.
+- HTTP 425 return code
+  - In Cardano networks, it is used when the user has submitted a transaction when the mempool is already full, not accepting new txs straight away.
+  - In IPFS network, it is used when a user has reached the maximum allowed items queued to be pinned.
 - HTTP 429 return code is used when the user has sent too many requests in a given amount of time and therefore has been rate-limited.
 - HTTP 500 return code is used when our endpoints are having a problem.
 
@@ -90,9 +95,13 @@ Receiving 404:
 
 - The resource doesn't exist on the blockchain (yet), visit our [Cardano support page](/docs/support/cardano) for a more detailed explanation
 
-Receiving 425:
+Receiving 425 (Cardano):
 
-- Most likely the network is under huge load or an intermittent network error has ocurred. Please retry submitting the transaction and in case you receive another 425, wait a few seconds before trying again.
+- The network is most likely under huge load or an intermittent network error has ocurred. Please retry submitting the transaction and in case you receive another 425, wait a few seconds before trying again.
+
+Receiving 425 (IPFS):
+
+- You have reached the limit of your pin queue. IFPS cluster might be under load or you might be pinning too many (or large) items and your pins are waiting in the pin queue. Please wait a few moments before trying again. We recommend checking for the `state` of the pins by querying `/ipfs/pin/list`. Once the `state` changes `queued`->`pinned`, you can add a new item to the pin queue.
 
 Receiving 429:
 
