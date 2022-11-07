@@ -30,7 +30,7 @@ To enter a development shell, use `nix-shell`.
 
 ## Usage
 
-To build the [example](./example), copy `example/creds.h.sample`
+To build the `example`, copy `example/creds.h.sample` from the repository
 to `example/creds.h` and fill in your credentials.
 
 ```sh
