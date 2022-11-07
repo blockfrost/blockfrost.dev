@@ -50,6 +50,7 @@ module.exports = {
       type: "category",
       label: "Software Development Kits",
       items: [
+        "sdks/arduino",
         "sdks/crystal",
         "sdks/dotnet",
         "sdks/elixir",
