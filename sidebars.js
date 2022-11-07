@@ -50,6 +50,7 @@ module.exports = {
       type: "category",
       label: "Software Development Kits",
       items: [
+        "sdks/crystal",
         "sdks/dotnet",
         "sdks/elixir",
         "sdks/golang",
@@ -57,6 +58,7 @@ module.exports = {
         "sdks/java",
         "sdks/js",
         "sdks/kotlin",
+        "sdks/php",
         "sdks/python",
         "sdks/ruby",
         "sdks/rust",
