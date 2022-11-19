@@ -569,6 +569,38 @@ curl -H "project_id: $PROJECT_ID" \
 
 :::
 
+
+### Mempool
+
+The mempool in Cardano is not global, which means that different block producing nodes can have different state of the network, including pending transactions in the mempool. However, if your application is using Blockfrost submit endpoint, you can verify whether your transaction is present in our mempools.
+
+```bash
+curl -H "project_id: $PROJECT_ID" \
+"https://cardano-mainnet.blockfrost.io/api/v0/mempool"
+```
+
+```json
+[
+  {
+    "tx_hash": "edb1c7fab58d94b6b402686956391a366548696431387d24e214c228ce7311eb"
+  },
+  {
+    "tx_hash": "68757830e3eb8ac6b79169734310e624c9c7c18c92c0b1d32d392124ad34a17e"
+  },
+  {
+    "tx_hash": "ce2e9ce0c5ef2701f083b005529b2fd2e47acc48e3aff9e60bc96e970306d087"
+  },
+  {
+    "tx_hash": "33b78c1b3dfca35854bd236143f49d1aacbe2003ad21d13f5018009a002da65c"
+  },
+  {
+    "tx_hash": "ad5b4f7c394782593f750124c9917c53336a1623ae5d58523e83257c6080c5d6"
+  }
+]
+```
+
+:::
+
 ### Network
 
 To finish our Cardano adventure, let's look at the Testnet stats at the time of writing this guide. You can also use `jq`, if you happen to have it.
