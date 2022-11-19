@@ -572,7 +572,7 @@ curl -H "project_id: $PROJECT_ID" \
 
 ### Mempool
 
-The mempool in Cardano is not global, which means, different block producing nodes can have different state of the network and it includes the pending transaction in the mempool. However, if you application is using Blockfrost's submit endpoint, you can verify if you transaction is in our mempools.
+The mempool in Cardano is not global, which means that different block producing nodes can have different state of the network, including pending transactions in the mempool. However, if your application is using Blockfrost submit endpoint, you can verify whether your transaction is present in our mempools.
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
