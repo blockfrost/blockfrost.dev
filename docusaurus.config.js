@@ -106,8 +106,13 @@ module.exports = {
   },
   presets: [
     [
-      "@docusaurus/preset-classic",
+      "docusaurus-preset-openapi",
+      /** @type {import('docusaurus-preset-openapi').Options} */
       {
+        api: {
+          path: "./openapi.yaml",
+          routeBasePath: "/api",
+        },
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/blockfrost/blockfrost.dev/edit/master/",

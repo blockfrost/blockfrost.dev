@@ -102,7 +102,7 @@ export default function Home() {
                 "button button--outline button--primary button--lg",
                 styles.getStarted
               )}
-              to="https://docs.blockfrost.io/"
+              to={useBaseUrl("api")}
             >
               OpenAPI reference
             </Link>
