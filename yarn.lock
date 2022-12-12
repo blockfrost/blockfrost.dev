@@ -2379,10 +2379,10 @@
     "@babel/helper-validator-identifier" "^7.18.6"
     to-fast-properties "^2.0.0"
 
-"@blockfrost/openapi@0.1.49":
-  version "0.1.49"
-  resolved "https://registry.yarnpkg.com/@blockfrost/openapi/-/openapi-0.1.49.tgz#fff3d775ebc051d80d6c3be1289699055125cf04"
-  integrity sha512-RnBwYXkEljQek9Fm2ayl2px6jerTat64vBd/om0LQZHMdBQsYhh4zpTlPm9Pk8DfFk2JfoWOC/HwF2Ij7d+QzQ==
+"@blockfrost/openapi@0.1.50-beta.1":
+  version "0.1.50-beta.1"
+  resolved "https://registry.yarnpkg.com/@blockfrost/openapi/-/openapi-0.1.50-beta.1.tgz#0245555d3781a248ee87d54db3e6ea910e0c5a37"
+  integrity sha512-LYniWfQH2bsooc7TkXRFW3HZiXx4FrmZXP2pjDtfwoqMDTL5LkMpO9RQOn+VNx/8WRZ2HS5+HUTp0IKiusNxRg==
   dependencies:
     "@redocly/openapi-cli" "^1.0.0-beta.95"
     yaml "^2.1.3"

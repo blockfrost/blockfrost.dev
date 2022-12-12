@@ -1,27 +1,20 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
-
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #25c2a0;
+  /* --ifm-color-primary: #25c2a0;
   --ifm-color-primary-dark: rgb(33, 175, 144);
   --ifm-color-primary-darker: rgb(31, 165, 136);
   --ifm-color-primary-darkest: rgb(26, 136, 112);
   --ifm-color-primary-light: rgb(70, 203, 174);
   --ifm-color-primary-lighter: rgb(102, 212, 189);
   --ifm-color-primary-lightest: rgb(146, 224, 208);
-  --ifm-code-font-size: 95%;
-
+  --ifm-code-font-size: 95%; */
+  /* 
   --ifm-color-primary: #002aff;
   --ifm-color-primary-dark: #0026e6;
   --ifm-color-primary-darker: #0024d9;
   --ifm-color-primary-darkest: #001db3;
   --ifm-color-primary-light: #1a3fff;
   --ifm-color-primary-lighter: #264aff;
-  --ifm-color-primary-lightest: #4d6aff;
+  --ifm-color-primary-lightest: #4d6aff; */
 
   --ifm-border-color: #f4f2f4;
   --ifm-toc-border-color: var(--ifm-border-color);
@@ -40,6 +33,7 @@
   --ifm-color-primary-light: #ff1a6a;
   --ifm-color-primary-lighter: #ff2672;
   --ifm-color-primary-lightest: #ff4d8b;
+  */
 
   --ifm-color-primary: #6600ff;
   --ifm-color-primary-dark: #5c00e6;
@@ -47,26 +41,26 @@
   --ifm-color-primary-darkest: #4700b3;
   --ifm-color-primary-light: #751aff;
   --ifm-color-primary-lighter: #7d26ff;
-  --ifm-color-primary-lightest: #944dff; */
+  --ifm-color-primary-lightest: #944dff;
 }
 
 @font-face {
-  font-family: 'Satoshi';
+  font-family: "Satoshi";
   src: url(/font/Satoshi-Medium.ttf);
 }
 
 @font-face {
-  font-family: 'Satoshi';
+  font-family: "Satoshi";
   src: url(/font/Satoshi-Bold.ttf);
   font-weight: 600;
 }
 @font-face {
-  font-family: 'Satoshi';
+  font-family: "Satoshi";
   src: url(/font/Satoshi-MediumItalic.ttf);
   font-style: italic;
 }
 @font-face {
-  font-family: 'Satoshi';
+  font-family: "Satoshi";
   src: url(/font/Satoshi-Medium.ttf);
   font-weight: 500;
 }
@@ -81,8 +75,8 @@ p,
 a,
 li,
 footer * {
-  font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+  font-family: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
 }
 
 html {
@@ -104,7 +98,18 @@ p {
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
 }
-[data-theme='dark'] {
+
+.theme-doc-version-badge {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+code {
+  padding: 5px;
+  font-weight: 500;
+}
+
+[data-theme="dark"] {
   --ifm-color-primary: #00ccff;
   --ifm-color-primary-dark: #00b8e6;
   --ifm-color-primary-darker: #00add9;
@@ -118,27 +123,34 @@ p {
   --ifm-background-color: hsl(246 6% 9%);
 }
 
-html[data-theme='dark'] .docusaurus-highlight-code-line {
+html[data-theme="dark"] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
-[data-theme='light'] .shiki.min-dark {
+
+[data-theme="light"] .shiki.min-dark {
   display: none;
 }
 
-[data-theme='dark'] .shiki.min-light {
+[data-theme="dark"] .shiki.min-light {
   display: none;
 }
-
 
 .navbar--fixed-top {
   backdrop-filter: blur(12px);
   background-color: transparent;
 }
 
-.menu__link, .menu__list-item-collapsible {
+.menu__link,
+.menu__list-item-collapsible {
   border-radius: 999px;
 }
 
 aside {
-  border-right-width: 0px!important;
+  border-right-width: 0px !important;
+}
+
+strong {
+  font-weight: 600;
+  font-size: 12px !important;
+  color: #751aff !important;
 }

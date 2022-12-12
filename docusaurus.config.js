@@ -110,7 +110,7 @@ module.exports = {
       /** @type {import('docusaurus-preset-openapi').Options} */
       {
         api: {
-          path: "./openapi.yaml",
+          path: "node_modules/@blockfrost/openapi/openapi.yaml",
           routeBasePath: "/api",
         },
         docs: {
