@@ -25,19 +25,13 @@ If you wish to upgrade to Enterprise plan, please [contact our support](/docs/su
 
 ![Blockfrost.io plans](/img/frontend_upgrade.png)
 
-Then update your billing details and click **CONTINUE**.
+Then update your billing details and click **SUBSCRIBE**.
 
 ![Blockfrost.io plans](/img/frontend_upgrade_details.png)
 
 :::tip
 If you're EU VAT registered, fill out VAT field to be eligible for tax deduction.
 :::
-
-And finally your card.
-
-![Blockfrost.io plans](/img/frontend_upgrade_card.png)
-
-Click **SUBSCRIBE** and you're all set!
 
 ### Downgrading plan
 
@@ -53,7 +47,7 @@ You won't be charged again during downgrading. On the contrary, any unspent amou
 
 ### Cancelling subscription
 
-You have to be logged in order to perform the cancellation. Click **CANCEL SUBSCRIPTION** and confirm your choice after carefully reading and acknowledging the popup.
+You have to be logged in order to perform the cancellation. Click **Downgrade Subscription** on STARTER plan and confirm your choice after carefully reading and acknowledging the popup.
 
 To be able to cancel subscription, make sure the number of your projects is smaller or the size of the new Plan (i.e. 0 or 1).
 
@@ -89,17 +83,22 @@ Deleting a project is irreversible and effective immediate. Your `project_id` wi
 
 ## Billing
 
-Our billing cycle is monthly.
+Our billing cycle is monthly or yearly.
 
 :::info
 When downgrading or upgrading, any unspent amount from your current plan will transferred and it will be deducted from the subsequent payment. Therefore, you don't have to worry about losing your money.
 :::
 
-### Updating payment card
+### Updating billing information
 
-You have to be logged in order to perform the update. You can update your card by clicking clicking **UPDATE CARD** in the [dashboard](https://blockfrost.io/dashboard) or directly through [here](https://blockfrost.io/dashboard/plans/update).
+You have to be logged in order to perform the update. You can update your billing information by clicking **Manage Billing** in the dropdown menu in the top right corner.
 
-![Blockfrost.io plans](/img/frontend_card_update.png)
+![Blockfrost.io manage billing](/img/frontend_manage_billing.png)
+
+You will be redirected to Billing Portal where you can update billing details or view past invoices.
+
+
+![Blockfrost.io billing portal](/img/frontend_billing_portal.png)
 
 ## Terms and abuse
 
