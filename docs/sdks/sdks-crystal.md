@@ -47,7 +47,7 @@ some added information:
 
 ```crystal
 Blockfrost.configure do |config|
-  # an API KEY starting with "testnet", "preview", "preprod" or "mainnet"
+  # an API KEY starting with "preview", "preprod" or "mainnet"
   config.cardano_api_key = ENV.fetch("BLOCKFROST_CARDANO_API_KEY")
 
   # the api version of the Cardano enpoints (currently only "v0") 

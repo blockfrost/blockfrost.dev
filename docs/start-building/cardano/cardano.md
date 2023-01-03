@@ -30,7 +30,7 @@ Don't forget to `export` the `PROJECT_ID` first when trying examples in this gui
 
 ```bash
 # Don't forget to replace the PROJECT_ID with yours!
-export PROJECT_ID=testnetEnrkKWDwlA9hV4IajI4ILrFdsHJpIqNC
+export PROJECT_ID=previewEnrkKWDwlA9hV4IajI4ILrFdsHJpIqNC
 ```
 
 :::
@@ -50,7 +50,7 @@ Let's query a Testnet stake address `stake_test1uz3u6x5cs388djqz6awnyuvez2f6n8jz
 ```bash
 
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/accounts/stake_test1uz3u6x5cs388djqz6awnyuvez2f6n8jzjhqq59s4yxhm8js3nad0c"
+"https://cardano-preview.blockfrost.io/api/v0/accounts/stake_test1uz3u6x5cs388djqz6awnyuvez2f6n8jzjhqq59s4yxhm8js3nad0c"
 ```
 
 ```json
@@ -75,7 +75,7 @@ Let's also query addresses which [made at least 1 transaction](docs/support/card
 ```bash
 
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/accounts/stake_test1uz3u6x5cs388djqz6awnyuvez2f6n8jzjhqq59s4yxhm8js3nad0c/addresses"
+"https://cardano-preview.blockfrost.io/api/v0/accounts/stake_test1uz3u6x5cs388djqz6awnyuvez2f6n8jzjhqq59s4yxhm8js3nad0c/addresses"
 ```
 
 Whoa, that's a lot of addresses! Let's take just the first three, by using query parameter `count`.
@@ -83,7 +83,7 @@ Whoa, that's a lot of addresses! Let's take just the first three, by using query
 ```bash
 
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/accounts/stake_test1uz3u6x5cs388djqz6awnyuvez2f6n8jzjhqq59s4yxhm8js3nad0c/addresses?count=3"
+"https://cardano-preview.blockfrost.io/api/v0/accounts/stake_test1uz3u6x5cs388djqz6awnyuvez2f6n8jzjhqq59s4yxhm8js3nad0c/addresses?count=3"
 ```
 
 ```json
@@ -106,7 +106,7 @@ Let's continue where we left off and pick the first address from our account. Ha
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/addresses/addr_test1qzvduldkktan65x4dg5gkfaaehc798pjg755yckuk5tjcedre5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qtweh58"
+"https://cardano-preview.blockfrost.io/api/v0/addresses/addr_test1qzvduldkktan65x4dg5gkfaaehc798pjg755yckuk5tjcedre5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qtweh58"
 ```
 
 ```json
@@ -128,7 +128,7 @@ The address is now empty but since we can see it on the blockchain and it didn't
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/addresses/addr_test1qzvduldkktan65x4dg5gkfaaehc798pjg755yckuk5tjcedre5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qtweh58/transactions?count=1&order=desc"
+"https://cardano-preview.blockfrost.io/api/v0/addresses/addr_test1qzvduldkktan65x4dg5gkfaaehc798pjg755yckuk5tjcedre5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qtweh58/transactions?count=1&order=desc"
 ```
 
 ```json
@@ -146,7 +146,7 @@ It looks like the first two addresses from the account we have started our tutor
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/addresses/addr_test1qzw29n4altf86nwdlft7nah5606hytg5pvdxe3rm65zzxmdre5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qe60tfp"
+"https://cardano-preview.blockfrost.io/api/v0/addresses/addr_test1qzw29n4altf86nwdlft7nah5606hytg5pvdxe3rm65zzxmdre5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qe60tfp"
 ```
 
 ```json
@@ -200,7 +200,7 @@ Let's pick the first token from the previous call and query its details.
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/assets/476039a0949cf0b22f6a800f56780184c44533887ca6e821007840c36e7574636f696e"
+"https://cardano-preview.blockfrost.io/api/v0/assets/476039a0949cf0b22f6a800f56780184c44533887ca6e821007840c36e7574636f696e"
 ```
 
 ```json
@@ -228,7 +228,7 @@ Let's look at the first transaction which has information about this asset. We u
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/assets/476039a0949cf0b22f6a800f56780184c44533887ca6e821007840c36e7574636f696e/transactions?count=1&order=asc"
+"https://cardano-preview.blockfrost.io/api/v0/assets/476039a0949cf0b22f6a800f56780184c44533887ca6e821007840c36e7574636f696e/transactions?count=1&order=asc"
 ```
 
 ```json
@@ -250,7 +250,7 @@ Blocks can be queried either by their `hash` or their `height`. Let's try queryi
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/blocks/2287021"
+"https://cardano-preview.blockfrost.io/api/v0/blocks/2287021"
 ```
 
 ```json
@@ -277,7 +277,7 @@ There's not much going on, seems like the only transaction in that block was the
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/blocks/latest"
+"https://cardano-preview.blockfrost.io/api/v0/blocks/latest"
 ```
 
 ```json
@@ -304,7 +304,7 @@ Huh, an empty block. There are no transactions. Well, it might happen when the b
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/blocks/latest"
+"https://cardano-preview.blockfrost.io/api/v0/blocks/latest"
 ```
 
 ```json
@@ -333,7 +333,7 @@ We can also look at the transactions in a block.
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/blocks/6eae785d52d11ae78fb5b8b619b6cf10faba2e4138884f4d7eb13fd04898ad8d/txs"
+"https://cardano-preview.blockfrost.io/api/v0/blocks/6eae785d52d11ae78fb5b8b619b6cf10faba2e4138884f4d7eb13fd04898ad8d/txs"
 ```
 
 ```json
@@ -353,7 +353,7 @@ Let's look at some epoch stats. We'll query the epoch from the previous call. Th
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/epochs/latest"
+"https://cardano-preview.blockfrost.io/api/v0/epochs/latest"
 ```
 
 ```json
@@ -373,7 +373,7 @@ curl -H "project_id: $PROJECT_ID" \
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/epochs/193"
+"https://cardano-preview.blockfrost.io/api/v0/epochs/193"
 ```
 
 ```json
@@ -399,7 +399,7 @@ Let's take a look a the pool from the very beginning, the pool at which the acco
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/pools/pool1y6chk7x7fup4ms9leesdr57r4qy9cwxuee0msan72x976a6u0nc"
+"https://cardano-preview.blockfrost.io/api/v0/pools/pool1y6chk7x7fup4ms9leesdr57r4qy9cwxuee0msan72x976a6u0nc"
 ```
 
 ```json
@@ -440,7 +440,7 @@ Let's look at the transactions we found when we were querying the latest block.
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/txs/dcace43b3d9e67089567ce62b82a99a5d0749022d9f1cc151de60ea9e470bdd6"
+"https://cardano-preview.blockfrost.io/api/v0/txs/dcace43b3d9e67089567ce62b82a99a5d0749022d9f1cc151de60ea9e470bdd6"
 ```
 
 ```json
@@ -479,7 +479,7 @@ Looks like an ordinary transaction, let's check if it has any metadata.
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/txs/dcace43b3d9e67089567ce62b82a99a5d0749022d9f1cc151de60ea9e470bdd6/metadata"
+"https://cardano-preview.blockfrost.io/api/v0/txs/dcace43b3d9e67089567ce62b82a99a5d0749022d9f1cc151de60ea9e470bdd6/metadata"
 ```
 
 ```json
@@ -518,7 +518,7 @@ We can also query metadata having the same label as our previous transaction. Le
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/metadata/txs/labels/1985?count=1&&page=100&order=desc"
+"https://cardano-preview.blockfrost.io/api/v0/metadata/txs/labels/1985?count=1&&page=100&order=desc"
 ```
 
 ```json
@@ -551,7 +551,7 @@ Let's call the curl with `-s` parameter and use `jq` to pick just the `block_tim
 
 ```bash
 curl -s -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/txs/44e4e8c639a31ab7d7489dcb9945bf1a4b8f7d52c563c6d7da70837ed6a018bb" \
+"https://cardano-preview.blockfrost.io/api/v0/txs/44e4e8c639a31ab7d7489dcb9945bf1a4b8f7d52c563c6d7da70837ed6a018bb" \
 | jq .block_time | date -u
 ```
 
@@ -564,7 +564,7 @@ Wed Mar 16 02:57:41 AM UTC 2022
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/blocks/latest" | jq
+"https://cardano-preview.blockfrost.io/api/v0/blocks/latest" | jq
 ```
 
 :::
@@ -607,7 +607,7 @@ To finish our Cardano adventure, let's look at the Testnet stats at the time of 
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/network"
+"https://cardano-preview.blockfrost.io/api/v0/network"
 ```
 
 ```json

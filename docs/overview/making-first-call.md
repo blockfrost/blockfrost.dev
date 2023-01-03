@@ -20,7 +20,8 @@ In this example, we set `project_id` as an environment variable and then use it 
   defaultValue="mainnet"
   values={[
     { label: 'Cardano mainnet', value: 'mainnet', },
-    { label: 'Cardano testnet', value: 'testnet', },
+    { label: 'Cardano preview', value: 'preview', },
+    { label: 'Cardano preprod', value: 'preprod', },
     { label: 'IPFS', value: 'ipfs', },
     { label: 'Milkomeda mainnet', value: 'milkomeda-mainnet', },
     { label: 'Milkomeda testnet', value: 'milkomeda-testnet', },
@@ -37,14 +38,25 @@ curl -H "project_id: $PROJECT_ID" https://cardano-mainnet.blockfrost.io/api/v0/b
 ```
 
 </TabItem>
-<TabItem value="testnet">
+<TabItem value="preview">
 
 ```shell
 # Don't forget to replace the PROJECT_ID with your newly generated one!
 # The following PROJECT_ID is made up, NEVER share your PROJECT_ID publicly!!!
-export PROJECT_ID=testnetEnrkKWDwlA9hV4IajI4ILrFdsHJpIqNC
+export PROJECT_ID=previewEnrkKWDwlA9hV4IajI4ILrFdsHJpIqNC
 
-curl -H "project_id: $PROJECT_ID" https://cardano-testnet.blockfrost.io/api/v0/blocks/latest
+curl -H "project_id: $PROJECT_ID" https://cardano-preview.blockfrost.io/api/v0/blocks/latest
+```
+
+</TabItem>
+<TabItem value="preprod">
+
+```shell
+# Don't forget to replace the PROJECT_ID with your newly generated one!
+# The following PROJECT_ID is made up, NEVER share your PROJECT_ID publicly!!!
+export PROJECT_ID=preprodEnrkKWDwlA9hV4IajI4ILrFdsHJpIqNC
+
+curl -H "project_id: $PROJECT_ID" https://cardano-preprod.blockfrost.io/api/v0/blocks/latest
 ```
 
 </TabItem>
