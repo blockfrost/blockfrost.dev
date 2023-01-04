@@ -1,48 +1,35 @@
-import React from "react";
-import clsx from "clsx";
-import Layout from "@theme/Layout";
-import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-import styles from "./styles.module.css";
+import React from 'react';
+import clsx from 'clsx';
+import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import styles from './styles.module.css';
 
 const features = [
   {
-    title: "Getting Started and Platform Overview",
-    imageUrl: "img/getting_started.svg",
+    title: 'Getting Started and Platform Overview',
+    imageUrl: 'img/getting_started.svg',
     description: (
-      <>
-        A step-by-step guide to get you started with Blockfrost API and make
-        your first call!
-      </>
+      <>A step-by-step guide to get you started with Blockfrost API and make your first call!</>
     ),
   },
   {
-    title: "Deep dive, SDKs and More",
-    imageUrl: "img/sdk.svg",
-    description: (
-      <>
-        Dig deeper and build more with our detailed guides and multi-language
-        SDKs.
-      </>
-    ),
+    title: 'Deep dive, SDKs and More',
+    imageUrl: 'img/sdk.svg',
+    description: <>Dig deeper and build more with our detailed guides and multi-language SDKs.</>,
   },
   {
-    title: "Tutorials and Showcases",
-    imageUrl: "img/showcase.svg",
-    description: (
-      <>
-        Explore tutorials and amazing community projects already built on
-        Blockfrost.
-      </>
-    ),
+    title: 'Tutorials and Showcases',
+    imageUrl: 'img/showcase.svg',
+    description: <>Explore tutorials and amazing community projects already built on Blockfrost.</>,
   },
 ];
 
 function Feature({ imageUrl, title, description }) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
-    <div className={clsx("col col--4", styles.feature)}>
+    <div className={clsx('col col--4', styles.feature)}>
       {imgUrl && (
         <div className="text--center">
           <img className={styles.featureImage} src={imgUrl} alt={title} />
@@ -62,36 +49,27 @@ export default function Home() {
       title={`Welcome to ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
-      <header className={clsx("hero", styles.heroBanner)}>
+      <header className={clsx('hero', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p>
           <br />
           <div className={styles.buttons}>
             <Link
-              className={clsx(
-                "button  button--primary button--lg",
-                styles.getStarted
-              )}
-              to={useBaseUrl("docs/overview/getting-started")}
+              className={clsx('button  button--primary button--lg', styles.getStarted)}
+              to={useBaseUrl('docs/overview/getting-started')}
             >
               Getting started
             </Link>
             <Link
-              className={clsx(
-                "button  button--primary button--lg",
-                styles.getStarted
-              )}
+              className={clsx('button  button--primary button--lg', styles.getStarted)}
               to="docs/start-building"
             >
               Start building
             </Link>
             <Link
-              className={clsx(
-                "button  button--primary button--lg",
-                styles.getStarted
-              )}
-              to={useBaseUrl("docs/sdks")}
+              className={clsx('button  button--primary button--lg', styles.getStarted)}
+              to={useBaseUrl('docs/sdks')}
             >
               Discover SDKs
             </Link>
@@ -99,8 +77,8 @@ export default function Home() {
           <div className={styles.buttons}>
             <Link
               className={clsx(
-                "button button--outline button--primary button--lg",
-                styles.getStarted
+                'button button--outline button--primary button--lg',
+                styles.getStarted,
               )}
               to="https://docs.blockfrost.io/"
             >
@@ -108,10 +86,10 @@ export default function Home() {
             </Link>
             <Link
               className={clsx(
-                "button button--outline button--primary button--lg",
-                styles.getStarted
+                'button button--outline button--primary button--lg',
+                styles.getStarted,
               )}
-              to={useBaseUrl("docs/support")}
+              to={useBaseUrl('docs/support')}
             >
               Support & FAQ
             </Link>

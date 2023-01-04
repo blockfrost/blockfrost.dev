@@ -1,102 +1,102 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: "Blockfrost Development Hub",
-  tagline: "Welcome to the Blockfrost.io universe",
-  url: "https://blockfrost.dev/",
-  baseUrl: "/",
-  onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
-  favicon: "img/favicon.ico",
-  organizationName: "blockfrost",
-  projectName: "blockfrost.dev",
+  title: 'Blockfrost Development Hub',
+  tagline: 'Welcome to the Blockfrost.io universe',
+  url: 'https://blockfrost.dev/',
+  baseUrl: '/',
+  onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'warn',
+  favicon: 'img/favicon.ico',
+  organizationName: 'blockfrost',
+  projectName: 'blockfrost.dev',
   themeConfig: {
     metadata: [
       {
-        name: "og:image",
-        content: "https://blockfrost.io/images/logo_full.png",
+        name: 'og:image',
+        content: 'https://blockfrost.io/images/logo_full.png',
       },
       {
-        name: "twitter:image",
-        content: "https://blockfrost.io/images/logo_full.png",
+        name: 'twitter:image',
+        content: 'https://blockfrost.io/images/logo_full.png',
       },
     ],
     colorMode: {
-      defaultMode: "light",
+      defaultMode: 'light',
       disableSwitch: false,
     },
     navbar: {
-      title: "",
+      title: '',
       logo: {
-        alt: "Blockfrost Logo",
-        src: "img/logo.svg",
+        alt: 'Blockfrost Logo',
+        src: 'img/logo.svg',
       },
       items: [
         {
-          href: "https://blockfrost.io/dashboard",
-          label: "Login",
-          position: "right",
+          href: 'https://blockfrost.io/dashboard',
+          label: 'Login',
+          position: 'right',
         },
       ],
     },
     footer: {
-      style: "dark",
+      style: 'dark',
       links: [
         {
-          title: "Docs",
+          title: 'Docs',
           items: [
             {
-              label: "Overview",
-              to: "/docs/",
+              label: 'Overview',
+              to: '/docs/',
             },
             {
-              label: "Getting Started",
-              to: "/docs/overview/getting-started",
+              label: 'Getting Started',
+              to: '/docs/overview/getting-started',
             },
             {
-              label: "🔨 Start Building",
-              to: "/docs/start-building",
+              label: '🔨 Start Building',
+              to: '/docs/start-building',
             },
             {
-              label: "🦾 SDKs",
-              href: "/docs/sdks",
+              label: '🦾 SDKs',
+              href: '/docs/sdks',
             },
             {
-              label: "OpenAPI reference",
-              href: "https://docs.blockfrost.io/",
+              label: 'OpenAPI reference',
+              href: 'https://docs.blockfrost.io/',
             },
           ],
         },
         {
-          title: "Community",
+          title: 'Community',
           items: [
             {
-              label: "Stack Exchange",
-              href: "https://cardano.stackexchange.com/",
+              label: 'Stack Exchange',
+              href: 'https://cardano.stackexchange.com/',
             },
             {
-              label: "Reddit",
-              href: "https://www.reddit.com/r/CardanoDevelopers/",
+              label: 'Reddit',
+              href: 'https://www.reddit.com/r/CardanoDevelopers/',
             },
             {
-              label: "Cardano Developers Portal",
-              href: "https://developers.cardano.org/",
+              label: 'Cardano Developers Portal',
+              href: 'https://developers.cardano.org/',
             },
           ],
         },
         {
-          title: "More",
+          title: 'More',
           items: [
             // {
             //   label: "Blog",
             //   href: "https://blog.blockfrost.io",
             // },
             {
-              label: "Support",
-              href: "/docs/support",
+              label: 'Support',
+              href: '/docs/support',
             },
             {
-              label: "GitHub",
-              href: "https://github.com/blockfrost",
+              label: 'GitHub',
+              href: 'https://github.com/blockfrost',
             },
           ],
         },
@@ -106,24 +106,24 @@ module.exports = {
   },
   presets: [
     [
-      "@docusaurus/preset-classic",
+      '@docusaurus/preset-classic',
       {
         docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: "https://github.com/blockfrost/blockfrost.dev/edit/master/",
+          sidebarPath: require.resolve('./sidebars.js'),
+          editUrl: 'https://github.com/blockfrost/blockfrost.dev/edit/master/',
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: require.resolve('./src/css/custom.css'),
         },
       },
     ],
   ],
   scripts: [
     {
-      src: "https://plausible.io/js/plausible.js",
+      src: 'https://plausible.io/js/plausible.js',
       defer: true,
-      "data-domain": "blockfrost.dev",
+      'data-domain': 'blockfrost.dev',
     },
   ],
-  plugins: [require.resolve("@cmfcmf/docusaurus-search-local")],
+  plugins: [require.resolve('@cmfcmf/docusaurus-search-local')],
 };
