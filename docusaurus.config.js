@@ -117,6 +117,12 @@ module.exports = {
         },
       },
     ],
+    [
+      'docusaurus-preset-shiki-twoslash',
+      {
+        themes: ['min-dark', 'min-light'],
+      },
+    ],
   ],
   scripts: [
     {
