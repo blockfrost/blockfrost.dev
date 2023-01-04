@@ -43,7 +43,7 @@ During development phase, use Cardano Testnet (preview or preprod) and [get your
 
 ### Accounts
 
-Account are represented by a `stake_address` and usually they represent a single wallet, comprised of multiple standard [addresses](#addresses).
+Accounts are represented by a `stake_address` and usually they represent a single wallet, comprised of multiple standard [addresses](#addresses).
 
 Let's query a Mainnet stake address `stake1u9uz4j024qfud557ucrqw3kqfdndjgaxj7m44x7tamkvmyqzdwe7v`.
 
