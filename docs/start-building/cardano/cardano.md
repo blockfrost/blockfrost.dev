@@ -16,7 +16,7 @@ In Blockfrost, we use two main types of encoding when querying resources on the 
 **hex** - we use lowercase hex when querying assets, asset policies, scripts, transactions and blocks (also queryable through block number, with the exception of boundary blocks)
 
 :::info
-Mainnet and testnet addresses and stake addresses use different Bech32 prefixes. It is therefore easy to tell them apart. Pool Bech32 encoding, however, is network agnostic and therefore non distinguishable.
+Mainnet and Testnet (preview and preprod) addresses and stake addresses use different Bech32 prefixes. It is therefore easy to tell them apart. Pool Bech32 encoding, however, is network agnostic and therefore non distinguishable.
 :::
 
 When querying the API directly as we do in this guide, [Blockfrost.io OpenAPI documentation](https://docs.blockfrost.io/) comes very handy.
@@ -30,197 +30,203 @@ Don't forget to `export` the `PROJECT_ID` first when trying examples in this gui
 
 ```bash
 # Don't forget to replace the PROJECT_ID with yours!
-export PROJECT_ID=testnetEnrkKWDwlA9hV4IajI4ILrFdsHJpIqNC
+export PROJECT_ID=mainnetEnrkKWDwlA9hV4IajI4ILrFdsHJpIqNC
 ```
 
 :::
 
-As there is extremely long list of available methods, we will only cover few from most categories. We will use Cardano Testnet network for the purpose of this tutorial.
+As there is extremely long list of available methods, we will only cover few from most categories. We will use Cardano Mainnet network for the purpose of this tutorial.
 
 :::tip
-During development phase, use Cardano Testnet and [get yourself some TADA](https://developers.cardano.org/docs/integrate-cardano/testnet-faucet/) to play with!
+During development phase, use Cardano Testnet (preview or preprod) and [get yourself some TADA](https://developers.cardano.org/docs/integrate-cardano/testnet-faucet/) to play with!
 :::
 
 ### Accounts
 
 Account are represented by a `stake_address` and usually they represent a single wallet, comprised of multiple standard [addresses](#addresses).
 
-Let's query a Testnet stake address `stake_test1uz3u6x5cs388djqz6awnyuvez2f6n8jzjhqq59s4yxhm8js3nad0c`.
+Let's query a Mainnet stake address `stake1u9uz4j024qfud557ucrqw3kqfdndjgaxj7m44x7tamkvmyqzdwe7v`.
 
 ```bash
 
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/accounts/stake_test1uz3u6x5cs388djqz6awnyuvez2f6n8jzjhqq59s4yxhm8js3nad0c"
+"https://cardano-mainnet.blockfrost.io/api/v0/accounts/stake1u9uz4j024qfud557ucrqw3kqfdndjgaxj7m44x7tamkvmyqzdwe7v"
 ```
 
 ```json
 {
-  "stake_address": "stake_test1uz3u6x5cs388djqz6awnyuvez2f6n8jzjhqq59s4yxhm8js3nad0c",
+  "stake_address": "stake1u9uz4j024qfud557ucrqw3kqfdndjgaxj7m44x7tamkvmyqzdwe7v",
   "active": true,
-  "active_epoch": 180,
-  "controlled_amount": "44935061068415",
-  "rewards_sum": "22218841810",
-  "withdrawals_sum": "22218841810",
+  "active_epoch": 385,
+  "controlled_amount": "3932327",
+  "rewards_sum": "0",
+  "withdrawals_sum": "0",
   "reserves_sum": "0",
   "treasury_sum": "0",
   "withdrawable_amount": "0",
-  "pool_id": "pool1y6chk7x7fup4ms9leesdr57r4qy9cwxuee0msan72x976a6u0nc"
+  "pool_id": "pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy"
 }
 ```
 
-We can see that there's a lot of TADA and that the account is participating in staking since epoch 180. It's also visible with which pool it stakes and we'll look at the pool later on.
+We can see that there's something below 4 ADA (3 932 327 / 1 000 000) and that the account is participating in staking since epoch 385. It's also visible which pool it stakes with and we'll look at the pool later on.
 
 Let's also query addresses which [made at least 1 transaction](docs/support/cardano#querying-address-returns-404-not-found-but-my-address-is-valid) on the blockchain and belong to this stake address.
 
 ```bash
 
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/accounts/stake_test1uz3u6x5cs388djqz6awnyuvez2f6n8jzjhqq59s4yxhm8js3nad0c/addresses"
-```
-
-Whoa, that's a lot of addresses! Let's take just the first three, by using query parameter `count`.
-
-```bash
-
-curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/accounts/stake_test1uz3u6x5cs388djqz6awnyuvez2f6n8jzjhqq59s4yxhm8js3nad0c/addresses?count=3"
+"https://cardano-mainnet.blockfrost.io/api/v0/accounts/stake1u9uz4j024qfud557ucrqw3kqfdndjgaxj7m44x7tamkvmyqzdwe7v/addresses"
 ```
 
 ```json
 [
   {
-    "address": "addr_test1qzvduldkktan65x4dg5gkfaaehc798pjg755yckuk5tjcedre5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qtweh58"
+    "address": "addr1q8zsjx7vxkl4esfejafhxthyew8c54c9ch95gkv3nz37sxrc9ty742qncmffaesxqarvqjmxmy36d9aht2duhmhvekgq3jd3w2"
   },
   {
-    "address": "addr_test1qzp9yjv9kn5d72em9rn0a9zeparfk7x00q9jemxdc3nwaedre5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qdrur8p"
+    "address": "addr1qxrrzqsqnzqx3p8sxxsry936h6c78ml4rdl224f33l7pmcnc9ty742qncmffaesxqarvqjmxmy36d9aht2duhmhvekgqr735lq"
   },
   {
-    "address": "addr_test1qzw29n4altf86nwdlft7nah5606hytg5pvdxe3rm65zzxmdre5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qe60tfp"
+    "address": "addr1q9x625ny9y42s5z8n78afjg9meyeknvt5kwm3y6sdlrz66tc9ty742qncmffaesxqarvqjmxmy36d9aht2duhmhvekgqsyx3uz"
+  },
+  {
+    "address": "addr1qy6qvd3szupa7ayqf6zw7cd0ple7w3yg5f3xh5gkkc4q9zmc9ty742qncmffaesxqarvqjmxmy36d9aht2duhmhvekgq52e2en"
+  }
+]
+```
+
+Let's focus just on the last one at the moment, by using query parameters `count` and `order`.
+
+```bash
+
+curl -H "project_id: $PROJECT_ID" \
+"https://cardano-mainnet.blockfrost.io/api/v0/accounts/stake1u9uz4j024qfud557ucrqw3kqfdndjgaxj7m44x7tamkvmyqzdwe7v/addresses?count=1&order=desc"
+```
+
+```json
+[
+  {
+    "address": "addr1qy6qvd3szupa7ayqf6zw7cd0ple7w3yg5f3xh5gkkc4q9zmc9ty742qncmffaesxqarvqjmxmy36d9aht2duhmhvekgq52e2en"
   }
 ]
 ```
 
 ### Addresses
 
-Let's continue where we left off and pick the first address from our account. Have you noticed that there aren't any tokens displayed? To view those, we have to query the associated addresses, as only those can hold tokens.
+Let's continue where we left off and pick the last known address from our account. Have you noticed that there aren't any tokens displayed? To view those, we have to query the associated addresses, as only those can hold tokens.
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/addresses/addr_test1qzvduldkktan65x4dg5gkfaaehc798pjg755yckuk5tjcedre5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qtweh58"
+"https://cardano-mainnet.blockfrost.io/api/v0/addresses/addr1qy6qvd3szupa7ayqf6zw7cd0ple7w3yg5f3xh5gkkc4q9zmc9ty742qncmffaesxqarvqjmxmy36d9aht2duhmhvekgq52e2en"
 ```
 
 ```json
 {
-  "address": "addr_test1qzvduldkktan65x4dg5gkfaaehc798pjg755yckuk5tjcedre5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qtweh58",
+  "address": "addr1qy6qvd3szupa7ayqf6zw7cd0ple7w3yg5f3xh5gkkc4q9zmc9ty742qncmffaesxqarvqjmxmy36d9aht2duhmhvekgq52e2en",
   "amount": [
     {
       "unit": "lovelace",
       "quantity": "0"
     }
   ],
-  "stake_address": "stake_test1uz3u6x5cs388djqz6awnyuvez2f6n8jzjhqq59s4yxhm8js3nad0c",
+  "stake_address": "stake1u9uz4j024qfud557ucrqw3kqfdndjgaxj7m44x7tamkvmyqzdwe7v",
   "type": "shelley",
   "script": false
 }
 ```
 
-The address is now empty but since we can see it on the blockchain and it didn't return a [404 Not Found](docs/support/cardano#querying-address-returns-404-not-found-but-my-address-is-valid) from API, it must have made some transactions. Let's confirm this by querying just the most recent transaction. We'll achieve this by using a combination of two query parameters, `count=1` and `order=desc`.
+It seems that the queried address is now empty but since we can see it on the blockchain and it didn't return a [404 Not Found](docs/support/cardano#querying-address-returns-404-not-found-but-my-address-is-valid) from API, it must have made some transactions. Let's confirm this by querying just the most recent transaction. We'll achieve this by using a combination of two query parameters, `count=1` and `order=desc`.
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/addresses/addr_test1qzvduldkktan65x4dg5gkfaaehc798pjg755yckuk5tjcedre5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qtweh58/transactions?count=1&order=desc"
+"https://cardano-mainnet.blockfrost.io/api/v0/addresses/addr1qy6qvd3szupa7ayqf6zw7cd0ple7w3yg5f3xh5gkkc4q9zmc9ty742qncmffaesxqarvqjmxmy36d9aht2duhmhvekgq52e2en/transactions?count=1&order=desc"
 ```
 
 ```json
 [
   {
-    "tx_hash": "7676e4f580e9ce94a5ce42ad53948c47fb9d2bb6ec224b24cb1439a603757472",
-    "tx_index": 11,
-    "block_height": 3247571,
-    "block_time": 1642505606
+    "tx_hash": "c34c232d6574d35a92f3bdcc6159b6d0b04f98de9f311db629f8973ac66dec10",
+    "tx_index": 9,
+    "block_height": 8223596,
+    "block_time": 1672766667
   }
 ]
 ```
 
-It looks like the first two addresses from the account we have started our tutorial with have 0 balance, but let's take a look at the third one.
+Ok, let's try querying the first address from the account instead:
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/addresses/addr_test1qzw29n4altf86nwdlft7nah5606hytg5pvdxe3rm65zzxmdre5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qe60tfp"
+"https://cardano-mainnet.blockfrost.io/api/v0/addresses/addr1q8zsjx7vxkl4esfejafhxthyew8c54c9ch95gkv3nz37sxrc9ty742qncmffaesxqarvqjmxmy36d9aht2duhmhvekgq3jd3w2"
 ```
 
 ```json
 {
-  "address": "addr_test1qzw29n4altf86nwdlft7nah5606hytg5pvdxe3rm65zzxmdre5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qe60tfp",
+  "address": "addr1q8zsjx7vxkl4esfejafhxthyew8c54c9ch95gkv3nz37sxrc9ty742qncmffaesxqarvqjmxmy36d9aht2duhmhvekgq3jd3w2",
   "amount": [
     {
       "unit": "lovelace",
-      "quantity": "44935061068415"
+      "quantity": "3932327"
     },
     {
-      "unit": "476039a0949cf0b22f6a800f56780184c44533887ca6e821007840c36e7574636f696e",
+      "unit": "d436d9f6b754582f798fe33f4bed12133d47493f78b944b9cc55fd1853756d6d69744c6f64676534393539",
       "quantity": "1"
-    },
-    {
-      "unit": "57fca08abbaddee36da742a839f7d83a7e1d2419f1507fcbf391652243484f43",
-      "quantity": "9994750"
-    },
-    {
-      "unit": "57fca08abbaddee36da742a839f7d83a7e1d2419f1507fcbf39165224d494e54",
-      "quantity": "5000000000"
-    },
-    {
-      "unit": "57fca08abbaddee36da742a839f7d83a7e1d2419f1507fcbf3916522524245525259",
-      "quantity": "1000000000"
-    },
-    {
-      "unit": "57fca08abbaddee36da742a839f7d83a7e1d2419f1507fcbf3916522534245525259",
-      "quantity": "2000000000"
-    },
-    {
-      "unit": "57fca08abbaddee36da742a839f7d83a7e1d2419f1507fcbf391652256414e494c",
-      "quantity": "15000000"
-    },
-    {
-      "unit": "6b8d07d69639e9413dd637a1a815a7323c69c86abbafb66dbfdb1aa7",
-      "quantity": "2"
     }
   ],
-  "stake_address": "stake_test1uz3u6x5cs388djqz6awnyuvez2f6n8jzjhqq59s4yxhm8js3nad0c",
+  "stake_address": "stake1u9uz4j024qfud557ucrqw3kqfdndjgaxj7m44x7tamkvmyqzdwe7v",
   "type": "shelley",
   "script": false
 }
 ```
 
-Finally a non-empty address! And it contains ADA as well as some tokens, or as we call them, assets.
+Finally a non-empty address! And it contains ADA as well as a single token, or as we call it, asset.
 
 ### Assets
 
-Let's pick the first token from the previous call and query its details.
+Let's pick the first asset from the previous call and query its details.
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/assets/476039a0949cf0b22f6a800f56780184c44533887ca6e821007840c36e7574636f696e"
+"https://cardano-mainnet.blockfrost.io/api/v0/assets/d436d9f6b754582f798fe33f4bed12133d47493f78b944b9cc55fd1853756d6d69744c6f64676534393539"
 ```
 
 ```json
 {
-  "asset": "476039a0949cf0b22f6a800f56780184c44533887ca6e821007840c36e7574636f696e",
-  "policy_id": "476039a0949cf0b22f6a800f56780184c44533887ca6e821007840c3",
-  "asset_name": "6e7574636f696e",
-  "fingerprint": "asset1jtqefvdycrenq2ly6ct8rwcu5e58va432vj586",
+  "asset": "d436d9f6b754582f798fe33f4bed12133d47493f78b944b9cc55fd1853756d6d69744c6f64676534393539",
+  "policy_id": "d436d9f6b754582f798fe33f4bed12133d47493f78b944b9cc55fd18",
+  "asset_name": "53756d6d69744c6f64676534393539",
+  "fingerprint": "asset1smjzaahccwjrmqx5nslm5ph7egfkh3guta5wfn",
   "quantity": "1",
-  "initial_mint_tx_hash": "e067ca567df4920f4ac3babc4d805d2afe860e21aa7f6f78dbe8538caf9d8262",
+  "initial_mint_tx_hash": "72c014fccc4c02ed8993087ae0faddd2517d6ed2060173ba6154fb476615a512",
   "mint_or_burn_count": 1,
-  "onchain_metadata": null,
-  "metadata": {
-    "name": "NUT🪙",
-    "description": "The legendary Nutcoin, the first native asset minted on Cardano",
-    "ticker": "NUT",
-    "url": "https://fivebinaries.com/nutcoin",
-    "logo": "iVBORw0KGgoAAAANSUhEUgAAAGQA...",
-    "decimals": null
-  }
+  "onchain_metadata": {
+    "city": "Summit Lodge",
+    "date": "November 19-21, 2022",
+    "name": "Cardano Summit 2022 | Summit Lodge",
+    "files": [
+      {
+        "src": "ipfs://QmU1BETyTqbvQQThwGiWTENWxbsuzNgiJYnwe9xJxbGahD",
+        "name": "Cardano Summit 2022 | Summit Lodge",
+        "mediaType": "text/html"
+      },
+      {
+        "src": "ipfs://QmetCTi9y1Yr85rrR5fdHxaMmZ5zQZznzZqtge9H1a6HRm",
+        "name": "Cardano Summit 2022 | Summit Lodge",
+        "mediaType": "image/jpeg"
+      }
+    ],
+    "image": "ipfs://QmVGuPgXg2qXfv4YUdw5Y4QyK8eJhQzGVenV9p8feraqMH",
+    "author": "TURF",
+    "country": "Cardano",
+    "variety": "Common",
+    "website": "https://www.turfnft.com",
+    "mediaType": "image/gif",
+    "event type": "Virtual",
+    "location code": "00000000+00",
+    "cardano summit 2022 organizer": "Cardano Foundation"
+  },
+  "onchain_metadata_standard": "CIP25v1",
+  "metadata": null
 }
 ```
 
@@ -228,16 +234,16 @@ Let's look at the first transaction which has information about this asset. We u
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/assets/476039a0949cf0b22f6a800f56780184c44533887ca6e821007840c36e7574636f696e/transactions?count=1&order=asc"
+"https://cardano-mainnet.blockfrost.io/api/v0/assets/d436d9f6b754582f798fe33f4bed12133d47493f78b944b9cc55fd1853756d6d69744c6f64676534393539/transactions?count=1&order=asc"
 ```
 
 ```json
 [
   {
-    "tx_hash": "e067ca567df4920f4ac3babc4d805d2afe860e21aa7f6f78dbe8538caf9d8262",
-    "tx_index": 0,
-    "block_height": 2287021,
-    "block_time": 1612383646
+    "tx_hash": "72c014fccc4c02ed8993087ae0faddd2517d6ed2060173ba6154fb476615a512",
+    "tx_index": 22,
+    "block_height": 8038275,
+    "block_time": 1668961302
   }
 ]
 ```
@@ -250,51 +256,55 @@ Blocks can be queried either by their `hash` or their `height`. Let's try queryi
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/blocks/2287021"
+"https://cardano-mainnet.blockfrost.io/api/v0/blocks/8038275"
 ```
 
 ```json
 {
-  "time": 1612383646,
-  "height": 2287021,
-  "hash": "52b5c6bba3e718fdbb6b69d452bac576a904b6716e8a05c96c69c4f4aaa6bf4c",
-  "slot": 18014430,
-  "epoch": 112,
-  "epoch_slot": 30,
-  "slot_leader": "pool18ftcshq7394f88qtw8ywqu827ap0hndjznmzem0gk7d3qnzxvkk",
-  "size": 438,
-  "tx_count": 1,
-  "output": "197800000",
-  "fees": "1000000",
-  "block_vrf": "vrf_vk1l8trckpdn3cysq84v5h8n2zq6dv0tl532n6p8c7053j5r9jp9d8s7452rs",
-  "previous_block": "8912f576d8a9201ea6a18e883610b50a054dde214542935153c47b305189a323",
-  "next_block": "50b99ecaef96d861c37d18c69bbd07db88d342e06969ff0710463c653c67be5e",
-  "confirmations": 1111322
+  "time": 1668961302,
+  "height": 8038275,
+  "hash": "4660d994f9099cbe9bf980f10e2dc02902505cbeadcff10b21b819d61076a93c",
+  "slot": 77395011,
+  "epoch": 376,
+  "epoch_slot": 326211,
+  "slot_leader": "pool1jgwu8lq3dqddnnx7prymcgcyrqy0fdlghg33he2hmw9t2gma3zd",
+  "size": 88725,
+  "tx_count": 70,
+  "output": "663048152642",
+  "fees": "15583364",
+  "block_vrf": "vrf_vk1ga52prse4ws509nah3p9d9l6nf5jurkx8j2g7fh8ljwtaj9t9ysqt9g0ku",
+  "op_cert": "04f80395f8f1876c393b725fd5d633739591dde72ae136a9042aab0ada0d393e",
+  "op_cert_counter": "9",
+  "previous_block": "89a1f73719fc29810dc540bea103fd4454679f16201e2d541eef44a10d3421ab",
+  "next_block": "4e5d4fc281d43fc85921dd002357b4785fb0692d0a66df56a59da81fb3f0a760",
+  "confirmations": 185374
 }
 ```
 
-There's not much going on, seems like the only transaction in that block was the mint transaction we've already seen. So let's try another very useful call, querying the latest block, a.k.a. the tip of the blockchain.
+There's a lot of going on, 70 txs in the block where that asset was minted! Ok, let's try another very useful call, querying the latest block, a.k.a. the tip of the blockchain.
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/blocks/latest"
+"https://cardano-mainnet.blockfrost.io/api/v0/blocks/latest"
 ```
 
 ```json
 {
-  "time": 1647395264,
-  "height": 3398333,
-  "hash": "100459a94c450535dc92a5173d774455a071de2f680592c79e9d510b382af671",
-  "slot": 53026048,
-  "epoch": 193,
-  "epoch_slot": 19648,
-  "slot_leader": "pool15sfcpy4tps5073gmra0e6tm2dgtrn004yr437qmeh44sgjlg2ex",
+  "time": 1672766054,
+  "height": 8223577,
+  "hash": "4f07277d9b5f5141cc27bcb469682f4010439f0725e870862622f569a7c86222",
+  "slot": 81199763,
+  "epoch": 385,
+  "epoch_slot": 242963,
+  "slot_leader": "pool17taqml487n9t4r9a6ppvf9qv0qlw2lu4zcrzwfdsfcv6xp7uqym",
   "size": 4,
   "tx_count": 0,
   "output": null,
   "fees": null,
-  "block_vrf": "vrf_vk1deaac8se2ct0gvnmwck3zy8heantl2shwq7mvxzdvnl3vzq65kvqjgell6",
-  "previous_block": "fae8102aaf0b96556091d6b926fd4cb8ad0488ea72c1f33932077397857f9d20",
+  "block_vrf": "vrf_vk1w064pps8jkpee8hs6szluyv7smksch0v4adzja03wepfdw0jxs6q9lh8kg",
+  "op_cert": "aed510b38a5d4cf76a5165b3ef46538788bf0f62d7e07988b31e99a8d7ba96c4",
+  "op_cert_counter": "8",
+  "previous_block": "84ffff75fde7898b71acf777e85d8e8c3fcd64708ac845a92429cb9b023894a4",
   "next_block": null,
   "confirmations": 0
 }
@@ -304,24 +314,26 @@ Huh, an empty block. There are no transactions. Well, it might happen when the b
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/blocks/latest"
+"https://cardano-mainnet.blockfrost.io/api/v0/blocks/latest"
 ```
 
 ```json
 {
-  "time": 1647395574,
-  "height": 3398343,
-  "hash": "6eae785d52d11ae78fb5b8b619b6cf10faba2e4138884f4d7eb13fd04898ad8d",
-  "slot": 53026358,
-  "epoch": 193,
-  "epoch_slot": 19958,
-  "slot_leader": "pool13ay3pq3gz6w8candtkeytmvrftyvx2cwclcxc737wrjs6d3f84p",
-  "size": 6033,
-  "tx_count": 4,
-  "output": 39628534791,
-  "fees": 1229676,
-  "block_vrf": "vrf_vk1udafvky5h2300zn2zruwvayskt3zydmuzd266lvdcyjfmvwqsdaqk44v70",
-  "previous_block": "290622d5b585b643c220842b73b2c3887050a167f656f82ed5b6096204c70d7c",
+  "time": 1672766182,
+  "height": 8223582,
+  "hash": "eb625cdac8f97791b2fc7d86057b26179e2c08f772411e43809afc6d997f900a",
+  "slot": 81199891,
+  "epoch": 385,
+  "epoch_slot": 243091,
+  "slot_leader": "pool1wf7wk3802jxtkmek6uprm77cgqx53t4qep9kwkl078w3yw0ff69",
+  "size": 11714,
+  "tx_count": 5,
+  "output": "251134283914",
+  "fees": "2201272",
+  "block_vrf": "vrf_vk1hpnf7ytfvtq7h5ns5zcqg6yxrjg34kkfj5njmgs8hjxtfle6qrnsash3xy",
+  "op_cert": "6e965ee09632519948258f8ba7a2e8fbd84db91ede232ef85046ccf61988bd58",
+  "op_cert_counter": "9",
+  "previous_block": "972d5f7142ed5fc7339bce36d15813554403780db61b87b6a5441033fa8a53d1",
   "next_block": null,
   "confirmations": 0
 }
@@ -333,19 +345,102 @@ We can also look at the transactions in a block.
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/blocks/6eae785d52d11ae78fb5b8b619b6cf10faba2e4138884f4d7eb13fd04898ad8d/txs"
+"https://cardano-mainnet.blockfrost.io/api/v0/blocks/eb625cdac8f97791b2fc7d86057b26179e2c08f772411e43809afc6d997f900a/txs"
 ```
 
 ```json
 [
-  "dcace43b3d9e67089567ce62b82a99a5d0749022d9f1cc151de60ea9e470bdd6",
-  "9b89ad15816599769852c17b299a8ac380987a9ef408cce3eb941a37f637cf31",
-  "d074abe19600a57b13ef087d600d335c9be149a15d61e7262c78e7379227152f",
-  "e1963c8d8e963c5641ec23360265ed0d0e9a019403afc726b23c1bbd3c72fec0"
+  "f1c24763f4ddca8a8b0dcc91ea76a1a9657cfe1615c72a459f5f370069a28874",
+  "0eb9596a8234e8f797640fc890d8888ba30040983665d4689d016033f2d73031",
+  "66d8e7046fb30b5645b31e65be0b27d17af9111936ffb25414fd933af4f6d2bb",
+  "df10b32aea46240d0ca240a83eac5f5b1e9790dada14b0772066e008ad3ddac1",
+  "080877b20e5fcbc0d3d3bd56bb875dac5ef03b7541c79f2c81bb2552ac628f0e"
 ]
 ```
 
-Let's keep these for later.
+### Transactions
+
+Ah, transactions. The life and soul of every blockchain. Nearly everything is a transaction of some sort.
+
+Let's look at the first transaction we found when we were querying the latest block.
+
+```bash
+curl -H "project_id: $PROJECT_ID" \
+"https://cardano-mainnet.blockfrost.io/api/v0/txs/f1c24763f4ddca8a8b0dcc91ea76a1a9657cfe1615c72a459f5f370069a28874"
+```
+
+```json
+{
+  "hash": "f1c24763f4ddca8a8b0dcc91ea76a1a9657cfe1615c72a459f5f370069a28874",
+  "block": "eb625cdac8f97791b2fc7d86057b26179e2c08f772411e43809afc6d997f900a",
+  "block_height": 8223582,
+  "block_time": 1672766182,
+  "slot": 81199891,
+  "index": 0,
+  "output_amount": [
+    {
+      "unit": "lovelace",
+      "quantity": "337920356"
+    },
+    {
+      "unit": "8e0556c569082f195b406737647765ed6b05d27dcb2c65319b7ce39154434332393239",
+      "quantity": "1"
+    }
+  ],
+  "fees": "440501",
+  "deposit": "0",
+  "size": 1379,
+  "invalid_before": null,
+  "invalid_hereafter": "81201678",
+  "utxo_count": 12,
+  "withdrawal_count": 0,
+  "mir_cert_count": 0,
+  "delegation_count": 0,
+  "stake_cert_count": 0,
+  "pool_update_count": 0,
+  "pool_retire_count": 0,
+  "asset_mint_or_burn_count": 0,
+  "redeemer_count": 1,
+  "valid_contract": true
+}
+```
+
+We can inspect transactions further by querying them and then using sub-queries to get even more info. For example, querying this transaction, we see that `redeemer_count` is non-zero, so we could then fetch additional info by using `/redeemers` call. i.e.:
+
+```bash
+curl -H "project_id: $PROJECT_ID" \
+"https://cardano-mainnet.blockfrost.io/api/v0/txs/f1c24763f4ddca8a8b0dcc91ea76a1a9657cfe1615c72a459f5f370069a28874/redeemers"
+```
+
+```json
+[
+  {
+    "tx_index": 1,
+    "purpose": "spend",
+    "script_hash": "9068a7a3f008803edac87af1619860f2cdcde40c26987325ace138ad",
+    "redeemer_data_hash": "e5ee0cfe4d99494b8022f26e0cefd24fc78b23f798d59886eba97f9f6475648f",
+    "datum_hash": "e5ee0cfe4d99494b8022f26e0cefd24fc78b23f798d59886eba97f9f6475648f",
+    "unit_mem": "2858646",
+    "unit_steps": "824631790",
+    "fee": "224400"
+  }
+]
+```
+
+and even query the script involved!
+
+```bash
+curl -H "project_id: $PROJECT_ID" \
+"https://cardano-mainnet.blockfrost.io/api/v0/scripts/9068a7a3f008803edac87af1619860f2cdcde40c26987325ace138ad"
+```
+
+```json
+{
+  "script_hash": "9068a7a3f008803edac87af1619860f2cdcde40c26987325ace138ad",
+  "type": "plutusV2",
+  "serialised_size": 2561
+}
+```
 
 ### Epochs
 
@@ -353,41 +448,41 @@ Let's look at some epoch stats. We'll query the epoch from the previous call. Th
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/epochs/latest"
+"https://cardano-mainnet.blockfrost.io/api/v0/epochs/latest"
 ```
 
 ```json
 {
-  "epoch": 193,
-  "start_time": 1647375616,
-  "end_time": 1647807616,
-  "first_block_time": 1647375616,
-  "last_block_time": 1647396210,
-  "block_count": 680,
-  "tx_count": 1362,
-  "output": "148408860733944",
-  "fees": "319247432",
-  "active_stake": "15034077847652956"
+  "epoch": 385,
+  "start_time": 1672523091,
+  "end_time": 1672955091,
+  "first_block_time": 1672523095,
+  "last_block_time": 1672767811,
+  "block_count": 11993,
+  "tx_count": 203952,
+  "output": "27826751355072919",
+  "fees": "71879981640",
+  "active_stake": "25388654503848140"
 }
 ```
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/epochs/193"
+"https://cardano-mainnet.blockfrost.io/api/v0/epochs/385"
 ```
 
 ```json
 {
-  "epoch": 193,
-  "start_time": 1647375616,
-  "end_time": 1647807616,
-  "first_block_time": 1647375616,
-  "last_block_time": 1647396230,
-  "block_count": 681,
-  "tx_count": 1364,
-  "output": "148448017069678",
-  "fees": "319621158",
-  "active_stake": "15034077847652956"
+  "epoch": 385,
+  "start_time": 1672523091,
+  "end_time": 1672955091,
+  "first_block_time": 1672523095,
+  "last_block_time": 1672767836,
+  "block_count": 11994,
+  "tx_count": 203983,
+  "output": "27846411264491280",
+  "fees": "71891439390",
+  "active_stake": "25388654503848140"
 }
 ```
 
@@ -399,176 +494,36 @@ Let's take a look a the pool from the very beginning, the pool at which the acco
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/pools/pool1y6chk7x7fup4ms9leesdr57r4qy9cwxuee0msan72x976a6u0nc"
+"https://cardano-mainnet.blockfrost.io/api/v0/pools/pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy"
 ```
 
 ```json
 {
-  "pool_id": "pool1y6chk7x7fup4ms9leesdr57r4qy9cwxuee0msan72x976a6u0nc",
-  "hex": "26b17b78de4f035dc0bfce60d1d3c3a8085c38dcce5fb8767e518bed",
-  "vrf_key": "db61b20aeb616dbc39ca36194e7a54d5cef5464c6e6d0d420cfa551f7dc43d64",
-  "blocks_minted": 12008,
-  "blocks_epoch": 0,
-  "live_stake": "96826997791137",
-  "live_size": 0.0061337967517105015,
-  "live_saturation": 1.1496553345812115,
-  "live_delegators": 95,
-  "active_stake": "96827046049060",
-  "active_size": 0.006440504501190683,
-  "declared_pledge": "100000000000",
-  "live_pledge": "50755268168750",
-  "margin_cost": 0.05,
+  "pool_id": "pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy",
+  "hex": "0f292fcaa02b8b2f9b3c8f9fd8e0bb21abedb692a6d5058df3ef2735",
+  "vrf_key": "b512cc7c1a8ba689c2d8fd27adfdbac2049a3f8f95c8b85e8298f14d7d8dc4e6",
+  "blocks_minted": 2068,
+  "blocks_epoch": 1,
+  "live_stake": "5174880859704",
+  "live_size": 0.00020379184476411696,
+  "live_saturation": 0.07495042680626458,
+  "live_delegators": 177,
+  "active_stake": "5327138850257",
+  "active_size": 0.0002098235985467276,
+  "declared_pledge": "510000000000",
+  "live_pledge": "515645620665",
+  "margin_cost": 0.049,
   "fixed_cost": "340000000",
-  "reward_account": "stake_test1uqfu74w3wh4gfzu8m6e7j987h4lq9r3t7ef5gaw497uu85qsqfy27",
-  "owners": [
-    "stake_test1uqfu74w3wh4gfzu8m6e7j987h4lq9r3t7ef5gaw497uu85qsqfy27"
-  ],
+  "reward_account": "stake1u98nnlkvkk23vtvf9273uq7cph5ww6u2yq2389psuqet90sv4xv9v",
+  "owners": ["stake1u98nnlkvkk23vtvf9273uq7cph5ww6u2yq2389psuqet90sv4xv9v"],
   "registration": [
-    "05102775ac07354e7247c55f8b7e1b2d5ada1c32fdc363d1782b5d77da23354a"
+    "a96c79773b7506211eb56bf94886a2face17657d1009f52fb5ea05f19cc8823e"
   ],
   "retirement": []
 }
 ```
 
-There are many information which we can query about a pool, such as history, updates or info about is delegators.
-
-### Transactions
-
-Ah, transactions. The life and soul of every blockchain. Nearly everything is a transaction of some sort.
-
-Let's look at the transactions we found when we were querying the latest block.
-
-```bash
-curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/txs/dcace43b3d9e67089567ce62b82a99a5d0749022d9f1cc151de60ea9e470bdd6"
-```
-
-```json
-{
-  "hash": "dcace43b3d9e67089567ce62b82a99a5d0749022d9f1cc151de60ea9e470bdd6",
-  "block": "6eae785d52d11ae78fb5b8b619b6cf10faba2e4138884f4d7eb13fd04898ad8d",
-  "block_height": 3398343,
-  "block_time": 1647395574,
-  "slot": 53026358,
-  "index": 0,
-  "output_amount": [
-    {
-      "unit": "lovelace",
-      "quantity": "39148935993"
-    }
-  ],
-  "fees": "171397",
-  "deposit": "0",
-  "size": 364,
-  "invalid_before": null,
-  "invalid_hereafter": null,
-  "utxo_count": 2,
-  "withdrawal_count": 0,
-  "mir_cert_count": 0,
-  "delegation_count": 0,
-  "stake_cert_count": 0,
-  "pool_update_count": 0,
-  "pool_retire_count": 0,
-  "asset_mint_or_burn_count": 0,
-  "redeemer_count": 0,
-  "valid_contract": true
-}
-```
-
-Looks like an ordinary transaction, let's check if it has any metadata.
-
-```bash
-curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/txs/dcace43b3d9e67089567ce62b82a99a5d0749022d9f1cc151de60ea9e470bdd6/metadata"
-```
-
-```json
-[
-  {
-    "label": "1985",
-    "json_metadata": {
-      "co2": [
-        {
-          "value": "1241",
-          "source": "MHZ019"
-        }
-      ],
-      "humidity": [
-        {
-          "value": "93.2",
-          "source": "SHT31"
-        }
-      ],
-      "temperature": [
-        {
-          "value": "6.9",
-          "source": "SHT31"
-        }
-      ]
-    }
-  }
-]
-```
-
-It does! Looks like somebody is recording data of some sort of sensors, though the CO2 seems to be broken (let's hope)!
-
-### Metadata
-
-We can also query metadata having the same label as our previous transaction. Let's see how was that CO2 sensor 100 transactions before. We'll make use of 3 query parameters in this case: `count`, `page` and `order`.
-
-```bash
-curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/metadata/txs/labels/1985?count=1&&page=100&order=desc"
-```
-
-```json
-[
-  {
-    "tx_hash": "44e4e8c639a31ab7d7489dcb9945bf1a4b8f7d52c563c6d7da70837ed6a018bb",
-    "json_metadata": {
-      "humidity": [
-        {
-          "value": "93.3",
-          "source": "SHT31"
-        }
-      ],
-      "temperature": [
-        {
-          "value": "6.9",
-          "source": "SHT31"
-        }
-      ]
-    }
-  }
-]
-```
-
-The data is completely missing, so let's assume it's a faulty piece of hardware.
-
-If we wanted to, we could query this transaction and look at the `block_time` to approximate when this data was recorded.
-
-Let's call the curl with `-s` parameter and use `jq` to pick just the `block_time` and pipe it to `date` to tell us the time in human readable form
-
-```bash
-curl -s -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/txs/44e4e8c639a31ab7d7489dcb9945bf1a4b8f7d52c563c6d7da70837ed6a018bb" \
-| jq .block_time | date -u
-```
-
-```json
-Wed Mar 16 02:57:41 AM UTC 2022
-```
-
-:::tip
-[jq](https://stedolan.github.io/jq/) is a really useful tool. When used without any arguments, it will format the JSON. Just pipe any output from `curl` to `jq`.
-
-```bash
-curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/blocks/latest" | jq
-```
-
-:::
-
+There are many information which we can query about a pool, such as history, updates or info about its delegators.
 
 ### Mempool
 
@@ -599,38 +554,46 @@ curl -H "project_id: $PROJECT_ID" \
 ]
 ```
 
-:::
-
 ### Network
 
-To finish our Cardano adventure, let's look at the Testnet stats at the time of writing this guide. You can also use `jq`, if you happen to have it.
+To finish our Cardano adventure, let's look at the Mainnet stats at the time of writing this guide. You can also use `jq`, if you happen to have it.
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
-"https://cardano-testnet.blockfrost.io/api/v0/network"
+"https://cardano-mainnet.blockfrost.io/api/v0/network"
 ```
 
 ```json
 {
   "supply": {
     "max": "45000000000000000",
-    "total": "40373226600586997",
-    "circulating": "42111315822758815",
-    "locked": "43599739364651",
-    "treasury": "201142519024751",
-    "reserves": "4626773399413003"
+    "total": "35322101769949668",
+    "circulating": "34522023957783973",
+    "locked": "147932183023929",
+    "treasury": "1113894699593937",
+    "reserves": "9677898230050332"
   },
   "stake": {
-    "live": "15785822774958932",
-    "active": "15034077847652956"
+    "live": "25392973235478445",
+    "active": "25388654503848140"
   }
 }
 ```
 
 :::tip
-Although it is perfectly possible to create your apps directly through the API, you will probably save a lot of time and nerves by using [one of our many SDKs](/docs/sdks).
+[jq](https://stedolan.github.io/jq/) is a really useful tool. When used without any arguments, it will format the JSON. Just pipe any output from `curl` to `jq`.
+
+```bash
+curl -H "project_id: $PROJECT_ID" \
+"https://cardano-mainnet.blockfrost.io/api/v0/network" | jq
+```
+
 :::
 
 ## FAQ
 
 For more information related to Cardano in Blockfrost, please see our [Cardano FAQ](/docs/support/cardano).
+
+:::tip
+Although it is perfectly possible to create your apps directly through the API, you will probably save a lot of time and nerves by using [one of our many SDKs](/docs/sdks).
+:::
