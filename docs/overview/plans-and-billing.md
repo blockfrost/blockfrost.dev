@@ -102,7 +102,7 @@ You will be redirected to Billing Portal where you can update billing details or
 
 ## Terms and abuse
 
-A user is limited to a single free account.
+An user is limited to a single free account.
 
 :::danger
 Additional detected accounts and accounts created through temporary e-mail providers will be suspended and deleted.
