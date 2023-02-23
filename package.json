@@ -1,5 +1,5 @@
 {
-  "name": "@blockfrost/blockros.dev",
+  "name": "@blockfrost/blockrost.dev",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -14,12 +14,12 @@
     "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
-    "@blockfrost/openapi": "0.1.50-beta.1",
+    "@blockfrost/openapi": "0.1.54",
     "@cmfcmf/docusaurus-search-local": "^0.11.0",
-    "@docusaurus/core": "2.2.0",
-    "@docusaurus/preset-classic": "2.2.0",
+    "@docusaurus/core": "2.3.1",
+    "@docusaurus/preset-classic": "2.3.1",
     "@mdx-js/react": "^1.6.21",
-    "clsx": "^1.1.1",
+    "clsx": "^1.2.1",
     "docusaurus-preset-openapi": "^0.6.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
