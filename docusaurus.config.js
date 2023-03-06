@@ -111,6 +111,8 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/blockfrost/blockfrost.dev/edit/master/",
+          docLayoutComponent: "@theme/DocPage",
+          docItemComponent: "@theme/ApiItem" // Derived from docusaurus-theme-openapi-docs
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -125,5 +127,24 @@ module.exports = {
       "data-domain": "blockfrost.dev",
     },
   ],
-  plugins: [require.resolve("@cmfcmf/docusaurus-search-local")],
+  plugins: [
+    require.resolve("@cmfcmf/docusaurus-search-local"),
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: "apiDocs",
+        docsPluginId: "classic",
+        config: {
+          api: { // Note: petstore key is treated as the <id> and can be used to specify an API doc instance when using CLI commands
+            specPath: "node_modules/@blockfrost/openapi/openapi.yaml", // Path to designated spec file
+            outputDir: "docs/api", // Output directory for generated .mdx docs
+            sidebarOptions: {
+              groupPathsBy: "tag",
+            },
+          }
+        }
+      },
+    ]
+  ],
+  themes: ["docusaurus-theme-openapi-docs"]
 };
