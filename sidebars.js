@@ -39,6 +39,7 @@ module.exports = {
             "start-building/webhooks/webhooks-signatures",
           ],
         },
+       "start-building/workspaces/workspaces",
         "start-building/tips-tricks",
       ],
     },
