@@ -3,7 +3,7 @@ title: Workspaces
 id: workspaces
 ---
 
-Blockfrost Workspaces enable users to create collaborative spaces for sharing projects with team members. Set up a workspace for your organization, streamline billing management, and allow developers to concentrate on what matters most - building your application.
+Blockfrost Workspaces enable users to create collaborative spaces for sharing projects with other team members. Set up a workspace for your organization, streamline billing management, and allow developers to concentrate on what matters most - building your application.
 
 ## Using workspaces
 
