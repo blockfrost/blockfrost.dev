@@ -12,6 +12,7 @@ module.exports = {
         "overview/getting-started",
         "overview/making-first-call",
         "overview/plans-and-billing",
+        "overview/workspaces/workspaces",
       ],
     },
     {
@@ -39,7 +40,6 @@ module.exports = {
             "start-building/webhooks/webhooks-signatures",
           ],
         },
-       "start-building/workspaces/workspaces",
         "start-building/tips-tricks",
       ],
     },
