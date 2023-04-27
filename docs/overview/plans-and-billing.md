@@ -11,7 +11,7 @@ Our offering is comprised of 4 plans at the moment, starting with the *STARTER* 
 The higher the plan the more features, projects, higher request per day and storage capabilities.
 :::
 
-Some capabilities, such as Premium Submit (*DEVELOPER* and *ENTERPRISE*) and Whitelisting/Custom rate limiting (*ENTERPRISE*) are only available in higher tiers.
+Some capabilities, such as Workspaces and Premium Submit (*DEVELOPER* and *ENTERPRISE*) and Whitelisting/Custom rate limiting (*ENTERPRISE*) are only available in higher tiers.
 
 ![Blockfrost.io plans](/img/frontend_plans.png)
 
