@@ -11,7 +11,7 @@
   position: relative;
   overflow: hidden;
   /* for some reason the template sets word-wrap: word-break to body */
-  word-wrap: initial; 
+  word-wrap: initial;
 }
 
 @media screen and (max-width: 966px) {
@@ -37,7 +37,7 @@
 
 @media screen and (max-width: 768px) {
   .heroBanner .buttons {
-   flex-direction: column;
+    flex-direction: column;
   }
   .heroBanner .buttons a {
     width: 90%;

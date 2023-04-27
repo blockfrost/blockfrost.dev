@@ -113,7 +113,7 @@ module.exports = {
           editUrl: "https://github.com/blockfrost/blockfrost.dev/edit/master/",
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: [require.resolve("./src/css/custom.css")],
         },
       },
     ],
