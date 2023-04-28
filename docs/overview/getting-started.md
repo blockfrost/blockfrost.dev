@@ -21,11 +21,7 @@ Once you have your account ready, you can create your first project. Click on **
 
 ![Blockfrost.io creating project](/img/frontend_create_project.png)
 
-:::tip
-After creating the project, you can click on the arrow to expand the view. There will be project statistics and also few ready-to-go `curl` samples that change with each refresh.
-:::
-
-Project within Blockfrost represents API access to a specific [network](/docs/start-building#available-networks). Each project is associated with a secret token called `project_id`, which you have to use in order to access the API.
+Project in Blockfrost represents API access to a specific [network](/docs/start-building#available-networks). Each project is associated with a secret token called `project_id`, which you have to use in order to access the API.
 
 :::warning
 Always keep your secrets secret! `project_id` is a secret, so make sure you don't commit it to a public repository or include it in your code. When possible, use environment variables and avoid exposing `project_id`. Ideally, setup your own application backend to securely store your `project_id` to prevent the leakage. Otherwise, someone else could piggyback on your token.
