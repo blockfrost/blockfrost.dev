@@ -1,3 +1,5 @@
+const vars = require('./variables')
+
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: "Blockfrost Development Hub",
@@ -9,6 +11,10 @@ module.exports = {
   favicon: "img/favicon.ico",
   organizationName: "blockfrost",
   projectName: "blockfrost.dev",
+  customFields: {
+    repository: `${vars.repository}`,
+    branch: `${vars.branch}`,
+  },
   themeConfig: {
     metadata: [
       {
@@ -110,7 +116,8 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: "https://github.com/blockfrost/blockfrost.dev/edit/master/",
+          // editUrl: "https://github.com/blockfrost/blockfrost.dev/edit/master/",
+          editUrl: `${vars.repository}/edit/${vars.branch}`,
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -125,5 +132,13 @@ module.exports = {
       "data-domain": "blockfrost.dev",
     },
   ],
-  plugins: [require.resolve("@cmfcmf/docusaurus-search-local")],
+  plugins: [require.resolve("@cmfcmf/docusaurus-search-local"),  [
+    "@docusaurus/plugin-ideal-image",
+    {
+      quality: 70,
+      max: 1030, // max resized image's size.
+      min: 640, // min resized image's size. if original is lower, use that size.
+      steps: 2, // the max number of images generated between min and max (inclusive)
+    },
+  ],],
 };
