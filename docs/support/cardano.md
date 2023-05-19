@@ -50,6 +50,22 @@ If you query an address and its assets, we will display just those assets that a
 If you want to list all assets of an account, use call in the accounts category, just read the sidenote.
 :::
 
+## Pool.pm uses fingerprints for querying assets, why don't you too?
+
+That's right, we currently only allow only `policy_id+hex_encoded_asset_name` as valid input. Why?
+
+TL;DR: It's the safest option.
+
+`Fingerprint`, introduced in [CIP-14](https://cips.cardano.org/cips/cip14/), is a tradeoff between readability and security.
+Fingerprints are shorter hashes. By definition, hashes are not unique. Therefore, it is possible to create two different assets with the same hash (`fingerprint`).
+Although time-consuming and expensive (2^80 operations), it is not impossible for a malicious attacker to forge an asset with identical fingerprint to some other asset. It's only a matter of price and/or determination. At this moment, the risk of exploiting this property is substantially low, but may increase with the wider adoption of Cardano.
+
+Therefore, we do not encourage usage of fingerprints and only allow the whole policy+name as input.
+
+:::caution
+For more information about security considerations, please see [CIP-14](https://cips.cardano.org/cips/cip14/).
+:::
+
 ## I've seen some sites determine a stake key from an unused address. This doesn't seem possible through the your API!
 
 That's correct, as stated previously, we only display addresses that are present on the blockchain. If you want to determine the stake key from an address, feel free to give [this](https://cardano.stackexchange.com/questions/2003/extract-the-bech32-stake-address-from-a-shelly-address-in-javascript) a go.
