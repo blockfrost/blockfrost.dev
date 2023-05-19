@@ -57,10 +57,10 @@ That's right, we currently only allow only `policy_id+hex_encoded_asset_name` as
 TL;DR: It's the safest option.
 
 `Fingerprint`, introduced in [CIP-14](https://cips.cardano.org/cips/cip14/), is a tradeoff between readability and security.
-Fingerprints are shorter hashes. By definition, hashes are not unique. Therefore, it is possible to create two different assets with the same hash (`fingerprint`).
-Although time-consuming and expensive (2^80 operations), it is not impossible for a malicious attacker to forge an asset with identical fingerprint to some other asset. It's only a matter of price and/or determination. At this moment, the risk of exploiting this property is substantially low, but may increase with the wider adoption of Cardano.
+Fingerprints are shorter hashes. By definition, hashes are not unique.
+Although time-consuming and expensive (2^80 operations), it is not impossible for a malicious attacker to forge an asset with identical fingerprint to some other asset. It's only a matter of price and/or determination.
 
-Therefore, we do not encourage usage of fingerprints and only allow the whole policy+name as input.
+Therefore, we do not support usage of fingerprint as a parameter and only allow the concatenation of the policy ID and the asset name.
 
 :::caution
 For more information about security considerations, please see [CIP-14](https://cips.cardano.org/cips/cip14/).
