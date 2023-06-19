@@ -14,7 +14,7 @@ You can navigate to Access filters directly from the Project page. ![settings](/
 
 ## IP allowlist
 
-Once enabled only white-listed IP addresses will be able to access Blockfrost API on behalf of this project. Requests from all other IP addresses will receive error response with status code 403.
+Once enabled only white-listed IP addresses will be able to access Blockfrost API on behalf of the project. Requests from all other IP addresses will receive error response with status code 403.
 
 You can enter both IPv4 and IPv6 addresses. IP ranges using prefix length are also supported (`127.0.0.1/24`).
 
@@ -35,7 +35,7 @@ If endpoint allowlist is enabled for the project, but there is no entry in the l
 
 Origins filter allows you to restrict access to your project to specific URLs using HTTP header [Origin](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin).
 
-Once enabled only requests from allowed origins will be allowed for this project. Requests from all other origins will receive error response with status code 403.
+Once enabled only requests from allowed origins will be allowed for the project. Requests from all other origins will receive error response with status code 403.
 
 Origin allowlist supports wildcard (*) for a subdomain. For example, "https://\*.example.com" allows requests coming from any subdomain of `example.com` (eg. `https://first-app.example.com`, `https://another-app.example.com`).
 
