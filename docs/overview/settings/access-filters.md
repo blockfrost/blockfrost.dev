@@ -23,7 +23,7 @@ You can enter both IPv4 and IPv6 addresses. IP ranges using prefix length are al
 
 ## Endpoint allowlist
 
-Once enabled only allowed endpoints will be accessible from the project. Requests to all other endpoints will receive error response with status code `403`. We recommend to enable enable access solely to endpoints necessary for your project.
+Once enabled only allowed endpoints will be accessible from the project. Requests to all other endpoints will receive error response with status code `403`. We recommend to enable access solely to endpoints necessary for your project.
 
 :::warning
 If endpoint allowlist is enabled for the project, but there is no entry in the list of enabled endpoints, then all requests will be rejected.
@@ -45,3 +45,11 @@ An entry configured with a specific scheme, such as HTTPS, will exclusively perm
 
 ![Origin allowlist](/img/access-filters/origin.png)
 
+
+## Best Practices
+
+- Keep your API key (`project_id`) secure. Avoid placing it in client-side code, like JavaScript on a webpage or within mobile apps. Instead, route all Blockfrost requests via your server or through a proxy.
+
+- Wherever you can, use IP and Origin-based filters. Enable access only to those endpoints your project truly needs.
+
+- Create a new project for each application. This lets you to tailor access filters to each application's specific needs.
