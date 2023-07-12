@@ -33,9 +33,10 @@ If endpoint allowlist is enabled for the project, but there is no entry in the l
 
 ## Origin allowlist
 
-Origins filter allows you to restrict access to your project to specific URLs using HTTP header [Origin](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin).
+Origins filter allows you to restrict access to your project to specific URLs using HTTP header [`Origin`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin).
 
-Once enabled only requests from allowed origins will be allowed for the project. Requests from all other origins will receive error response with status code 403.
+Once enabled only requests from allowed origins will be allowed for the project. Requests from all other origins will receive error response with status code 403. Requests with missing `Origin` headers will also be rejected with status code 403.
+
 
 Origin allowlist supports wildcard (*) for a subdomain. For example, "https://\*.example.com" allows requests coming from any subdomain of `example.com` (eg. `https://first-app.example.com`, `https://another-app.example.com`).
 
@@ -50,6 +51,6 @@ An entry configured with a specific scheme, such as HTTPS, will exclusively perm
 
 - Keep your API key (`project_id`) secure. Avoid placing it in client-side code, like JavaScript on a webpage or within mobile apps. Instead, route all Blockfrost requests via your server or through a proxy.
 
-- Wherever you can, use IP and Origin-based filters. Enable access only to those endpoints your project truly needs.
+- Wherever you can, use IP and Origin-based filters and enable access only to those endpoints your project truly needs.
 
 - Create a new project for each application. This lets you to tailor access filters to each application's specific needs.
