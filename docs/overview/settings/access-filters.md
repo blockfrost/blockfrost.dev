@@ -14,7 +14,7 @@ You can navigate to Access filters directly from the Project page. ![settings](/
 
 ## IP allowlist
 
-Once enabled only white-listed IP addresses will be able to access Blockfrost API on behalf of the project. Requests from all other IP addresses will receive error response with status code 403.
+Once enabled only allowed IP addresses will be able to access Blockfrost API on behalf of the project. Requests from all other IP addresses will receive error response with status code 403.
 
 You can enter both IPv4 and IPv6 addresses. IP ranges using prefix length are also supported (`127.0.0.1/24`).
 
