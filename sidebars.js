@@ -12,6 +12,7 @@ module.exports = {
         "overview/getting-started",
         "overview/making-first-call",
         "overview/plans-and-billing",
+        "overview/settings/access-filters",
         "overview/workspaces/workspaces",
       ],
     },
