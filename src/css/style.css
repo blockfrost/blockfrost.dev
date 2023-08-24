@@ -59,6 +59,11 @@ html[data-theme="dark"] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+.hosted {
+  color: #01389a;
+  font-weight: bold;
+}
+
 [data-theme="light"] .shiki.min-dark {
   display: none;
 }
