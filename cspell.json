@@ -6,8 +6,11 @@
   "words": [
     "Blockfrost",
     "Cardano",
+    "clsx",
+    "cmfcmf",
     "IPFS",
-    "Milkomeda"
+    "Milkomeda",
+    "openapi"
   ],
   "ignoreWords": [],
   "import": []

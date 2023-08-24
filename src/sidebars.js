@@ -83,9 +83,9 @@ module.exports = {
       id: "contributing",
     },
     {
-      type: "link",
-      label: "OpenAPI specification",
-      href: "https://docs.blockfrost.io/",
+      type: "category",
+      label: "Open API Specification",
+      items: [...require("../docs/api/sidebar.js")],
     },
   ],
 };
