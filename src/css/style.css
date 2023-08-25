@@ -79,5 +79,5 @@ html[data-theme="dark"] .docusaurus-highlight-code-line {
 
 .menu__link,
 .menu__list-item-collapsible {
-  border-radius: 999px;
+  border-radius: 10px;
 }
