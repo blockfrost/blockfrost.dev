@@ -11,10 +11,11 @@
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "regenerate-open-api": "yarn docusaurus clean-api-docs all && yarn docusaurus gen-api-docs all"
   },
   "dependencies": {
-    "@blockfrost/openapi": "0.1.60-beta.2",
+    "@blockfrost/openapi": "0.1.60-beta.4",
     "@cmfcmf/docusaurus-search-local": "^0.11.0",
     "@docusaurus/core": "2.2.0",
     "@docusaurus/preset-classic": "2.2.0",
