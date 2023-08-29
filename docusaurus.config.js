@@ -134,7 +134,7 @@ module.exports = {
     [
       "docusaurus-plugin-openapi-docs",
       {
-        id: "blockfrost-api",
+        id: "api",
         docsPluginId: "classic",
         config: {
           blockfrost: {
