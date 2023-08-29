@@ -17,7 +17,7 @@ Not only we welcome community contributions, we do incentivize them via Blockfro
 - Blockfrost will publish bounties, in form of [GitHub issues](https://github.com/blockfrost/blockfrost.dev/issues?q=is%3Aopen+is%3Aissue+label%3ABounty%21), which are then up for grabs
 - Before creating a PR, make sure that the issue is clear enough to be addressed, if not, open up a discussion in the issue
 - Fork the repository, open a draft pull request and link it to the issue you are addressing
-- Please adhere to [Contribution Rules](/docs/contributing#contribution-rules)
+- Please adhere to [Contribution Rules](/contributing#contribution-rules)
 - Once you are ready, mark the pull request as ready and someone from the Blockfrost team will review it
 - When the Blockfrost team is happy with the end result, we will merge the pull request and release it to the public
 - After your change is released, post a comment with your Cardano mainnet address in the GitHub issue to claim your bounty
@@ -34,7 +34,7 @@ Use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
 ### Style guide
 
-For consistency, we are using the [Cardano's Developer Portal Style Guide](https://developers.cardano.org/docs/portal-style-guide).
+For consistency, we are using the [Cardano's Developer Portal Style Guide](https://developers.cardano.org/portal-style-guide).
 
 ## Local development
 

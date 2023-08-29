@@ -15,7 +15,7 @@
     "regenerate-open-api": "yarn docusaurus clean-api-docs all && yarn docusaurus gen-api-docs all"
   },
   "dependencies": {
-    "@blockfrost/openapi": "0.1.60-beta.7",
+    "@blockfrost/openapi": "0.1.60-beta.8",
     "@cmfcmf/docusaurus-search-local": "^0.11.0",
     "@docusaurus/core": "2.2.0",
     "@docusaurus/preset-classic": "2.2.0",

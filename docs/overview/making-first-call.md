@@ -7,7 +7,7 @@ import Tabs from '@theme/Tabs';
 
 import TabItem from '@theme/TabItem';
 
-Once you [acquire](/docs/overview/getting-started) your `project_id` token, let's give the API a try! You need to pass this it as an HTTP header with the name `project_id`. Don't forget that you can call just the network you created the token for.
+Once you [acquire](/overview/getting-started) your `project_id` token, let's give the API a try! You need to pass this it as an HTTP header with the name `project_id`. Don't forget that you can call just the network you created the token for.
 
 :::info
 Each network has separate `project_id` tokens, distinguishable by the prefix.

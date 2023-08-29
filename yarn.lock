@@ -1274,10 +1274,10 @@
     "@babel/helper-validator-identifier" "^7.22.5"
     to-fast-properties "^2.0.0"
 
-"@blockfrost/openapi@0.1.60-beta.7":
-  version "0.1.60-beta.7"
-  resolved "https://registry.yarnpkg.com/@blockfrost/openapi/-/openapi-0.1.60-beta.7.tgz#e787cde01e3177a7e70564b99364023276cadd65"
-  integrity sha512-ql9diJOZLIfJwP9aRJrQR+Mjl7f5+y1/P2TZHEoymJN3lHUfpFQgDbEpM9MrES+0v73pXDHzhiobAjUgZzw4BA==
+"@blockfrost/openapi@0.1.60-beta.8":
+  version "0.1.60-beta.8"
+  resolved "https://registry.yarnpkg.com/@blockfrost/openapi/-/openapi-0.1.60-beta.8.tgz#55509b774c34e3569677a14a314d164f36fe0ecc"
+  integrity sha512-3YkI4bk+V091igBQKMhBceotpPcfI+/NbPiB1gtM1ezYwkY8p9hEblhtuS5HT8PsVxjRHjMKQHLHBSey+vhYYA==
   dependencies:
     ajv "^8.11.2"
     cbor "^8.1.0"

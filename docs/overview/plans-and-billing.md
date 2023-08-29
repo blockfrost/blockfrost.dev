@@ -5,13 +5,13 @@ id: plans-and-billing
 
 ## Plans
 
-Our offering is comprised of 4 plans at the moment, starting with the *STARTER* plan, which will be free forever, up to *ENTERPRISE* which can be purchased by [contacting our support](/docs/support).
+Our offering is comprised of 4 plans at the moment, starting with the _STARTER_ plan, which will be free forever, up to _ENTERPRISE_ which can be purchased by [contacting our support](/support).
 
 :::tip
 The higher the plan the more features, projects, higher request per day and storage capabilities.
 :::
 
-Some capabilities, such as Workspaces and Premium Submit (*DEVELOPER* and *ENTERPRISE*) and Whitelisting/Custom rate limiting (*ENTERPRISE*) are only available in higher tiers.
+Some capabilities, such as Workspaces and Premium Submit (_DEVELOPER_ and _ENTERPRISE_) and Whitelisting/Custom rate limiting (_ENTERPRISE_) are only available in higher tiers.
 
 ![Blockfrost.io plans](/img/frontend_plans.png)
 
@@ -20,7 +20,7 @@ Some capabilities, such as Workspaces and Premium Submit (*DEVELOPER* and *ENTER
 You have to be logged in order to perform the upgrade. You can upgrade your plan any time through clicking on you current plan name in the [dashboard](https://blockfrost.io/dashboard) or directly through [here](https://blockfrost.io/dashboard/plans) and then clicking **Upgrade plan**.
 
 :::tip
-If you wish to upgrade to Enterprise plan, please [contact our support](/docs/support#contacting-support).
+If you wish to upgrade to Enterprise plan, please [contact our support](/support#contacting-support).
 :::
 
 ![Blockfrost.io plans](/img/frontend_upgrade.png)
@@ -37,7 +37,7 @@ If you're EU VAT registered, fill out VAT field to be eligible for tax deduction
 
 You have to be logged in order to perform the downgrade. Click **Downgrade plan** and confirm your payment method.
 
-To be able to perform downgrade, make sure the number of your projects is smaller or the size of the new Plan (e.g. 1 in case of *STARTER* and 3 in case of *HOBBY*). Otherwise, the button for downgrade will not be available.
+To be able to perform downgrade, make sure the number of your projects is smaller or the size of the new Plan (e.g. 1 in case of _STARTER_ and 3 in case of _HOBBY_). Otherwise, the button for downgrade will not be available.
 
 ![Blockfrost.io plans](/img/frontend_downgrade.png)
 
@@ -52,14 +52,14 @@ You have to be logged in order to perform the cancellation. Click **Downgrade Su
 To be able to cancel subscription, make sure the number of your projects is smaller or the size of the new Plan (i.e. 0 or 1).
 
 :::danger
-Cancelling plan is effective immediate. Your plan will be downgraded to the *STARTER* quota immediately.
+Cancelling plan is effective immediate. Your plan will be downgraded to the _STARTER_ quota immediately.
 :::
 
 ![Blockfrost.io plans](/img/frontend_cancel.png)
 
 ## Projects
 
-Projects are the basic building blocks of Blockfrost. Each [network](/docs/start-building#available-networks) requires a projects and tokens, called `project_id`s between these network are not interchangeable.
+Projects are the basic building blocks of Blockfrost. Each [network](/start-building#available-networks) requires a projects and tokens, called `project_id`s between these network are not interchangeable.
 
 :::info
 Keep in mind that plan limits, such as number of requests and IPFS storage, are shared across projects.
@@ -67,7 +67,7 @@ Keep in mind that plan limits, such as number of requests and IPFS storage, are 
 
 ### Creating a project
 
-See [Creating first project](/docs/overview/getting-started#creating-first-project) guide.
+See [Creating first project](/overview/getting-started#creating-first-project) guide.
 
 ### Deleting a project
 
@@ -96,7 +96,6 @@ You have to be logged in order to perform the update. You can update your billin
 ![Blockfrost.io manage billing](/img/frontend_manage_billing.png)
 
 You will be redirected to Billing Portal where you can update billing details or view past invoices.
-
 
 ![Blockfrost.io billing portal](/img/frontend_billing_portal.png)
 

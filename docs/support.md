@@ -7,11 +7,11 @@ Welcome to the support homepage! We kindly ask you to browse through our databas
 
 ### Blockfrost.io
 
-If you want to upgrade, downgrade, cancel or update your plans or billing method, please visit [this page](/docs/overview/plans-and-billing).
+If you want to upgrade, downgrade, cancel or update your plans or billing method, please visit [this page](/overview/plans-and-billing).
 
 ### API
 
-For help on dealing with most common API HTTP error codes, please visit [this page](/docs/start-building#common-situations).
+For help on dealing with most common API HTTP error codes, please visit [this page](/start-building#common-situations).
 
 ### SDKs
 

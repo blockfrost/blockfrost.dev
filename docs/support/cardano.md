@@ -72,7 +72,7 @@ That's correct, as stated previously, we only display addresses that are present
 
 ## It seems that your API is stuck, the list of the results has stopped growing
 
-You're most likely missing the pagination parameter. We [use pagination](/docs/start-building#key-concepts).
+You're most likely missing the pagination parameter. We [use pagination](/start-building#key-concepts).
 
 We display 100 items per default and just keep in mind that pagination starts from page 1, unlike traditional indexing.
 
