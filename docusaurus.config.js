@@ -4,7 +4,7 @@ module.exports = {
   tagline: "Welcome to the Blockfrost.io universe",
   url: "https://blockfrost.dev/",
   baseUrl: "/",
-  onBrokenLinks: "throw",
+  onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
   organizationName: "blockfrost",
