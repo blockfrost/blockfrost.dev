@@ -4,7 +4,7 @@ module.exports = {
   tagline: "Welcome to the Blockfrost.io universe",
   url: "https://blockfrost.dev/",
   baseUrl: "/",
-  onBrokenLinks: "warn",
+  onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
   organizationName: "blockfrost",
@@ -46,19 +46,19 @@ module.exports = {
           items: [
             {
               label: "Overview",
-              to: "/docs/",
+              to: "/",
             },
             {
               label: "Getting Started",
-              to: "/docs/overview/getting-started",
+              to: "/overview/getting-started",
             },
             {
               label: "🔨 Start Building",
-              to: "/docs/start-building",
+              to: "/start-building",
             },
             {
               label: "🦾 SDKs",
-              href: "/docs/sdks",
+              href: "/sdks",
             },
             {
               label: "OpenAPI reference",
@@ -88,7 +88,7 @@ module.exports = {
           items: [
             {
               label: "Support",
-              href: "/docs/support",
+              href: "/support",
             },
             {
               label: "GitHub",
