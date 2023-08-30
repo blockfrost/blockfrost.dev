@@ -33,7 +33,7 @@ module.exports = {
       items: [
         {
           href: "https://blockfrost.io/dashboard",
-          label: "Login",
+          label: "Dashboard",
           position: "right",
         },
       ],
@@ -53,11 +53,11 @@ module.exports = {
               to: "/overview/getting-started",
             },
             {
-              label: "🔨 Start Building",
+              label: "Start Building",
               to: "/start-building",
             },
             {
-              label: "🦾 SDKs",
+              label: "SDKs",
               href: "/sdks",
             },
             {
@@ -138,6 +138,8 @@ module.exports = {
         docsPluginId: "classic",
         config: {
           blockfrost: {
+            downloadUrl:
+              "https://github.com/blockfrost/blockfrost-backend-ryo/issues",
             specPath: "node_modules/@blockfrost/openapi/openapi.yaml",
             outputDir: "./docs/api",
             sidebarOptions: {
