@@ -32,6 +32,24 @@ module.exports = {
       },
       items: [
         {
+          "aria-label": "GitHub",
+          to: "https://github.com/blockfrost",
+          position: "right",
+          className: "navbar__icon navbar__github",
+        },
+        {
+          "aria-label": "Twitter",
+          to: "https://twitter.com/blockfrost",
+          position: "right",
+          className: "navbar__icon navbar__twitter",
+        },
+        {
+          "aria-label": "Discord",
+          to: "https://discord.gg/inputoutput",
+          position: "right",
+          className: "navbar__icon navbar__discord",
+        },
+        {
           href: "https://blockfrost.io/dashboard",
           label: "Dashboard",
           position: "right",

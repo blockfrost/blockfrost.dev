@@ -81,3 +81,31 @@ html[data-theme="dark"] .docusaurus-highlight-code-line {
 .menu__list-item-collapsible {
   border-radius: 10px;
 }
+
+/* icons */
+.navbar__icon:before {
+  content: "";
+  display: flex;
+  height: 24px;
+  width: 24px;
+  background-color: var(--ifm-navbar-link-color);
+}
+
+.navbar__icon:hover:before {
+  background-color: var(--ifm-navbar-link-hover-color);
+}
+
+.navbar__github:before {
+  mask: url(/icons/github.png) no-repeat 100% 100%;
+  mask-size: cover;
+}
+
+.navbar__twitter:before {
+  mask: url(/icons/twitter.png) no-repeat 100% 100%;
+  mask-size: cover;
+}
+
+.navbar__discord:before {
+  mask: url(/icons/discord.png) no-repeat 100% 100%;
+  mask-size: cover;
+}
