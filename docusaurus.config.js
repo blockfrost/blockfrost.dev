@@ -150,6 +150,18 @@ module.exports = {
   ],
   plugins: [
     [
+      "@docusaurus/plugin-client-redirects",
+      {
+        createRedirects(existingPath) {
+          if (existingPath.includes("/docs")) {
+            return [existingPath.replace("/docs", "/")];
+          }
+
+          return undefined;
+        },
+      },
+    ],
+    [
       "docusaurus-plugin-openapi-docs",
       {
         id: "api",
