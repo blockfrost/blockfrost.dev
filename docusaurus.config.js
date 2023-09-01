@@ -153,8 +153,10 @@ module.exports = {
       "@docusaurus/plugin-client-redirects",
       {
         createRedirects(existingPath) {
-          if (existingPath.includes("/docs")) {
-            return [existingPath.replace("/docs", "/")];
+          const match = existingPath.match(/^\/docs\/(.+)$/);
+
+          if (match) {
+            return `/${match[1]}`;
           }
 
           return undefined;
