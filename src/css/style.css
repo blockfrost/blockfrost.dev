@@ -9,7 +9,7 @@
 
   --ifm-border-color: hsl(220, 50%, 85%);
   --ifm-toc-border-color: var(--ifm-border-color);
-  --ifm-background-color: hsl(220, 20%, 98%);
+  --ifm-background-color: white;
 }
 
 html {
@@ -17,7 +17,7 @@ html {
 }
 
 p {
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .menu {
