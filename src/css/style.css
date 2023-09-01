@@ -158,3 +158,12 @@ html[data-theme="dark"] .docusaurus-highlight-code-line {
   > summary {
   display: none;
 }
+
+#request {
+  display: none;
+}
+
+.markdown h1:first-child {
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+}
