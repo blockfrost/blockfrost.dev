@@ -154,3 +154,26 @@ html[data-theme="dark"] .docusaurus-highlight-code-line {
 .openapi__heading {
   margin-bottom: 10px !important;
 }
+
+#docusaurus_skipToContent_fallback
+  > div
+  > main
+  > div
+  > div
+  > div
+  > div
+  > article
+  > div.theme-doc-markdown.markdown
+  > div
+  > div.col.col--7
+  > div
+  > div
+  > div
+  > div.responseTabsTopSection_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiTabs-styles-module
+  > div
+  > ul
+  > li.tabs__item {
+  padding: 5px;
+  font-size: 12px;
+  border: 0;
+}
