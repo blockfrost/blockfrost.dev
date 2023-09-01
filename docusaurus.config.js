@@ -153,16 +153,26 @@ module.exports = {
       "@docusaurus/plugin-client-redirects",
       {
         createRedirects(existingPath) {
+          // Check if the path matches the pattern /docs/something/<variable>
           const match = existingPath.match(/^\/docs\/(.+)$/);
-
-          console.log("aaaa", existingPath, match);
-
           if (match) {
-            return `/${match[1]}`;
+            // Create a redirect from /docs/something/<variable> to /something/<variable>
+            return `/docs/${match[1]}`;
           }
-
-          return undefined;
+          return undefined; // Return a falsy value: no redirect created
         },
+        redirects: [
+          {
+            from: existingPath => {
+              const match = existingPath.match(/^\/docs\/(.+)$/);
+              if (match) {
+                return `/docs/${match[1]}`;
+              }
+              return undefined;
+            },
+            to: from => `/${from.split("/").pop()}`,
+          },
+        ],
       },
     ],
     [
