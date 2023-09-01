@@ -155,6 +155,8 @@ module.exports = {
         createRedirects(existingPath) {
           const match = existingPath.match(/^\/docs\/(.+)$/);
 
+          console.log("aaaa", existingPath, match);
+
           if (match) {
             return `/${match[1]}`;
           }
