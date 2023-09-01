@@ -150,3 +150,7 @@ html[data-theme="dark"] .docusaurus-highlight-code-line {
 #request {
   display: none;
 }
+
+.openapi__heading {
+  margin-bottom: 10px !important;
+}
