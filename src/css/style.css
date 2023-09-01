@@ -12,18 +12,6 @@
   --ifm-background-color: white;
 }
 
-html {
-  font-size: 17px;
-}
-
-p {
-  font-size: 15px;
-}
-
-.menu {
-  font-size: 17px;
-}
-
 .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.1);
   display: block;
@@ -161,9 +149,4 @@ html[data-theme="dark"] .docusaurus-highlight-code-line {
 
 #request {
   display: none;
-}
-
-.markdown h1:first-child {
-  margin-bottom: 20px;
-  font-size: 2.5rem;
 }
