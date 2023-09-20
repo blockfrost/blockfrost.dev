@@ -13,11 +13,11 @@ module.exports = {
     metadata: [
       {
         name: "og:image",
-        content: "https://blockfrost.io/images/logo_full.png",
+        content: "https://blockfrost.io/images/og.png",
       },
       {
         name: "twitter:image",
-        content: "https://blockfrost.io/images/logo_full.png",
+        content: "https://blockfrost.io/images/og.png",
       },
     ],
     colorMode: {
