@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "postinstall": "patch-package",
     "docusaurus": "docusaurus",
-    "start": "docusaurus start",
+    "start": "docusaurus clear && docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -39,5 +40,8 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "yarn@3.6.3"
+  "packageManager": "yarn@3.6.3",
+  "devDependencies": {
+    "patch-package": "^8.0.0"
+  }
 }
