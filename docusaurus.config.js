@@ -149,6 +149,7 @@ module.exports = {
     },
   ],
   plugins: [
+    "@cmfcmf/docusaurus-search-local",
     [
       "docusaurus-plugin-openapi-docs",
       {
