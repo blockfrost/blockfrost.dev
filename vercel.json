@@ -3,6 +3,10 @@
     {
       "source": "/docs/:path*",
       "destination": "/:path*"
+    },
+    {
+      "source": "/docs/:path*/",
+      "destination": "/:path*/"
     }
   ]
 }
