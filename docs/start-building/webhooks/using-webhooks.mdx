@@ -107,7 +107,9 @@ app.post(
         // loop through the payload, payload is an array of objects with fields: "tx" (an object) and "delegations" (an array)
         for (const transaction of payload) {
           for (const delegation of transaction.delegations) {
-            console.log(`Delegation from address ${delegation.address} included in tx ${transaction.tx.hash}`);
+            console.log(
+              `Delegation from address ${delegation.address} included in tx ${transaction.tx.hash}`
+            );
           }
         }
         break;

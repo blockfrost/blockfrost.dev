@@ -5,7 +5,7 @@ id: cardano
 
 Before contacting support, please try to go through the list of most common support cases. Thanks a million!
 
-## Querying address returns 404 Not Found, but my address is valid!
+## Querying address returns 404 Not Found, but my address is valid
 
 Our API returns `404 Not Found` for any resource that does not exist on chain at the moment, even when in theory, it could exist. These are typically addresses that haven't been used yet. We can't know that someone has generated a new address unless we see it on blockchain. Once someone makes a transaction, it will appear on blockchain and hence in our API. And it'll stay there forever, even with 0 balance. The thing is, there's an infinite number of addresses which can be generated. And unless they make a transaction of some sort, they are basically "non-existent".
 
@@ -22,7 +22,7 @@ TL;DR:
 400 - non-valid (incorrect or malformed) addresses
 :::
 
-## Pool.pm is able to display all my assets from a single address, but you only display assets on that address!
+## Pool.pm is able to display all my assets from a single address, but you only display assets on that address
 
 This can be a little bit confusing, but there's a fundamental difference between an address and an account (i.e. wallet), that some tools such as pool.pm cover up.
 
@@ -32,9 +32,9 @@ Technical details have been described by our founder, Marek, [here](https://card
 
 However, since we don't know what may your intentions be, we allow you to both query an address and query an account:
 
-single address: https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1{address}/get
+single address: <https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1{address}/get>
 
-whole account: https://docs.blockfrost.io/#tag/Cardano-Accounts/paths/~1accounts~1{stake_address}~1addresses~1assets/get (read the caution!)
+whole account: <https://docs.blockfrost.io/#tag/Cardano-Accounts/paths/~1accounts~1{stake_address}~1addresses~1assets/get> (read the caution!)
 
 :::caution
 Be careful, as an account could be part of a mangled address, but that does not necessarily mean the addresses are owned by the same user as the account.
@@ -66,13 +66,13 @@ Therefore, we do not support usage of fingerprint as a parameter and only allow 
 For more information about security considerations, please see [CIP-14](https://cips.cardano.org/cips/cip14/).
 :::
 
-## I've seen some sites determine a stake key from an unused address. This doesn't seem possible through the your API!
+## I've seen some sites determine a stake key from an unused address. This doesn't seem possible through the your API
 
 That's correct, as stated previously, we only display addresses that are present on the blockchain. If you want to determine the stake key from an address, feel free to give [this](https://cardano.stackexchange.com/questions/2003/extract-the-bech32-stake-address-from-a-shelly-address-in-javascript) a go.
 
-## It seems that your API is stuck, the list of the results has stopped growing!
+## It seems that your API is stuck, the list of the results has stopped growing
 
-You're most likely missing the pagination parameter. We [use pagination](/docs/start-building#key-concepts).
+You're most likely missing the pagination parameter. We [use pagination](/start-building#key-concepts).
 
 We display 100 items per default and just keep in mind that pagination starts from page 1, unlike traditional indexing.
 

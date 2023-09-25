@@ -1,0 +1,65 @@
+diff --git a/node_modules/docusaurus-theme-openapi-docs/lib-next/theme/ApiDemoPanel/Curl/index.js b/node_modules/docusaurus-theme-openapi-docs/lib-next/theme/ApiDemoPanel/Curl/index.js
+index 6732aa9..80367e3 100644
+--- a/node_modules/docusaurus-theme-openapi-docs/lib-next/theme/ApiDemoPanel/Curl/index.js
++++ b/node_modules/docusaurus-theme-openapi-docs/lib-next/theme/ApiDemoPanel/Curl/index.js
+@@ -176,7 +176,21 @@ function Curl({ postman, codeSamples }) {
+         contentType,
+         accept,
+         headerParams,
+-        body,
++        // fake form-data body to properly generate curl command for /ipfs/add
++        body: contentType === 'multipart/form-data' ? {
++          "type": "form",
++          "content": {
++              "file": {
++                  "type": "file",
++                  "value": {
++                      "src": "/path/to/file",
++                      "content": {
++                          "preview": "blob:http://localhost:3000/dummy"
++                      }
++                  }
++              }
++          }
++      }: body,
+         server,
+         auth,
+       });
+diff --git a/node_modules/docusaurus-theme-openapi-docs/lib-next/theme/ApiDemoPanel/Execute/index.js b/node_modules/docusaurus-theme-openapi-docs/lib-next/theme/ApiDemoPanel/Execute/index.js
+index 15e746d..8c62f3d 100644
+--- a/node_modules/docusaurus-theme-openapi-docs/lib-next/theme/ApiDemoPanel/Execute/index.js
++++ b/node_modules/docusaurus-theme-openapi-docs/lib-next/theme/ApiDemoPanel/Execute/index.js
+@@ -80,6 +80,12 @@ function Execute({ postman, proxy }) {
+       maxWidth: "550px",
+     },
+   };
++
++  if (contentType === 'multipart/form-data') {
++    // Don't show Send API Request button for /ipfs/add
++    return null;
++  }
++  
+   if (agreementAccepted) {
+     return (
+       <button
+diff --git a/node_modules/docusaurus-theme-openapi-docs/lib-next/theme/ApiDemoPanel/Request/index.js b/node_modules/docusaurus-theme-openapi-docs/lib-next/theme/ApiDemoPanel/Request/index.js
+index 02b8b23..6670b59 100644
+--- a/node_modules/docusaurus-theme-openapi-docs/lib-next/theme/ApiDemoPanel/Request/index.js
++++ b/node_modules/docusaurus-theme-openapi-docs/lib-next/theme/ApiDemoPanel/Request/index.js
+@@ -47,10 +47,12 @@ function Request({ item }) {
+           <Server />
+           <Authorization />
+           <ParamOptions />
+-          <Body
+-            jsonRequestBodyExample={item.jsonRequestBodyExample}
+-            requestBodyMetadata={item.requestBody}
+-          />
++          {item.path !== "/ipfs/add" ? (
++            <Body
++              jsonRequestBodyExample={item.jsonRequestBodyExample}
++              requestBodyMetadata={item.requestBody}
++            />
++          ) : undefined}
+           <Accept />
+         </div>
+       </details>

@@ -32,8 +32,26 @@ module.exports = {
       },
       items: [
         {
+          "aria-label": "GitHub",
+          to: "https://github.com/blockfrost",
+          position: "right",
+          className: "navbar__icon navbar__github",
+        },
+        {
+          "aria-label": "Twitter",
+          to: "https://twitter.com/blockfrost",
+          position: "right",
+          className: "navbar__icon navbar__twitter",
+        },
+        {
+          "aria-label": "Discord",
+          to: "https://discord.gg/inputoutput",
+          position: "right",
+          className: "navbar__icon navbar__discord",
+        },
+        {
           href: "https://blockfrost.io/dashboard",
-          label: "Login",
+          label: "Dashboard",
           position: "right",
         },
       ],
@@ -46,19 +64,19 @@ module.exports = {
           items: [
             {
               label: "Overview",
-              to: "/docs/",
+              to: "/",
             },
             {
               label: "Getting Started",
-              to: "/docs/overview/getting-started",
+              to: "/overview/getting-started",
             },
             {
-              label: "🔨 Start Building",
-              to: "/docs/start-building",
+              label: "Start Building",
+              to: "/start-building",
             },
             {
-              label: "🦾 SDKs",
-              href: "/docs/sdks",
+              label: "SDKs",
+              href: "/sdks",
             },
             {
               label: "OpenAPI reference",
@@ -86,13 +104,9 @@ module.exports = {
         {
           title: "More",
           items: [
-            // {
-            //   label: "Blog",
-            //   href: "https://blog.blockfrost.io",
-            // },
             {
               label: "Support",
-              href: "/docs/support",
+              href: "/support",
             },
             {
               label: "GitHub",
@@ -106,16 +120,25 @@ module.exports = {
   },
   presets: [
     [
-      "@docusaurus/preset-classic",
-      {
+      "classic",
+      /** @type {import('@docusaurus/preset-classic').Options} */
+      ({
         docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
+          routeBasePath: "/",
+          sidebarPath: require.resolve("./src/sidebars.js"),
           editUrl: "https://github.com/blockfrost/blockfrost.dev/edit/master/",
+          docLayoutComponent: "@theme/DocPage",
+          docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi-docs
+        },
+        blog: {
+          showReadingTime: true,
+          editUrl:
+            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: require.resolve("./src/css/style.css"),
         },
-      },
+      }),
     ],
   ],
   scripts: [
@@ -125,5 +148,26 @@ module.exports = {
       "data-domain": "blockfrost.dev",
     },
   ],
-  plugins: [require.resolve("@cmfcmf/docusaurus-search-local")],
+  plugins: [
+    "@cmfcmf/docusaurus-search-local",
+    [
+      "docusaurus-plugin-openapi-docs",
+      {
+        id: "api",
+        docsPluginId: "classic",
+        config: {
+          blockfrost: {
+            downloadUrl:
+              "https://github.com/blockfrost/blockfrost-backend-ryo/issues",
+            specPath: "node_modules/@blockfrost/openapi/openapi.yaml",
+            outputDir: "./docs/api",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+            },
+          },
+        },
+      },
+    ],
+  ],
+  themes: ["docusaurus-theme-openapi-docs"],
 };

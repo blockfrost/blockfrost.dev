@@ -70,7 +70,7 @@ curl -H "project_id: $PROJECT_ID" \
 
 We can see that there's something below 4 ADA (3 932 327 / 1 000 000) and that the account is participating in staking since epoch 385. It's also visible which pool it stakes with and we'll look at the pool later on.
 
-Let's also query addresses which [made at least 1 transaction](docs/support/cardano#querying-address-returns-404-not-found-but-my-address-is-valid) on the blockchain and belong to this stake address.
+Let's also query addresses which [made at least 1 transaction](/support/cardano#querying-address-returns-404-not-found-but-my-address-is-valid) on the blockchain and belong to this stake address.
 
 ```bash
 
@@ -135,7 +135,7 @@ curl -H "project_id: $PROJECT_ID" \
 }
 ```
 
-It seems that the queried address is now empty but since we can see it on the blockchain and it didn't return a [404 Not Found](docs/support/cardano#querying-address-returns-404-not-found-but-my-address-is-valid) from API, it must have made some transactions. Let's confirm this by querying just the most recent transaction. We'll achieve this by using a combination of two query parameters, `count=1` and `order=desc`.
+It seems that the queried address is now empty but since we can see it on the blockchain and it didn't return a [404 Not Found](/support/cardano#querying-address-returns-404-not-found-but-my-address-is-valid) from API, it must have made some transactions. Let's confirm this by querying just the most recent transaction. We'll achieve this by using a combination of two query parameters, `count=1` and `order=desc`.
 
 ```bash
 curl -H "project_id: $PROJECT_ID" \
@@ -592,8 +592,8 @@ curl -H "project_id: $PROJECT_ID" \
 
 ## FAQ
 
-For more information related to Cardano in Blockfrost, please see our [Cardano FAQ](/docs/support/cardano).
+For more information related to Cardano in Blockfrost, please see our [Cardano FAQ](/support/cardano).
 
 :::tip
-Although it is perfectly possible to create your apps directly through the API, you will probably save a lot of time and nerves by using [one of our many SDKs](/docs/sdks).
+Although it is perfectly possible to create your apps directly through the API, you will probably save a lot of time and nerves by using [one of our many SDKs](/sdks).
 :::

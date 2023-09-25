@@ -177,7 +177,7 @@ Sends a request to the endpoint once the UTXO (transaction hash) is used as an i
 Sends a request for every delegation that results in stake pool saturation being above 90 %.
 
 - Trigger event: Delegation
-- JSONPath Query: `$.pool.live_saturation `
+- JSONPath Query: `$.pool.live_saturation`
 - Operator: `>`
 - Value to match: `0.9`
 

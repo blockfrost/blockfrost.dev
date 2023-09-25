@@ -136,8 +136,8 @@ IPFS is great for NFTs as it provides a way of storing and serving off-chain, im
 
 A typical workflow would be something like this:
 
-- [Upload](/docs/start-building/ipfs/#adding-a-file) your image to IPFS and save your `ipfs_hash`
-- [Pin](/docs/start-building/ipfs/#pinning-a-file) your image and ake sure it's pinned
+- [Upload](/start-building/ipfs/#adding-a-file) your image to IPFS and save your `ipfs_hash`
+- [Pin](/start-building/ipfs/#pinning-a-file) your image and ake sure it's pinned
 - [Create an NFT](https://developers.cardano.org/docs/native-tokens/minting-nfts) with IPFS data in its metadata file
 
 ### Decentralized everything
@@ -148,4 +148,4 @@ A typical way of approaching this would be putting IPFS links in metadata of tra
 
 ## FAQ
 
-For more information related to IPFS in Blockfrost, please see our [IPFS FAQ](/docs/support/ipfs).
+For more information related to IPFS in Blockfrost, please see our [IPFS FAQ](/support/ipfs).

@@ -27,14 +27,14 @@ Keep in mind we use pagination (100 items per default) and that it starts from p
 
 The default Blockfrost network is Cardano mainnet, but we also support Cardano testnets (preview and preprod), IPFS and Milkomeda networks.
 
-| _Name_            | _API Endpoint (network + version)_              |
-| ----------------- | ----------------------------------------------- |
-| Cardano mainnet   | https://cardano-mainnet.blockfrost.io/api/v0/   |
-| Cardano preprod   | https://cardano-preprod.blockfrost.io/api/v0/   |
-| Cardano preview   | https://cardano-preview.blockfrost.io/api/v0/   |
-| IPFS              | https://ipfs.blockfrost.io/api/v0/              |
-| Milkomeda mainnet | https://milkomeda-mainnet.blockfrost.io/api/v0/ |
-| Milkomeda testnet | https://milkomeda-testnet.blockfrost.io/api/v0/ |
+| _Name_            | _API Endpoint (network + version)_                |
+| ----------------- | ------------------------------------------------- |
+| Cardano mainnet   | <https://cardano-mainnet.blockfrost.io/api/v0/>   |
+| Cardano preprod   | <https://cardano-preprod.blockfrost.io/api/v0/>   |
+| Cardano preview   | <https://cardano-preview.blockfrost.io/api/v0/>   |
+| IPFS              | <https://ipfs.blockfrost.io/api/v0/>              |
+| Milkomeda mainnet | <https://milkomeda-mainnet.blockfrost.io/api/v0/> |
+| Milkomeda testnet | <https://milkomeda-testnet.blockfrost.io/api/v0/> |
 
 The schema of full API endpoint path is a composition of the specific network, appended by the API version and the call itself.
 
@@ -55,7 +55,7 @@ The second is rate limiting. We limit an end user, distinguished by IP address, 
 The third is applicable to IPFS only. There is a maximum of allowed queued items scheduled to be pinned. Once an item becomes pinned (changes state from `queued` to `pinned`), you can call the pin operation again, adding additional item(s) to the queue.
 
 :::tip
-If you'd like to use higher limits or whitelist IPs, please upgrade to Enterprise plan by [contacting our support](/docs/support#contacting-support).
+If you'd like to use higher limits or whitelist IPs, please upgrade to Enterprise plan by [contacting our support](/support#contacting-support).
 :::
 
 ### Errors
@@ -83,18 +83,18 @@ Receiving 400:
 Receiving 402:
 
 - If using IPFS, check if your quota hasn't been exceeded. Then either remove some pins or upgrade your plan
-- Consider [upgrading plan](/docs/overview/plans-and-billing#upgrading-plan)
-- Check if your `project_id` hasn't leaked: see [WARNING](/docs/overview/getting-started#creating-first-project)
+- Consider [upgrading plan](/overview/plans-and-billing#upgrading-plan)
+- Check if your `project_id` hasn't leaked: see [WARNING](/overview/getting-started#creating-first-project)
 - Consider implementing cache
 
 Receiving 403:
 
 - Missing, invalid, badly copied or deleted `project_id`
-- Network mismatch: see [CAUTION](/docs/start-building#available-networks)
+- Network mismatch: see [CAUTION](/start-building#available-networks)
 
 Receiving 404:
 
-- The resource doesn't exist on the blockchain (yet), visit our [Cardano support page](/docs/support/cardano) for a more detailed explanation
+- The resource doesn't exist on the blockchain (yet), visit our [Cardano support page](/support/cardano) for a more detailed explanation
 
 Receiving 425 (Cardano):
 
@@ -106,9 +106,9 @@ Receiving 425 (IPFS):
 
 Receiving 429:
 
-- Consider [upgrading plan](/docs/overview/plans-and-billing#upgrading-plan) to `ENTERPRISE`, which allows Custom rate-limiting rules
+- Consider [upgrading plan](/overview/plans-and-billing#upgrading-plan) to `ENTERPRISE`, which allows Custom rate-limiting rules
 - Consider implementing cache
 
 Receiving 5xx:
 
-- Wait a few moments before retrying again and if the problem still persists, please [contact our support](/docs/support#contacting-support) and share the call details (URL) with us. We constantly monitor all backends for 5xx errors, but we're also grateful for your reports.
+- Wait a few moments before retrying again and if the problem still persists, please [contact our support](/support#contacting-support) and share the call details (URL) with us. We constantly monitor all backends for 5xx errors, but we're also grateful for your reports.
