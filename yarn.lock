@@ -1776,6 +1776,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@blockfrost/blockfrost.dev@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@blockfrost/blockfrost.dev@workspace:."
+  dependencies:
+    "@blockfrost/openapi": 0.1.60-beta.19
+    "@cmfcmf/docusaurus-search-local": ^0.11.0
+    "@docusaurus/core": 2.2.0
+    "@docusaurus/plugin-client-redirects": 2.2.0
+    "@docusaurus/preset-classic": 2.2.0
+    "@mdx-js/react": ^1.6.21
+    clsx: ^1.1.1
+    docusaurus-plugin-openapi-docs: v2.0.0-beta.3
+    docusaurus-theme-openapi-docs: ^1.7.3
+    patch-package: ^8.0.0
+    react: ^17.0.1
+    react-dom: ^17.0.1
+  languageName: unknown
+  linkType: soft
+
 "@blockfrost/openapi@npm:0.1.60-beta.19":
   version: 0.1.60-beta.19
   resolution: "@blockfrost/openapi@npm:0.1.60-beta.19"
@@ -4358,25 +4377,6 @@ __metadata:
   checksum: ccd267956c58d2315f5d3ea6757cf09863c5fc703e50fbeb13a7dc849b812ef76e3cf9ca8f35a0c48498776a7478d7b4a0418e1e2b8cb9cb9731f2922aaad7f8
   languageName: node
   linkType: hard
-
-"blockfrost-dev@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "blockfrost-dev@workspace:."
-  dependencies:
-    "@blockfrost/openapi": 0.1.60-beta.19
-    "@cmfcmf/docusaurus-search-local": ^0.11.0
-    "@docusaurus/core": 2.2.0
-    "@docusaurus/plugin-client-redirects": 2.2.0
-    "@docusaurus/preset-classic": 2.2.0
-    "@mdx-js/react": ^1.6.21
-    clsx: ^1.1.1
-    docusaurus-plugin-openapi-docs: v2.0.0-beta.3
-    docusaurus-theme-openapi-docs: ^1.7.3
-    patch-package: ^8.0.0
-    react: ^17.0.1
-    react-dom: ^17.0.1
-  languageName: unknown
-  linkType: soft
 
 "bn.js@npm:^4.0.0, bn.js@npm:^4.1.0, bn.js@npm:^4.11.9":
   version: 4.12.0

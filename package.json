@@ -1,19 +1,31 @@
 {
-  "name": "blockfrost-dev",
+  "name": "@blockfrost/blockfrost.dev",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "postinstall": "patch-package",
-    "docusaurus": "docusaurus",
-    "start": "docusaurus clear && docusaurus start",
     "build": "docusaurus build",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
+    "deploy": "docusaurus deploy",
+    "docusaurus": "docusaurus",
+    "postinstall": "patch-package",
+    "regenerate-open-api": "yarn docusaurus clean-api-docs all && yarn docusaurus gen-api-docs all",
     "serve": "docusaurus serve",
-    "write-translations": "docusaurus write-translations",
+    "start": "docusaurus clear && docusaurus start",
+    "swizzle": "docusaurus swizzle",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "regenerate-open-api": "yarn docusaurus clean-api-docs all && yarn docusaurus gen-api-docs all"
+    "write-translations": "docusaurus write-translations"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "dependencies": {
     "@blockfrost/openapi": "0.1.60-beta.19",
@@ -28,20 +40,8 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
-  "browserslist": {
-    "production": [
-      ">0.5%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "packageManager": "yarn@3.6.3",
   "devDependencies": {
     "patch-package": "^8.0.0"
-  }
+  },
+  "packageManager": "yarn@3.6.3"
 }
