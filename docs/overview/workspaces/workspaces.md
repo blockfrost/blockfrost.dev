@@ -59,3 +59,17 @@ Blockfrost Workspaces offer four distinct roles, providing a well-organized and 
 - **Administrator** - Administrators possess nearly the same permissions as the Owner. They can manage billing, workspace projects, and members, as well as generate new invites. However, they lack the ability to delete the workspace.
 - **Maintainer** - Maintainers have the ability to create new projects and update or delete existing ones, ensuring efficient project management.
 - **Collaborator** - With read-only access to all workspace projects, Collaborators can review project information without making modifications.
+
+| Permission | Owner | Administrator | Maintainer | Collaborator |
+| --- | --- | --- | --- | --- |
+| Workspace - Change name | ✅ | ✅ | ❌ | ❌ |
+| Workspace - Manage billing | ✅ | ✅ | ❌ | ❌ |
+| Workspace - Transfer ownership | ✅ | ❌ | ❌ | ❌ |
+| Workspace - Delete a workspace | ✅ | ❌ | ❌ | ❌ |
+| Workspace Members - Create an invite link | ✅ | ✅ | ❌ | ❌ |
+| Workspace Members - Delete an invite link | ✅ | ✅ | ❌ | ❌ |
+| Workspace Members - Update member's role | ✅ | ✅ | ❌ | ❌ |
+| Workspace Members - Delete a member | ✅ | ✅ | ❌ | ❌ |
+| Projects - Add new project | ✅ | ✅ | ✅ | ❌ |
+| Projects - Update existing project | ✅ | ✅ | ✅ | ❌ |
+| Projects - Delete a project | ✅ | ✅ | ✅ | ❌ |
