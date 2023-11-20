@@ -27,6 +27,7 @@ module.exports = {
         "start-building/cardano/cardano",
         "start-building/ipfs/ipfs",
         "start-building/milkomeda",
+        "start-building/tor",
         {
           type: "category",
           label: "Secure Webhooks",
@@ -76,7 +77,7 @@ module.exports = {
       },
       type: "category",
       label: "Support & FAQ",
-      items: ["support/cardano", "support/ipfs"],
+      items: ["support/cardano", "support/ipfs", "support/tor"],
     },
     {
       type: "doc",
