@@ -32,9 +32,9 @@ Technical details have been described by our founder, Marek, [here](https://card
 
 However, since we don't know what may your intentions be, we allow you to both query an address and query an account:
 
-single address: <https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1{address}/get>
+single address: [https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1\{address\}/get](https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1{address}/get)
 
-whole account: <https://docs.blockfrost.io/#tag/Cardano-Accounts/paths/~1accounts~1{stake_address}~1addresses~1assets/get> (read the caution!)
+whole account: [https://docs.blockfrost.io/#tag/Cardano-Accounts/paths/~1accounts~1\{stake_address\}~1addresses~1assets/get](https://docs.blockfrost.io/#tag/Cardano-Accounts/paths/~1accounts~1{stake_address}~1addresses~1assets/get) (read the caution!)
 
 :::caution
 Be careful, as an account could be part of a mangled address, but that does not necessarily mean the addresses are owned by the same user as the account.

@@ -139,7 +139,7 @@ You can make use of JSONPath query to specify the JSON field that should be extr
 To help you prepare the query, use built-in JSONPath Query editor. The editor is preloaded with a sample data. It matches your JSONPath query and shows the extracted field value in real time.
 :::
 
-You can match all types of values: strings, numbers, booleans, floats, and null. Numeric values are automatically detected making use of operators such as <, <=, >, >= possible.
+You can match all types of values: strings, numbers, booleans, floats, and null. Numeric values are automatically detected making use of operators such as \<, \<\=, \>, \>\= possible.
 If the extracted value is an array, then only one of the array items needs to match the specified value in order to satisfy the condition.
 
 <!-- To match null type "null" in the input. -->

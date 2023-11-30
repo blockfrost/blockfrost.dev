@@ -2992,13 +2992,15 @@ __metadata:
     "@docusaurus/core": "npm:3.0.1"
     "@docusaurus/plugin-client-redirects": "npm:3.0.1"
     "@docusaurus/preset-classic": "npm:3.0.1"
-    "@mdx-js/react": "npm:3.0.0"
+    "@mdx-js/loader": "npm:^3.0.0"
+    "@mdx-js/react": "npm:^3.0.0"
     clsx: "npm:^2.0.0"
     docusaurus-plugin-openapi-docs: "npm:v3.0.0-beta.1"
     docusaurus-theme-openapi-docs: "npm:v3.0.0-beta.1"
     patch-package: "npm:^8.0.0"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
+    remark-gfm: "npm:^4.0.0"
   languageName: unknown
   linkType: soft
 
@@ -3766,6 +3768,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mdx-js/loader@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@mdx-js/loader@npm:3.0.0"
+  dependencies:
+    "@mdx-js/mdx": "npm:^3.0.0"
+    source-map: "npm:^0.7.0"
+  peerDependencies:
+    webpack: ">=5"
+  checksum: 71f3e83a6fdcafe27531965d6307e09b0c9dd4d7591ce1598d98cc689877481069ee8e07d74d1cbfb1ebd6e1ce0cccb4fbbc61782145706b198aa79a133e7ece
+  languageName: node
+  linkType: hard
+
 "@mdx-js/mdx@npm:^3.0.0":
   version: 3.0.0
   resolution: "@mdx-js/mdx@npm:3.0.0"
@@ -3797,7 +3811,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/react@npm:3.0.0, @mdx-js/react@npm:^3.0.0":
+"@mdx-js/react@npm:^3.0.0":
   version: 3.0.0
   resolution: "@mdx-js/react@npm:3.0.0"
   dependencies:

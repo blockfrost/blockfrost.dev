@@ -9,7 +9,6 @@ With Endpoint allowlist you have the capability to restrict access to Blockfrost
 
 You have the flexibility to use either one of these filters, or all of them simultaneously. With multiple filters enabled, only request that pass all the filters are allowed.
 
-
 You can navigate to Access filters directly from the Project page. ![settings](/img/access-filters/settings.png)
 
 ## IP allowlist
@@ -19,7 +18,6 @@ Once enabled only allowed IP addresses will be able to access Blockfrost API on 
 You can enter both IPv4 and IPv6 addresses. IP ranges using prefix length are also supported (`127.0.0.1/24`).
 
 ![IP allowlist](/img/access-filters/ip.png)
-
 
 ## Endpoint allowlist
 
@@ -37,15 +35,13 @@ Origins filter allows you to restrict access to your project to specific URLs us
 
 Once enabled only requests from allowed origins will be allowed for the project. Requests from all other origins will receive error response with status code 403. Requests with missing `Origin` headers will also be rejected with status code 403.
 
-
-Origin allowlist supports wildcard (*) for a subdomain. For example, "https://\*.example.com" allows requests coming from any subdomain of `example.com` (eg. `https://first-app.example.com`, `https://another-app.example.com`).
+Origin allowlist supports wildcard (\*) for a subdomain. For example, "https://\*.example.com" allows requests coming from any subdomain of `example.com` (eg. `https://first-app.example.com`, `https://another-app.example.com`).
 
 :::info Optional Scheme
 An entry configured with a specific scheme, such as HTTPS, will exclusively permit requests initiated from that particular scheme. If you want to permit any scheme, simply exclude it from the entry. For instance, by entering `example.com`, the system will accept requests from any protocol.
 :::
 
 ![Origin allowlist](/img/access-filters/origin.png)
-
 
 ## Best Practices
 

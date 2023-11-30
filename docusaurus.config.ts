@@ -122,13 +122,11 @@ const config: Config = {
   presets: [
     [
       "classic",
-      /** @type {import('@docusaurus/preset-classic').Options} */
       {
         docs: {
           routeBasePath: "/",
           sidebarPath: require.resolve("./src/sidebars.js"),
           editUrl: "https://github.com/blockfrost/blockfrost.dev/edit/master/",
-          // docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi-docs
         },
         blog: {
