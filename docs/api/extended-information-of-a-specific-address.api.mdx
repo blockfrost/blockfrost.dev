@@ -5,7 +5,7 @@ description: "Obtain extended information about a specific address."
 sidebar_label: "Extended information of a specific address"
 hide_title: true
 hide_table_of_contents: true
-api: {"tags":["Cardano » Addresses"],"description":"Obtain extended information about a specific address.\n","parameters":[{"in":"path","name":"address","required":true,"schema":{"type":"string"},"description":"Bech32 address.","example":"addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz"}],"responses":{"200":{"description":"Return the address content.","content":{"application/json":{"schema":{"type":"object","properties":{"address":{"type":"string","description":"Bech32 encoded addresses","example":"addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz"},"amount":{"type":"array","items":{"type":"object","description":"The sum of all the UTXO per asset","properties":{"unit":{"type":"string","format":"Lovelace or concatenation of asset policy_id and hex-encoded asset_name","description":"The unit of the value"},"quantity":{"type":"string","description":"The quantity of the unit"},"decimals":{"type":"integer","nullable":true,"description":"Number of decimal places of the asset unit. Primary data source is CIP68 reference NFT with a fallback to off-chain metadata."},"has_nft_onchain_metadata":{"type":"boolean","description":"True if the latest minting transaction includes metadata (best-effort)"}},"required":["unit","quantity","decimals","has_nft_onchain_metadata"]},"example":[{"unit":"lovelace","quantity":"42000000","decimals":6,"has_nft_onchain_metadata":false},{"unit":"b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e","quantity":"12","decimals":null,"has_nft_onchain_metadata":true}]},"stake_address":{"type":"string","nullable":true,"example":"stake1ux3g2c9dx2nhhehyrezyxpkstartcqmu9hk63qgfkccw5rqttygt7","description":"Stake address that controls the key"},"type":{"type":"string","enum":["byron","shelley"],"example":"shelley","description":"Address era"},"script":{"type":"boolean","example":false,"description":"True if this is a script address"}},"required":["address","amount","stake_address","type","script"],"title":"address_content_extended"}}}},"400":{"description":"Bad request","content":{"application/json":{"schema":{"type":"object","properties":{"status_code":{"type":"integer","example":400},"error":{"type":"string","example":"Bad Request"},"message":{"type":"string","example":"Backend did not understand your request."}},"required":["error","message","status_code"]}}}},"403":{"description":"Authentication secret is missing or invalid","content":{"application/json":{"schema":{"type":"object","properties":{"status_code":{"type":"integer","example":403},"error":{"type":"string","example":"Forbidden"},"message":{"type":"string","example":"Invalid project token."}},"required":["error","message","status_code"]}}}},"404":{"description":"Component not found","content":{"application/json":{"schema":{"type":"object","properties":{"status_code":{"type":"integer","example":404},"error":{"type":"string","example":"Not Found"},"message":{"type":"string","example":"The requested component has not been found."}},"required":["error","message","status_code"]}}}},"418":{"description":"IP has been auto-banned for extensive sending of requests after usage limit has been reached","content":{"application/json":{"schema":{"type":"object","properties":{"status_code":{"type":"integer","example":418},"error":{"type":"string","example":"Requested Banned"},"message":{"type":"string","example":"IP has been auto-banned for flooding."}},"required":["error","message","status_code"]}}}},"429":{"description":"Usage limit reached","content":{"application/json":{"schema":{"type":"object","properties":{"status_code":{"type":"integer","example":429},"error":{"type":"string","example":"Project Over Limit"},"message":{"type":"string","example":"Usage is over limit."}},"required":["error","message","status_code"]}}}},"500":{"description":"Internal Server Error","content":{"application/json":{"schema":{"type":"object","properties":{"status_code":{"type":"integer","example":500},"error":{"type":"string","example":"Internal Server Error"},"message":{"type":"string","example":"An unexpected response was received from the backend."}},"required":["error","message","status_code"]}}}}},"method":"get","path":"/addresses/{address}/extended","servers":[{"url":"https://cardano-mainnet.blockfrost.io/api/v0","description":"Cardano Mainnet network"},{"url":"https://cardano-preprod.blockfrost.io/api/v0","description":"Cardano Preprod network"},{"url":"https://cardano-preview.blockfrost.io/api/v0","description":"Cardano Preview network"},{"url":"https://localhost:3000","description":"local"}],"security":[{"project_id":[]}],"securitySchemes":{"project_id":{"type":"apiKey","in":"header","name":"project_id","description":"There are multiple token types available based on network you choose\nwhen creating a Blockfrost a project, for a list of token types\nsee available networks.\n"}},"info":{"version":"0.1.60","title":"Blockfrost.io ~ API Documentation","x-logo":{"url":"https://staging.blockfrost.io/images/logo.svg","altText":"Blockfrost"},"contact":{"name":"Blockfrost Team","url":"https://blockfrost.io","email":"contact@blockfrost.io"},"license":{"name":"MIT","url":"https://opensource.org/licenses/MIT"},"termsOfService":"https://blockfrost.io/terms","description":"Blockfrost is an API as a service that allows users to interact with the Cardano blockchain and parts of its ecosystem.\n\n## Tokens\n\nAfter signing up on https://blockfrost.io, a `project_id` token is automatically generated for each project.\nHTTP header of your request MUST include this `project_id` in order to authenticate against Blockfrost servers.\n\n## Available networks\n\nAt the moment, you can use the following networks. Please, note that each network has its own `project_id`.\n\n<table>\n  <tbody>\n    <tr>\n      <td>\n          <b>Network</b>\n      </td>\n      <td>\n          <b>Endpoint</b>\n      </td>\n    </tr>\n    <tr>\n        <td>Cardano mainnet</td>\n        <td>\n            <code>https://cardano-mainnet.blockfrost.io/api/v0</code>\n        </td>\n    </tr>\n    <tr>\n        <td>Cardano preprod</td>\n        <td>\n            <code>https://cardano-preprod.blockfrost.io/api/v0</code>\n        </td>\n    </tr>\n    <tr>\n        <td>Cardano preview</td>\n        <td>\n            <code>https://cardano-preview.blockfrost.io/api/v0</code>\n        </td>\n    </tr>\n    <tr>\n        <td>InterPlanetary File System</td>\n        <td>\n            <code>https://ipfs.blockfrost.io/api/v0</code>\n        </td>\n    </tr>\n    <tr>\n        <td>Milkomeda mainnet</td>\n        <td>\n            <code>https://milkomeda-mainnet.blockfrost.io/api/v0</code>\n        </td>\n    </tr>\n    <tr>\n        <td>Milkomeda testnet</td>\n        <td>\n            <code>https://milkomeda-testnet.blockfrost.io/api/v0</code>\n        </td>\n    </tr>\n  </tbody>\n</table>\n\n## Milkomeda\n\n<p>\n  <span>\n    For more information about how to use Milkomeda as well as the list of available endpoints, see the <a href=\"/start-building/milkomeda\">Milkomeda section</a>.\n  </span>\n</p>\n\n## Concepts\n\n* All endpoints return either a JSON object or an array.\n* Data is returned in *ascending* (oldest first, newest last) order, if not stated otherwise.\n  * You might use the `?order=desc` query parameter to reverse this order.\n* By default, we return 100 results at a time. You have to use `?page=2` to list through the results.\n* All time and timestamp related fields (except `server_time`) are in seconds of UNIX time.\n* All amounts are returned in Lovelaces, where 1 ADA = 1 000 000 Lovelaces.\n* Addresses, accounts and pool IDs are in Bech32 format.\n* All values are case sensitive.\n* All hex encoded values are lower case.\n* Examples are not based on real data. Any resemblance to actual events is purely coincidental.\n* We allow to upload files up to 100MB of size to IPFS. This might increase in the future.\n* Only pinned IPFS files are counted towards the IPFS quota.\n* Non-pinned IPFS files are subject to regular garbage collection and will be removed unless pinned.\n* We allow maximum of 100 queued pins per IPFS user.\n\n## Errors\n\n### HTTP Status codes\n\nThe following are HTTP status code your application might receive when reaching Blockfrost endpoints and\nit should handle all of these cases.\n\n* HTTP `400` return code is used when the request is not valid.\n* HTTP `402` return code is used when the projects exceed their daily request limit.\n* HTTP `403` return code is used when the request is not authenticated.\n* HTTP `404` return code is used when the resource doesn't exist.\n* HTTP `418` return code is used when the user has been auto-banned for flooding too much after previously receiving error code `402` or `429`.\n* HTTP `425` return code is used in Cardano networks, when the user has submitted a transaction when the mempool is already full, not accepting new txs straight away.\n* HTTP `425` return code is used in IPFS network, when the user has submitted a pin when the pin queue is already full, not accepting new pins straight away.\n* HTTP `429` return code is used when the user has sent too many requests in a given amount of time and therefore has been rate-limited.\n* HTTP `500` return code is used when our endpoints are having a problem.\n\n### Error codes\n\nAn internal error code number is used for better indication of the error in question. It is passed using the following payload.\n\n```json\n{\n  \"status_code\": 403,\n  \"error\": \"Forbidden\",\n  \"message\": \"Invalid project token.\"\n}\n```\n## Limits\n\nThere are two types of limits we are enforcing:\n\nThe first depends on your plan and is the number of request we allow per day. We defined the day from midnight to midnight of UTC time.\n\nThe second is rate limiting. We limit an end user, distinguished by IP address, to 10 requests per second. On top of that, we allow\neach user to send burst of 500 requests, which cools off at rate of 10 requests per second. In essence, a user is allowed to make another\nwhole burst after (currently) 500/10 = 50 seconds. E.g. if a user attempts to make a call 3 seconds after whole burst, 30 requests will be processed.\nWe believe this should be sufficient for most of the use cases. If it is not and you have a specific use case, please get in touch with us, and\nwe will make sure to take it into account as much as we can.\n\n## SDKs\n\nWe support a number of SDKs that will help you in developing your application on top of Blockfrost.\n\n<table>\n  <tbody>\n    <tr>\n        <td><b>Programming language</b></td>\n        <td><b>SDK</b></td>\n    </tr>\n    <tr>\n        <td>JavaScript</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-js\">blockfrost-js</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Haskell</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-haskell\">blockfrost-haskell</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Python</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-python\">blockfrost-python</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Rust</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-rust\">blockfrost-rust</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Golang</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-go\">blockfrost-go</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Ruby</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-ruby\">blockfrost-ruby</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Java</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-java\">blockfrost-java</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Scala</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-scala\">blockfrost-scala</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Swift</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-swift\">blockfrost-swift</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Kotlin</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-kotlin\">blockfrost-kotlin</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Elixir</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-elixir\">blockfrost-elixir</a>\n        </td>\n    </tr>\n    <tr>\n        <td>.NET</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-dotnet\">blockfrost-dotnet</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Arduino</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-arduino\">blockfrost-arduino</a>\n        </td>\n    </tr>\n    <tr>\n        <td>PHP</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-php\">blockfrost-php</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Crystal</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-crystal\">blockfrost-crystal</a>\n        </td>\n    </tr>\n  </tbody>\n</table>\n"},"postman":{"name":"Extended information of a specific address","description":{"content":"Obtain extended information about a specific address.\n","type":"text/plain"},"url":{"path":["addresses",":address","extended"],"host":["{{baseUrl}}"],"query":[],"variable":[{"disabled":false,"description":{"content":"(Required) Bech32 address.","type":"text/plain"},"type":"any","value":"","key":"address"}]},"header":[{"key":"Accept","value":"application/json"}],"method":"GET"}}
+api: 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
 sidebar_class_name: "get api-method"
 info_path: api/blockfrost-io-api-documentation
 custom_edit_url: null
@@ -13,8 +13,8 @@ custom_edit_url: null
 
 import ApiTabs from "@theme/ApiTabs";
 import DiscriminatorTabs from "@theme/DiscriminatorTabs";
-import MethodEndpoint from "@theme/ApiDemoPanel/MethodEndpoint";
-import SecuritySchemes from "@theme/ApiDemoPanel/SecuritySchemes";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
 import MimeTabs from "@theme/MimeTabs";
 import ParamsItem from "@theme/ParamsItem";
 import ResponseSamples from "@theme/ResponseSamples";
@@ -22,11 +22,18 @@ import SchemaItem from "@theme/SchemaItem";
 import SchemaTabs from "@theme/SchemaTabs";
 import TabItem from "@theme/TabItem";
 
-<h1 className={"openapi__heading"}>Extended information of a specific address</h1>
+<h1
+  className={"openapi__heading"}
+>
+  Extended information of a specific address
+</h1>
 
-<MethodEndpoint method={"get"} path={"/addresses/{address}/extended"}></MethodEndpoint>
-
-<SecuritySchemes infoPath={"api/blockfrost-io-api-documentation"}></SecuritySchemes>
+<MethodEndpoint
+  method={"get"}
+  path={"/addresses/{address}/extended"}
+>
+  
+</MethodEndpoint>
 
 
 
@@ -35,33 +42,767 @@ Obtain extended information about a specific address.
 
 ## Request
 
-<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"in":"path","name":"address","required":true,"schema":{"type":"string"},"description":"Bech32 address.","example":"addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz"}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
-
-Return the address content.
-
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"address"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","description":"Bech32 encoded addresses","example":"addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>amount</strong><span className={"openapi-schema__name"}> object[]</span><span className={"openapi-schema__divider"}></span><span className={"openapi-schema__required"}>required</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"unit"} required={true} schemaName={"Lovelace or concatenation of asset policy_id and hex-encoded asset_name"} qualifierMessage={undefined} schema={{"type":"string","format":"Lovelace or concatenation of asset policy_id and hex-encoded asset_name","description":"The unit of the value"}}></SchemaItem><SchemaItem collapsible={false} name={"quantity"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","description":"The quantity of the unit"}}></SchemaItem><SchemaItem collapsible={false} name={"decimals"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","nullable":true,"description":"Number of decimal places of the asset unit. Primary data source is CIP68 reference NFT with a fallback to off-chain metadata."}}></SchemaItem><SchemaItem collapsible={false} name={"has_nft_onchain_metadata"} required={true} schemaName={"boolean"} qualifierMessage={undefined} schema={{"type":"boolean","description":"True if the latest minting transaction includes metadata (best-effort)"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={false} name={"stake_address"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","nullable":true,"example":"stake1ux3g2c9dx2nhhehyrezyxpkstartcqmu9hk63qgfkccw5rqttygt7","description":"Stake address that controls the key"}}></SchemaItem><SchemaItem collapsible={false} name={"type"} required={true} schemaName={"string"} qualifierMessage={"**Possible values:** [`byron`, `shelley`]"} schema={{"type":"string","enum":["byron","shelley"],"example":"shelley","description":"Address era"}}></SchemaItem><SchemaItem collapsible={false} name={"script"} required={true} schemaName={"boolean"} qualifierMessage={undefined} schema={{"type":"boolean","example":false,"description":"True if this is a script address"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"address\": \"addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz\",\n  \"amount\": [\n    {\n      \"unit\": \"lovelace\",\n      \"quantity\": \"42000000\",\n      \"decimals\": 6,\n      \"has_nft_onchain_metadata\": false\n    },\n    {\n      \"unit\": \"b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e\",\n      \"quantity\": \"12\",\n      \"decimals\": null,\n      \"has_nft_onchain_metadata\": true\n    }\n  ],\n  \"stake_address\": \"stake1ux3g2c9dx2nhhehyrezyxpkstartcqmu9hk63qgfkccw5rqttygt7\",\n  \"type\": \"shelley\",\n  \"script\": false\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"400"} value={"400"}><div>
-
-Bad request
-
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"status_code"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":400}}></SchemaItem><SchemaItem collapsible={false} name={"error"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Bad Request"}}></SchemaItem><SchemaItem collapsible={false} name={"message"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Backend did not understand your request."}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"message\": \"Backend did not understand your request.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
-
-Authentication secret is missing or invalid
-
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"status_code"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":403}}></SchemaItem><SchemaItem collapsible={false} name={"error"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Forbidden"}}></SchemaItem><SchemaItem collapsible={false} name={"message"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Invalid project token."}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"status_code\": 403,\n  \"error\": \"Forbidden\",\n  \"message\": \"Invalid project token.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"404"} value={"404"}><div>
-
-Component not found
-
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"status_code"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":404}}></SchemaItem><SchemaItem collapsible={false} name={"error"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Not Found"}}></SchemaItem><SchemaItem collapsible={false} name={"message"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"The requested component has not been found."}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"status_code\": 404,\n  \"error\": \"Not Found\",\n  \"message\": \"The requested component has not been found.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"418"} value={"418"}><div>
-
-IP has been auto-banned for extensive sending of requests after usage limit has been reached
-
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"status_code"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":418}}></SchemaItem><SchemaItem collapsible={false} name={"error"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Requested Banned"}}></SchemaItem><SchemaItem collapsible={false} name={"message"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"IP has been auto-banned for flooding."}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"status_code\": 418,\n  \"error\": \"Requested Banned\",\n  \"message\": \"IP has been auto-banned for flooding.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"429"} value={"429"}><div>
-
-Usage limit reached
-
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"status_code"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":429}}></SchemaItem><SchemaItem collapsible={false} name={"error"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Project Over Limit"}}></SchemaItem><SchemaItem collapsible={false} name={"message"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Usage is over limit."}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"status_code\": 429,\n  \"error\": \"Project Over Limit\",\n  \"message\": \"Usage is over limit.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"500"} value={"500"}><div>
-
-Internal Server Error
-
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"status_code"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":500}}></SchemaItem><SchemaItem collapsible={false} name={"error"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Internal Server Error"}}></SchemaItem><SchemaItem collapsible={false} name={"message"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"An unexpected response was received from the backend."}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"status_code\": 500,\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected response was received from the backend.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"in":"path","name":"address","required":true,"schema":{"type":"string"},"description":"Bech32 address.","example":"addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz"}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs>
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Return the address content.
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"address"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"Bech32 encoded addresses","example":"addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                amount
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object[]
+                              </span><span
+                                className={"openapi-schema__divider"}
+                              >
+                                
+                              </span><span
+                                className={"openapi-schema__required"}
+                              >
+                                required
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <li>
+                              <div
+                                style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                              >
+                                Array [
+                              </div>
+                            </li><SchemaItem
+                              collapsible={false}
+                              name={"unit"}
+                              required={true}
+                              schemaName={"Lovelace or concatenation of asset policy_id and hex-encoded asset_name"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"Lovelace or concatenation of asset policy_id and hex-encoded asset_name","description":"The unit of the value"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"quantity"}
+                              required={true}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"The quantity of the unit"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"decimals"}
+                              required={true}
+                              schemaName={"integer"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"integer","nullable":true,"description":"Number of decimal places of the asset unit. Primary data source is CIP68 reference NFT with a fallback to off-chain metadata."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"has_nft_onchain_metadata"}
+                              required={true}
+                              schemaName={"boolean"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"boolean","description":"True if the latest minting transaction includes metadata (best-effort)"}}
+                            >
+                              
+                            </SchemaItem><li>
+                              <div
+                                style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                              >
+                                ]
+                              </div>
+                            </li>
+                          </div>
+                        </details>
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"stake_address"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","nullable":true,"example":"stake1ux3g2c9dx2nhhehyrezyxpkstartcqmu9hk63qgfkccw5rqttygt7","description":"Stake address that controls the key"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"type"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={"**Possible values:** [`byron`, `shelley`]"}
+                        schema={{"type":"string","enum":["byron","shelley"],"example":"shelley","description":"Address era"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"script"}
+                        required={true}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean","example":false,"description":"True if this is a script address"}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"address\": \"addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz\",\n  \"amount\": [\n    {\n      \"unit\": \"lovelace\",\n      \"quantity\": \"42000000\",\n      \"decimals\": 6,\n      \"has_nft_onchain_metadata\": false\n    },\n    {\n      \"unit\": \"b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e\",\n      \"quantity\": \"12\",\n      \"decimals\": null,\n      \"has_nft_onchain_metadata\": true\n    }\n  ],\n  \"stake_address\": \"stake1ux3g2c9dx2nhhehyrezyxpkstartcqmu9hk63qgfkccw5rqttygt7\",\n  \"type\": \"shelley\",\n  \"script\": false\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"400"}
+        value={"400"}
+      >
+        <div>
+          
+          
+          Bad request
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"status_code"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":400}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"error"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Bad Request"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Backend did not understand your request."}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"message\": \"Backend did not understand your request.\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"403"}
+        value={"403"}
+      >
+        <div>
+          
+          
+          Authentication secret is missing or invalid
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"status_code"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":403}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"error"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Forbidden"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Invalid project token."}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"status_code\": 403,\n  \"error\": \"Forbidden\",\n  \"message\": \"Invalid project token.\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"404"}
+        value={"404"}
+      >
+        <div>
+          
+          
+          Component not found
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"status_code"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":404}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"error"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Not Found"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"The requested component has not been found."}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"status_code\": 404,\n  \"error\": \"Not Found\",\n  \"message\": \"The requested component has not been found.\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"418"}
+        value={"418"}
+      >
+        <div>
+          
+          
+          IP has been auto-banned for extensive sending of requests after usage limit has been reached
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"status_code"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":418}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"error"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Requested Banned"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"IP has been auto-banned for flooding."}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"status_code\": 418,\n  \"error\": \"Requested Banned\",\n  \"message\": \"IP has been auto-banned for flooding.\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"429"}
+        value={"429"}
+      >
+        <div>
+          
+          
+          Usage limit reached
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"status_code"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":429}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"error"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Project Over Limit"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Usage is over limit."}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"status_code\": 429,\n  \"error\": \"Project Over Limit\",\n  \"message\": \"Usage is over limit.\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"500"}
+        value={"500"}
+      >
+        <div>
+          
+          
+          Internal Server Error
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"status_code"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":500}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"error"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Internal Server Error"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"An unexpected response was received from the backend."}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"status_code\": 500,\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected response was received from the backend.\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
       

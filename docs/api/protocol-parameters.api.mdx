@@ -5,7 +5,7 @@ description: "Return the protocol parameters for the epoch specified."
 sidebar_label: "Protocol parameters"
 hide_title: true
 hide_table_of_contents: true
-api: {"tags":["Cardano » Epochs"],"description":"Return the protocol parameters for the epoch specified.","parameters":[{"in":"path","name":"number","required":true,"schema":{"type":"integer"},"description":"Number of the epoch","example":225}],"responses":{"200":{"description":"Return the data about the epoch","content":{"application/json":{"schema":{"type":"object","properties":{"epoch":{"type":"integer","example":225,"description":"Epoch number"},"min_fee_a":{"type":"integer","example":44,"description":"The linear factor for the minimum fee calculation for given epoch"},"min_fee_b":{"type":"integer","example":155381,"description":"The constant factor for the minimum fee calculation"},"max_block_size":{"type":"integer","example":65536,"description":"Maximum block body size in Bytes"},"max_tx_size":{"type":"integer","example":16384,"description":"Maximum transaction size"},"max_block_header_size":{"type":"integer","example":1100,"description":"Maximum block header size"},"key_deposit":{"type":"string","example":"2000000","description":"The amount of a key registration deposit in Lovelaces"},"pool_deposit":{"type":"string","example":"500000000","description":"The amount of a pool registration deposit in Lovelaces"},"e_max":{"type":"integer","example":18,"description":"Epoch bound on pool retirement"},"n_opt":{"type":"integer","example":150,"description":"Desired number of pools"},"a0":{"type":"number","example":0.3,"description":"Pool pledge influence"},"rho":{"type":"number","example":0.003,"description":"Monetary expansion"},"tau":{"type":"number","example":0.2,"description":"Treasury expansion"},"decentralisation_param":{"type":"number","example":0.5,"description":"Percentage of blocks produced by federated nodes"},"extra_entropy":{"type":"string","nullable":true,"example":null,"description":"Seed for extra entropy"},"protocol_major_ver":{"type":"integer","example":2,"description":"Accepted protocol major version"},"protocol_minor_ver":{"type":"integer","example":0,"description":"Accepted protocol minor version"},"min_utxo":{"type":"string","example":"1000000","description":"Minimum UTXO value"},"min_pool_cost":{"type":"string","example":"340000000","description":"Minimum stake cost forced on the pool"},"nonce":{"type":"string","example":"1a3be38bcbb7911969283716ad7aa550250226b76a61fc51cc9a9a35d9276d81","description":"Epoch number only used once"},"cost_models":{"additionalProperties":true,"type":"object","nullable":true,"example":{"PlutusV1":{"addInteger-cpu-arguments-intercept":197209,"addInteger-cpu-arguments-slope":0},"PlutusV2":{"addInteger-cpu-arguments-intercept":197209,"addInteger-cpu-arguments-slope":0}},"description":"Cost models parameters for Plutus Core scripts"},"price_mem":{"type":"number","nullable":true,"example":0.0577,"description":"The per word cost of script memory usage"},"price_step":{"type":"number","nullable":true,"example":0.0000721,"description":"The cost of script execution step usage"},"max_tx_ex_mem":{"type":"string","nullable":true,"example":"10000000","description":"The maximum number of execution memory allowed to be used in a single transaction"},"max_tx_ex_steps":{"type":"string","nullable":true,"example":"10000000000","description":"The maximum number of execution steps allowed to be used in a single transaction"},"max_block_ex_mem":{"type":"string","nullable":true,"example":"50000000","description":"The maximum number of execution memory allowed to be used in a single block"},"max_block_ex_steps":{"type":"string","nullable":true,"example":"40000000000","description":"The maximum number of execution steps allowed to be used in a single block"},"max_val_size":{"type":"string","nullable":true,"example":"5000","description":"The maximum Val size"},"collateral_percent":{"type":"integer","nullable":true,"example":150,"description":"The percentage of the transactions fee which must be provided as collateral when including non-native scripts"},"max_collateral_inputs":{"type":"integer","nullable":true,"example":3,"description":"The maximum number of collateral inputs allowed in a transaction"},"coins_per_utxo_size":{"type":"string","nullable":true,"example":"34482","description":"Cost per UTxO word for Alonzo. Cost per UTxO byte for Babbage and later."},"coins_per_utxo_word":{"type":"string","nullable":true,"example":"34482","description":"Cost per UTxO word for Alonzo. Cost per UTxO byte for Babbage and later.","deprecated":true}},"required":["epoch","min_fee_a","min_fee_b","max_block_size","max_tx_size","max_block_header_size","key_deposit","pool_deposit","e_max","n_opt","a0","rho","tau","decentralisation_param","extra_entropy","protocol_major_ver","protocol_minor_ver","min_utxo","min_pool_cost","nonce","cost_models","price_mem","price_step","max_tx_ex_mem","max_tx_ex_steps","max_block_ex_mem","max_block_ex_steps","max_val_size","collateral_percent","max_collateral_inputs","coins_per_utxo_size","coins_per_utxo_word"],"title":"epoch_param_content"}}}},"400":{"description":"Bad request","content":{"application/json":{"schema":{"type":"object","properties":{"status_code":{"type":"integer","example":400},"error":{"type":"string","example":"Bad Request"},"message":{"type":"string","example":"Backend did not understand your request."}},"required":["error","message","status_code"]}}}},"403":{"description":"Authentication secret is missing or invalid","content":{"application/json":{"schema":{"type":"object","properties":{"status_code":{"type":"integer","example":403},"error":{"type":"string","example":"Forbidden"},"message":{"type":"string","example":"Invalid project token."}},"required":["error","message","status_code"]}}}},"404":{"description":"Component not found","content":{"application/json":{"schema":{"type":"object","properties":{"status_code":{"type":"integer","example":404},"error":{"type":"string","example":"Not Found"},"message":{"type":"string","example":"The requested component has not been found."}},"required":["error","message","status_code"]}}}},"418":{"description":"IP has been auto-banned for extensive sending of requests after usage limit has been reached","content":{"application/json":{"schema":{"type":"object","properties":{"status_code":{"type":"integer","example":418},"error":{"type":"string","example":"Requested Banned"},"message":{"type":"string","example":"IP has been auto-banned for flooding."}},"required":["error","message","status_code"]}}}},"429":{"description":"Usage limit reached","content":{"application/json":{"schema":{"type":"object","properties":{"status_code":{"type":"integer","example":429},"error":{"type":"string","example":"Project Over Limit"},"message":{"type":"string","example":"Usage is over limit."}},"required":["error","message","status_code"]}}}},"500":{"description":"Internal Server Error","content":{"application/json":{"schema":{"type":"object","properties":{"status_code":{"type":"integer","example":500},"error":{"type":"string","example":"Internal Server Error"},"message":{"type":"string","example":"An unexpected response was received from the backend."}},"required":["error","message","status_code"]}}}}},"method":"get","path":"/epochs/{number}/parameters","servers":[{"url":"https://cardano-mainnet.blockfrost.io/api/v0","description":"Cardano Mainnet network"},{"url":"https://cardano-preprod.blockfrost.io/api/v0","description":"Cardano Preprod network"},{"url":"https://cardano-preview.blockfrost.io/api/v0","description":"Cardano Preview network"},{"url":"https://localhost:3000","description":"local"}],"security":[{"project_id":[]}],"securitySchemes":{"project_id":{"type":"apiKey","in":"header","name":"project_id","description":"There are multiple token types available based on network you choose\nwhen creating a Blockfrost a project, for a list of token types\nsee available networks.\n"}},"info":{"version":"0.1.60","title":"Blockfrost.io ~ API Documentation","x-logo":{"url":"https://staging.blockfrost.io/images/logo.svg","altText":"Blockfrost"},"contact":{"name":"Blockfrost Team","url":"https://blockfrost.io","email":"contact@blockfrost.io"},"license":{"name":"MIT","url":"https://opensource.org/licenses/MIT"},"termsOfService":"https://blockfrost.io/terms","description":"Blockfrost is an API as a service that allows users to interact with the Cardano blockchain and parts of its ecosystem.\n\n## Tokens\n\nAfter signing up on https://blockfrost.io, a `project_id` token is automatically generated for each project.\nHTTP header of your request MUST include this `project_id` in order to authenticate against Blockfrost servers.\n\n## Available networks\n\nAt the moment, you can use the following networks. Please, note that each network has its own `project_id`.\n\n<table>\n  <tbody>\n    <tr>\n      <td>\n          <b>Network</b>\n      </td>\n      <td>\n          <b>Endpoint</b>\n      </td>\n    </tr>\n    <tr>\n        <td>Cardano mainnet</td>\n        <td>\n            <code>https://cardano-mainnet.blockfrost.io/api/v0</code>\n        </td>\n    </tr>\n    <tr>\n        <td>Cardano preprod</td>\n        <td>\n            <code>https://cardano-preprod.blockfrost.io/api/v0</code>\n        </td>\n    </tr>\n    <tr>\n        <td>Cardano preview</td>\n        <td>\n            <code>https://cardano-preview.blockfrost.io/api/v0</code>\n        </td>\n    </tr>\n    <tr>\n        <td>InterPlanetary File System</td>\n        <td>\n            <code>https://ipfs.blockfrost.io/api/v0</code>\n        </td>\n    </tr>\n    <tr>\n        <td>Milkomeda mainnet</td>\n        <td>\n            <code>https://milkomeda-mainnet.blockfrost.io/api/v0</code>\n        </td>\n    </tr>\n    <tr>\n        <td>Milkomeda testnet</td>\n        <td>\n            <code>https://milkomeda-testnet.blockfrost.io/api/v0</code>\n        </td>\n    </tr>\n  </tbody>\n</table>\n\n## Milkomeda\n\n<p>\n  <span>\n    For more information about how to use Milkomeda as well as the list of available endpoints, see the <a href=\"/start-building/milkomeda\">Milkomeda section</a>.\n  </span>\n</p>\n\n## Concepts\n\n* All endpoints return either a JSON object or an array.\n* Data is returned in *ascending* (oldest first, newest last) order, if not stated otherwise.\n  * You might use the `?order=desc` query parameter to reverse this order.\n* By default, we return 100 results at a time. You have to use `?page=2` to list through the results.\n* All time and timestamp related fields (except `server_time`) are in seconds of UNIX time.\n* All amounts are returned in Lovelaces, where 1 ADA = 1 000 000 Lovelaces.\n* Addresses, accounts and pool IDs are in Bech32 format.\n* All values are case sensitive.\n* All hex encoded values are lower case.\n* Examples are not based on real data. Any resemblance to actual events is purely coincidental.\n* We allow to upload files up to 100MB of size to IPFS. This might increase in the future.\n* Only pinned IPFS files are counted towards the IPFS quota.\n* Non-pinned IPFS files are subject to regular garbage collection and will be removed unless pinned.\n* We allow maximum of 100 queued pins per IPFS user.\n\n## Errors\n\n### HTTP Status codes\n\nThe following are HTTP status code your application might receive when reaching Blockfrost endpoints and\nit should handle all of these cases.\n\n* HTTP `400` return code is used when the request is not valid.\n* HTTP `402` return code is used when the projects exceed their daily request limit.\n* HTTP `403` return code is used when the request is not authenticated.\n* HTTP `404` return code is used when the resource doesn't exist.\n* HTTP `418` return code is used when the user has been auto-banned for flooding too much after previously receiving error code `402` or `429`.\n* HTTP `425` return code is used in Cardano networks, when the user has submitted a transaction when the mempool is already full, not accepting new txs straight away.\n* HTTP `425` return code is used in IPFS network, when the user has submitted a pin when the pin queue is already full, not accepting new pins straight away.\n* HTTP `429` return code is used when the user has sent too many requests in a given amount of time and therefore has been rate-limited.\n* HTTP `500` return code is used when our endpoints are having a problem.\n\n### Error codes\n\nAn internal error code number is used for better indication of the error in question. It is passed using the following payload.\n\n```json\n{\n  \"status_code\": 403,\n  \"error\": \"Forbidden\",\n  \"message\": \"Invalid project token.\"\n}\n```\n## Limits\n\nThere are two types of limits we are enforcing:\n\nThe first depends on your plan and is the number of request we allow per day. We defined the day from midnight to midnight of UTC time.\n\nThe second is rate limiting. We limit an end user, distinguished by IP address, to 10 requests per second. On top of that, we allow\neach user to send burst of 500 requests, which cools off at rate of 10 requests per second. In essence, a user is allowed to make another\nwhole burst after (currently) 500/10 = 50 seconds. E.g. if a user attempts to make a call 3 seconds after whole burst, 30 requests will be processed.\nWe believe this should be sufficient for most of the use cases. If it is not and you have a specific use case, please get in touch with us, and\nwe will make sure to take it into account as much as we can.\n\n## SDKs\n\nWe support a number of SDKs that will help you in developing your application on top of Blockfrost.\n\n<table>\n  <tbody>\n    <tr>\n        <td><b>Programming language</b></td>\n        <td><b>SDK</b></td>\n    </tr>\n    <tr>\n        <td>JavaScript</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-js\">blockfrost-js</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Haskell</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-haskell\">blockfrost-haskell</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Python</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-python\">blockfrost-python</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Rust</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-rust\">blockfrost-rust</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Golang</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-go\">blockfrost-go</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Ruby</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-ruby\">blockfrost-ruby</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Java</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-java\">blockfrost-java</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Scala</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-scala\">blockfrost-scala</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Swift</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-swift\">blockfrost-swift</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Kotlin</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-kotlin\">blockfrost-kotlin</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Elixir</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-elixir\">blockfrost-elixir</a>\n        </td>\n    </tr>\n    <tr>\n        <td>.NET</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-dotnet\">blockfrost-dotnet</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Arduino</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-arduino\">blockfrost-arduino</a>\n        </td>\n    </tr>\n    <tr>\n        <td>PHP</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-php\">blockfrost-php</a>\n        </td>\n    </tr>\n    <tr>\n        <td>Crystal</td>\n        <td>\n            <a href=\"https://github.com/blockfrost/blockfrost-crystal\">blockfrost-crystal</a>\n        </td>\n    </tr>\n  </tbody>\n</table>\n"},"postman":{"name":"Protocol parameters","description":{"content":"Return the protocol parameters for the epoch specified.","type":"text/plain"},"url":{"path":["epochs",":number","parameters"],"host":["{{baseUrl}}"],"query":[],"variable":[{"disabled":false,"description":{"content":"(Required) Number of the epoch","type":"text/plain"},"type":"any","value":"","key":"number"}]},"header":[{"key":"Accept","value":"application/json"}],"method":"GET"}}
+api: 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
 sidebar_class_name: "get api-method"
 info_path: api/blockfrost-io-api-documentation
 custom_edit_url: null
@@ -13,8 +13,8 @@ custom_edit_url: null
 
 import ApiTabs from "@theme/ApiTabs";
 import DiscriminatorTabs from "@theme/DiscriminatorTabs";
-import MethodEndpoint from "@theme/ApiDemoPanel/MethodEndpoint";
-import SecuritySchemes from "@theme/ApiDemoPanel/SecuritySchemes";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
 import MimeTabs from "@theme/MimeTabs";
 import ParamsItem from "@theme/ParamsItem";
 import ResponseSamples from "@theme/ResponseSamples";
@@ -22,11 +22,18 @@ import SchemaItem from "@theme/SchemaItem";
 import SchemaTabs from "@theme/SchemaTabs";
 import TabItem from "@theme/TabItem";
 
-<h1 className={"openapi__heading"}>Protocol parameters</h1>
+<h1
+  className={"openapi__heading"}
+>
+  Protocol parameters
+</h1>
 
-<MethodEndpoint method={"get"} path={"/epochs/{number}/parameters"}></MethodEndpoint>
-
-<SecuritySchemes infoPath={"api/blockfrost-io-api-documentation"}></SecuritySchemes>
+<MethodEndpoint
+  method={"get"}
+  path={"/epochs/{number}/parameters"}
+>
+  
+</MethodEndpoint>
 
 
 
@@ -34,37 +41,984 @@ Return the protocol parameters for the epoch specified.
 
 ## Request
 
-<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"in":"path","name":"number","required":true,"schema":{"type":"integer"},"description":"Number of the epoch","example":225}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
-
-Return the data about the epoch
-
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"epoch"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":225,"description":"Epoch number"}}></SchemaItem><SchemaItem collapsible={false} name={"min_fee_a"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":44,"description":"The linear factor for the minimum fee calculation for given epoch"}}></SchemaItem><SchemaItem collapsible={false} name={"min_fee_b"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":155381,"description":"The constant factor for the minimum fee calculation"}}></SchemaItem><SchemaItem collapsible={false} name={"max_block_size"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":65536,"description":"Maximum block body size in Bytes"}}></SchemaItem><SchemaItem collapsible={false} name={"max_tx_size"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":16384,"description":"Maximum transaction size"}}></SchemaItem><SchemaItem collapsible={false} name={"max_block_header_size"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":1100,"description":"Maximum block header size"}}></SchemaItem><SchemaItem collapsible={false} name={"key_deposit"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"2000000","description":"The amount of a key registration deposit in Lovelaces"}}></SchemaItem><SchemaItem collapsible={false} name={"pool_deposit"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"500000000","description":"The amount of a pool registration deposit in Lovelaces"}}></SchemaItem><SchemaItem collapsible={false} name={"e_max"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":18,"description":"Epoch bound on pool retirement"}}></SchemaItem><SchemaItem collapsible={false} name={"n_opt"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":150,"description":"Desired number of pools"}}></SchemaItem><SchemaItem collapsible={false} name={"a0"} required={true} schemaName={"number"} qualifierMessage={undefined} schema={{"type":"number","example":0.3,"description":"Pool pledge influence"}}></SchemaItem><SchemaItem collapsible={false} name={"rho"} required={true} schemaName={"number"} qualifierMessage={undefined} schema={{"type":"number","example":0.003,"description":"Monetary expansion"}}></SchemaItem><SchemaItem collapsible={false} name={"tau"} required={true} schemaName={"number"} qualifierMessage={undefined} schema={{"type":"number","example":0.2,"description":"Treasury expansion"}}></SchemaItem><SchemaItem collapsible={false} name={"decentralisation_param"} required={true} schemaName={"number"} qualifierMessage={undefined} schema={{"type":"number","example":0.5,"description":"Percentage of blocks produced by federated nodes"}}></SchemaItem><SchemaItem collapsible={false} name={"extra_entropy"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","nullable":true,"example":null,"description":"Seed for extra entropy"}}></SchemaItem><SchemaItem collapsible={false} name={"protocol_major_ver"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":2,"description":"Accepted protocol major version"}}></SchemaItem><SchemaItem collapsible={false} name={"protocol_minor_ver"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":0,"description":"Accepted protocol minor version"}}></SchemaItem><SchemaItem collapsible={false} name={"min_utxo"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"1000000","description":"Minimum UTXO value"}}></SchemaItem><SchemaItem collapsible={false} name={"min_pool_cost"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"340000000","description":"Minimum stake cost forced on the pool"}}></SchemaItem><SchemaItem collapsible={false} name={"nonce"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"1a3be38bcbb7911969283716ad7aa550250226b76a61fc51cc9a9a35d9276d81","description":"Epoch number only used once"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>cost_models</strong><span className={"openapi-schema__name"}> object</span><span className={"openapi-schema__divider"}></span><span className={"openapi-schema__nullable"}>nullable</span><span className={"openapi-schema__required"}>required</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
-
-Cost models parameters for Plutus Core scripts
-
-</div><SchemaItem name={"property name*"} required={false} schemaName={"any"} qualifierMessage={undefined} schema={{"additionalProperties":true,"type":"object","nullable":true,"example":{"PlutusV1":{"addInteger-cpu-arguments-intercept":197209,"addInteger-cpu-arguments-slope":0},"PlutusV2":{"addInteger-cpu-arguments-intercept":197209,"addInteger-cpu-arguments-slope":0}},"description":"Cost models parameters for Plutus Core scripts"}} collapsible={false} discriminator={false}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={false} name={"price_mem"} required={true} schemaName={"number"} qualifierMessage={undefined} schema={{"type":"number","nullable":true,"example":0.0577,"description":"The per word cost of script memory usage"}}></SchemaItem><SchemaItem collapsible={false} name={"price_step"} required={true} schemaName={"number"} qualifierMessage={undefined} schema={{"type":"number","nullable":true,"example":0.0000721,"description":"The cost of script execution step usage"}}></SchemaItem><SchemaItem collapsible={false} name={"max_tx_ex_mem"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","nullable":true,"example":"10000000","description":"The maximum number of execution memory allowed to be used in a single transaction"}}></SchemaItem><SchemaItem collapsible={false} name={"max_tx_ex_steps"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","nullable":true,"example":"10000000000","description":"The maximum number of execution steps allowed to be used in a single transaction"}}></SchemaItem><SchemaItem collapsible={false} name={"max_block_ex_mem"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","nullable":true,"example":"50000000","description":"The maximum number of execution memory allowed to be used in a single block"}}></SchemaItem><SchemaItem collapsible={false} name={"max_block_ex_steps"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","nullable":true,"example":"40000000000","description":"The maximum number of execution steps allowed to be used in a single block"}}></SchemaItem><SchemaItem collapsible={false} name={"max_val_size"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","nullable":true,"example":"5000","description":"The maximum Val size"}}></SchemaItem><SchemaItem collapsible={false} name={"collateral_percent"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","nullable":true,"example":150,"description":"The percentage of the transactions fee which must be provided as collateral when including non-native scripts"}}></SchemaItem><SchemaItem collapsible={false} name={"max_collateral_inputs"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","nullable":true,"example":3,"description":"The maximum number of collateral inputs allowed in a transaction"}}></SchemaItem><SchemaItem collapsible={false} name={"coins_per_utxo_size"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","nullable":true,"example":"34482","description":"Cost per UTxO word for Alonzo. Cost per UTxO byte for Babbage and later."}}></SchemaItem><SchemaItem collapsible={false} name={"coins_per_utxo_word"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","nullable":true,"example":"34482","description":"Cost per UTxO word for Alonzo. Cost per UTxO byte for Babbage and later.","deprecated":true}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"epoch\": 225,\n  \"min_fee_a\": 44,\n  \"min_fee_b\": 155381,\n  \"max_block_size\": 65536,\n  \"max_tx_size\": 16384,\n  \"max_block_header_size\": 1100,\n  \"key_deposit\": \"2000000\",\n  \"pool_deposit\": \"500000000\",\n  \"e_max\": 18,\n  \"n_opt\": 150,\n  \"a0\": 0.3,\n  \"rho\": 0.003,\n  \"tau\": 0.2,\n  \"decentralisation_param\": 0.5,\n  \"extra_entropy\": null,\n  \"protocol_major_ver\": 2,\n  \"protocol_minor_ver\": 0,\n  \"min_utxo\": \"1000000\",\n  \"min_pool_cost\": \"340000000\",\n  \"nonce\": \"1a3be38bcbb7911969283716ad7aa550250226b76a61fc51cc9a9a35d9276d81\",\n  \"cost_models\": {\n    \"PlutusV1\": {\n      \"addInteger-cpu-arguments-intercept\": 197209,\n      \"addInteger-cpu-arguments-slope\": 0\n    },\n    \"PlutusV2\": {\n      \"addInteger-cpu-arguments-intercept\": 197209,\n      \"addInteger-cpu-arguments-slope\": 0\n    }\n  },\n  \"price_mem\": 0.0577,\n  \"price_step\": 0.0000721,\n  \"max_tx_ex_mem\": \"10000000\",\n  \"max_tx_ex_steps\": \"10000000000\",\n  \"max_block_ex_mem\": \"50000000\",\n  \"max_block_ex_steps\": \"40000000000\",\n  \"max_val_size\": \"5000\",\n  \"collateral_percent\": 150,\n  \"max_collateral_inputs\": 3,\n  \"coins_per_utxo_size\": \"34482\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"400"} value={"400"}><div>
-
-Bad request
-
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"status_code"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":400}}></SchemaItem><SchemaItem collapsible={false} name={"error"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Bad Request"}}></SchemaItem><SchemaItem collapsible={false} name={"message"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Backend did not understand your request."}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"message\": \"Backend did not understand your request.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
-
-Authentication secret is missing or invalid
-
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"status_code"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":403}}></SchemaItem><SchemaItem collapsible={false} name={"error"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Forbidden"}}></SchemaItem><SchemaItem collapsible={false} name={"message"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Invalid project token."}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"status_code\": 403,\n  \"error\": \"Forbidden\",\n  \"message\": \"Invalid project token.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"404"} value={"404"}><div>
-
-Component not found
-
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"status_code"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":404}}></SchemaItem><SchemaItem collapsible={false} name={"error"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Not Found"}}></SchemaItem><SchemaItem collapsible={false} name={"message"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"The requested component has not been found."}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"status_code\": 404,\n  \"error\": \"Not Found\",\n  \"message\": \"The requested component has not been found.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"418"} value={"418"}><div>
-
-IP has been auto-banned for extensive sending of requests after usage limit has been reached
-
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"status_code"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":418}}></SchemaItem><SchemaItem collapsible={false} name={"error"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Requested Banned"}}></SchemaItem><SchemaItem collapsible={false} name={"message"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"IP has been auto-banned for flooding."}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"status_code\": 418,\n  \"error\": \"Requested Banned\",\n  \"message\": \"IP has been auto-banned for flooding.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"429"} value={"429"}><div>
-
-Usage limit reached
-
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"status_code"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":429}}></SchemaItem><SchemaItem collapsible={false} name={"error"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Project Over Limit"}}></SchemaItem><SchemaItem collapsible={false} name={"message"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Usage is over limit."}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"status_code\": 429,\n  \"error\": \"Project Over Limit\",\n  \"message\": \"Usage is over limit.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"500"} value={"500"}><div>
-
-Internal Server Error
-
-</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"status_code"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","example":500}}></SchemaItem><SchemaItem collapsible={false} name={"error"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"Internal Server Error"}}></SchemaItem><SchemaItem collapsible={false} name={"message"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","example":"An unexpected response was received from the backend."}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"status_code\": 500,\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected response was received from the backend.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"in":"path","name":"number","required":true,"schema":{"type":"integer"},"description":"Number of the epoch","example":225}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs>
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Return the data about the epoch
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"epoch"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":225,"description":"Epoch number"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"min_fee_a"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":44,"description":"The linear factor for the minimum fee calculation for given epoch"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"min_fee_b"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":155381,"description":"The constant factor for the minimum fee calculation"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"max_block_size"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":65536,"description":"Maximum block body size in Bytes"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"max_tx_size"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":16384,"description":"Maximum transaction size"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"max_block_header_size"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":1100,"description":"Maximum block header size"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"key_deposit"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"2000000","description":"The amount of a key registration deposit in Lovelaces"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"pool_deposit"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"500000000","description":"The amount of a pool registration deposit in Lovelaces"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"e_max"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":18,"description":"Epoch bound on pool retirement"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"n_opt"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":150,"description":"Desired number of pools"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"a0"}
+                        required={true}
+                        schemaName={"number"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"number","example":0.3,"description":"Pool pledge influence"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"rho"}
+                        required={true}
+                        schemaName={"number"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"number","example":0.003,"description":"Monetary expansion"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"tau"}
+                        required={true}
+                        schemaName={"number"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"number","example":0.2,"description":"Treasury expansion"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"decentralisation_param"}
+                        required={true}
+                        schemaName={"number"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"number","example":0.5,"description":"Percentage of blocks produced by federated nodes"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"extra_entropy"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","nullable":true,"example":null,"description":"Seed for extra entropy"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"protocol_major_ver"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":2,"description":"Accepted protocol major version"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"protocol_minor_ver"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":0,"description":"Accepted protocol minor version"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"min_utxo"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"1000000","description":"Minimum UTXO value"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"min_pool_cost"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"340000000","description":"Minimum stake cost forced on the pool"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"nonce"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"1a3be38bcbb7911969283716ad7aa550250226b76a61fc51cc9a9a35d9276d81","description":"Epoch number only used once"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                cost_models
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span><span
+                                className={"openapi-schema__divider"}
+                              >
+                                
+                              </span><span
+                                className={"openapi-schema__nullable"}
+                              >
+                                nullable
+                              </span><span
+                                className={"openapi-schema__required"}
+                              >
+                                required
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              Cost models parameters for Plutus Core scripts
+                              
+                              
+                            </div><SchemaItem
+                              name={"property name*"}
+                              required={false}
+                              schemaName={"any"}
+                              qualifierMessage={undefined}
+                              schema={{"additionalProperties":true,"type":"object","nullable":true,"example":{"PlutusV1":{"addInteger-cpu-arguments-intercept":197209,"addInteger-cpu-arguments-slope":0},"PlutusV2":{"addInteger-cpu-arguments-intercept":197209,"addInteger-cpu-arguments-slope":0}},"description":"Cost models parameters for Plutus Core scripts"}}
+                              collapsible={false}
+                              discriminator={false}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"price_mem"}
+                        required={true}
+                        schemaName={"number"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"number","nullable":true,"example":0.0577,"description":"The per word cost of script memory usage"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"price_step"}
+                        required={true}
+                        schemaName={"number"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"number","nullable":true,"example":0.0000721,"description":"The cost of script execution step usage"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"max_tx_ex_mem"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","nullable":true,"example":"10000000","description":"The maximum number of execution memory allowed to be used in a single transaction"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"max_tx_ex_steps"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","nullable":true,"example":"10000000000","description":"The maximum number of execution steps allowed to be used in a single transaction"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"max_block_ex_mem"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","nullable":true,"example":"50000000","description":"The maximum number of execution memory allowed to be used in a single block"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"max_block_ex_steps"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","nullable":true,"example":"40000000000","description":"The maximum number of execution steps allowed to be used in a single block"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"max_val_size"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","nullable":true,"example":"5000","description":"The maximum Val size"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"collateral_percent"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","nullable":true,"example":150,"description":"The percentage of the transactions fee which must be provided as collateral when including non-native scripts"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"max_collateral_inputs"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","nullable":true,"example":3,"description":"The maximum number of collateral inputs allowed in a transaction"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"coins_per_utxo_size"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","nullable":true,"example":"34482","description":"Cost per UTxO word for Alonzo. Cost per UTxO byte for Babbage and later."}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"coins_per_utxo_word"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","nullable":true,"example":"34482","description":"Cost per UTxO word for Alonzo. Cost per UTxO byte for Babbage and later.","deprecated":true}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"epoch\": 225,\n  \"min_fee_a\": 44,\n  \"min_fee_b\": 155381,\n  \"max_block_size\": 65536,\n  \"max_tx_size\": 16384,\n  \"max_block_header_size\": 1100,\n  \"key_deposit\": \"2000000\",\n  \"pool_deposit\": \"500000000\",\n  \"e_max\": 18,\n  \"n_opt\": 150,\n  \"a0\": 0.3,\n  \"rho\": 0.003,\n  \"tau\": 0.2,\n  \"decentralisation_param\": 0.5,\n  \"extra_entropy\": null,\n  \"protocol_major_ver\": 2,\n  \"protocol_minor_ver\": 0,\n  \"min_utxo\": \"1000000\",\n  \"min_pool_cost\": \"340000000\",\n  \"nonce\": \"1a3be38bcbb7911969283716ad7aa550250226b76a61fc51cc9a9a35d9276d81\",\n  \"cost_models\": {\n    \"PlutusV1\": {\n      \"addInteger-cpu-arguments-intercept\": 197209,\n      \"addInteger-cpu-arguments-slope\": 0\n    },\n    \"PlutusV2\": {\n      \"addInteger-cpu-arguments-intercept\": 197209,\n      \"addInteger-cpu-arguments-slope\": 0\n    }\n  },\n  \"price_mem\": 0.0577,\n  \"price_step\": 0.0000721,\n  \"max_tx_ex_mem\": \"10000000\",\n  \"max_tx_ex_steps\": \"10000000000\",\n  \"max_block_ex_mem\": \"50000000\",\n  \"max_block_ex_steps\": \"40000000000\",\n  \"max_val_size\": \"5000\",\n  \"collateral_percent\": 150,\n  \"max_collateral_inputs\": 3,\n  \"coins_per_utxo_size\": \"34482\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"400"}
+        value={"400"}
+      >
+        <div>
+          
+          
+          Bad request
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"status_code"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":400}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"error"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Bad Request"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Backend did not understand your request."}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"message\": \"Backend did not understand your request.\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"403"}
+        value={"403"}
+      >
+        <div>
+          
+          
+          Authentication secret is missing or invalid
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"status_code"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":403}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"error"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Forbidden"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Invalid project token."}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"status_code\": 403,\n  \"error\": \"Forbidden\",\n  \"message\": \"Invalid project token.\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"404"}
+        value={"404"}
+      >
+        <div>
+          
+          
+          Component not found
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"status_code"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":404}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"error"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Not Found"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"The requested component has not been found."}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"status_code\": 404,\n  \"error\": \"Not Found\",\n  \"message\": \"The requested component has not been found.\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"418"}
+        value={"418"}
+      >
+        <div>
+          
+          
+          IP has been auto-banned for extensive sending of requests after usage limit has been reached
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"status_code"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":418}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"error"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Requested Banned"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"IP has been auto-banned for flooding."}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"status_code\": 418,\n  \"error\": \"Requested Banned\",\n  \"message\": \"IP has been auto-banned for flooding.\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"429"}
+        value={"429"}
+      >
+        <div>
+          
+          
+          Usage limit reached
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"status_code"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":429}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"error"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Project Over Limit"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Usage is over limit."}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"status_code\": 429,\n  \"error\": \"Project Over Limit\",\n  \"message\": \"Usage is over limit.\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"500"}
+        value={"500"}
+      >
+        <div>
+          
+          
+          Internal Server Error
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"status_code"}
+                        required={true}
+                        schemaName={"integer"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"integer","example":500}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"error"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"Internal Server Error"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"message"}
+                        required={true}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","example":"An unexpected response was received from the backend."}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"status_code\": 500,\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected response was received from the backend.\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
       
