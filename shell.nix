@@ -18,5 +18,7 @@ stdenv.mkDerivation {
   ];
   shellHook = ''
     yarn
+    # regenerate openapi - to fetch new openapi from gh, you have to reenter the shell or manually run yarn
+    yarn regenerate-open-api
   '';
 }
