@@ -159,7 +159,8 @@ module.exports = {
           blockfrost: {
             downloadUrl:
               "https://github.com/blockfrost/blockfrost-backend-ryo/issues",
-            specPath: "node_modules/@blockfrost/openapi/openapi.yaml",
+            specPath:
+              "https://raw.githubusercontent.com/blockfrost/openapi/governance-endpoints/openapi.yaml",
             outputDir: "./docs/api",
             sidebarOptions: {
               groupPathsBy: "tag",
