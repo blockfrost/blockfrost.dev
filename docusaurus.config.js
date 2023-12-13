@@ -158,7 +158,7 @@ module.exports = {
         config: {
           blockfrost: {
             downloadUrl:
-              "https://github.com/blockfrost/blockfrost-backend-ryo/issues",
+              "https://raw.githubusercontent.com/blockfrost/openapi/daf40b1a88463bebd5d562bcabb18d5c001bf83e/openapi.yaml",
             specPath: "node_modules/@blockfrost/openapi/openapi.yaml",
             outputDir: "./docs/api",
             sidebarOptions: {
