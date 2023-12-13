@@ -18,5 +18,7 @@ stdenv.mkDerivation {
   ];
   shellHook = ''
     yarn
+    # don't forget to update specPath if you want to bump openapi, see README
+    yarn regenerate-open-api
   '';
 }
