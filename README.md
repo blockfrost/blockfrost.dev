@@ -10,3 +10,17 @@
 This is the repository of the [Blockfrost Development Hub](https://blockfrost.dev/).
 
 All contributions to this documentation are welcome! :rocket: Please follow the [contributing](https://blockfrost.dev/docs/contributing) guide.
+
+## Open API
+
+To integrate a custom specification, modify the specPath in `docusaurus.config.js` as demonstrated below:
+
+```js
+specPath: "https://raw.githubusercontent.com/blockfrost/openapi/master/openapi.yaml",
+```
+
+and run the following command to regenerate the API documentation:
+
+```js
+yarn regenerate-open-api
+```
