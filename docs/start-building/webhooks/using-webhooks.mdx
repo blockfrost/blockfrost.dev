@@ -68,66 +68,66 @@ app.post(
 
     // Validate the webhook signature
     try {
-      verifyWebhookSignature(
+      const event = verifyWebhookSignature(
         JSON.stringify(request.body), // stringified request.body
         signatureHeader,
         SECRET_AUTH_TOKEN,
         600 // optional param to customize maximum allowed age of the webhook event, defaults to 600s
       );
+      
+      // Signature is valid
+      const type = request.body.type;
+      const payload = request.body.payload;
+
+      // Process the incoming event
+      switch (type) {
+        case "transaction":
+          // process Transaction event
+          console.log(`Received ${payload.length} transactions`);
+          // loop through the payload (payload is an array of Transaction events)
+          for (const transaction of payload) {
+            console.log(`Transaction ${transaction.tx.hash}`);
+          }
+          break;
+
+        case "block":
+          // process Block event
+          console.log(`Received block hash ${payload.hash}`);
+          break;
+
+        case "delegation":
+          // process Delegation event
+          console.log(`Received ${payload.length} delegations`);
+          // loop through the payload, payload is an array of objects with fields: "tx" (an object) and "delegations" (an array)
+          for (const transaction of payload) {
+            for (const delegation of transaction.delegations) {
+              console.log(
+                `Delegation from address ${delegation.address} included in tx ${transaction.tx.hash}`
+              );
+            }
+          }
+          break;
+
+        case "epoch":
+          // process Epoch event
+          console.log(
+            `Epoch switch from ${payload.previous_epoch.epoch} to ${payload.current_epoch.epoch}`
+          );
+          break;
+
+        default:
+          console.warn(`Unexpected event type ${type}`);
+          break;
+      }
+
+      // Return status code 2xx
+      response.json({ processed: true });
     } catch (error) {
       // In case of invalid signature verifyWebhookSignature will throw SignatureVerificationError
       // for easier debugging you can access passed signatureHeader and webhookPayload values (error.detail.signatureHeader, error.detail.webhookPayload)
       console.error(error);
       return response.status(400).send("Signature is not valid!");
     }
-
-    // Signature is valid
-    const type = request.body.type;
-    const payload = request.body.payload;
-
-    // Process the incoming event
-    switch (type) {
-      case "transaction":
-        // process Transaction event
-        console.log(`Received ${payload.length} transactions`);
-        // loop through the payload (payload is an array of Transaction events)
-        for (const transaction of payload) {
-          console.log(`Transaction ${transaction.tx.hash}`);
-        }
-        break;
-
-      case "block":
-        // process Block event
-        console.log(`Received block hash ${payload.hash}`);
-        break;
-
-      case "delegation":
-        // process Delegation event
-        console.log(`Received ${payload.length} delegations`);
-        // loop through the payload, payload is an array of objects with fields: "tx" (an object) and "delegations" (an array)
-        for (const transaction of payload) {
-          for (const delegation of transaction.delegations) {
-            console.log(
-              `Delegation from address ${delegation.address} included in tx ${transaction.tx.hash}`
-            );
-          }
-        }
-        break;
-
-      case "epoch":
-        // process Epoch event
-        console.log(
-          `Epoch switch from ${payload.previous_epoch.epoch} to ${payload.current_epoch.epoch}`
-        );
-        break;
-
-      default:
-        console.warn(`Unexpected event type ${type}`);
-        break;
-    }
-
-    // Return status code 2xx
-    response.json({ processed: true });
   }
 );
 
