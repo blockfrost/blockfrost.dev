@@ -31,12 +31,14 @@ app.post('/webhook', express.json({ type: "application/json" }), (request, respo
   // Validate the webhook signature
   const signatureHeader = request.headers["blockfrost-signature"];
   try {
-    verifyWebhookSignature(
+    const event = verifyWebhookSignature(
       JSON.stringify(request.body), // Stringified request.body (Note: In AWS Lambda you don't need to call JSON.stringify as event.body is already stringified)
       signatureHeader,
       SECRET_AUTH_TOKEN,
       600 // Optional param to customize maximum allowed age of the webhook event, defaults to 600s
     );
+
+    // Signature is valid, process the event
   } catch (error) {
     // In case of invalid signature verifyWebhookSignature will throw SignatureVerificationError
     // for easier debugging you can access passed signatureHeader and webhookPayload values (error.detail.signatureHeader, error.detail.webhookPayload)
@@ -44,7 +46,6 @@ app.post('/webhook', express.json({ type: "application/json" }), (request, respo
     return response.status(400).send("Signature is not valid!");
   }
 
-  // Signature is valid, process the event
 }
 
 app.listen(6666, () => console.log("Running on port 6666"));
