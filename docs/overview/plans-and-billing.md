@@ -20,7 +20,7 @@ Some capabilities, such as Workspaces and Premium Submit (_DEVELOPER_ and _ENTER
 You have to be logged in order to perform the upgrade. You can upgrade your plan any time through clicking on you current plan name in the [dashboard](https://blockfrost.io/dashboard) or directly through [here](https://blockfrost.io/dashboard/plans) and then clicking **Upgrade plan**.
 
 :::tip
-If you wish to upgrade to Enterprise plan, please [contact our support](/support#contacting-support).
+If you wish to upgrade to Enterprise plan, please [contact our support](/support#contacting-support). To promptly expand your subscription limits, consider our readily available [Subscription Boosts](#aubscription-boosts).
 :::
 
 ![Blockfrost.io plans](/img/frontend_upgrade.png)
@@ -56,6 +56,29 @@ Cancelling plan is effective immediate. Your plan will be downgraded to the _STA
 :::
 
 ![Blockfrost.io plans](/img/frontend_cancel.png)
+
+### Subscription Boosts
+Expand your subscription plan effortlessly with one-time boosts, designed to let your projects scale smoothly without hitting plan limits.
+
+#### Requests Boost
+With Requests Boosts you can increases the requests limit for a single day.
+To purchase the upgrade visit [Subscription page](https://blockfrost.io/dashboard/subscription).
+Once payment is confirmed, the additional quota is instantly applied, ensuring no disruption to your projects.
+
+
+![Blockfrost.io plans](/img/subscription-addons/requests-boost.png)
+
+:::info
+Purchasing "Requests Boost" increases the requests limit for the subscription for a single day. Used requests are reset at midnight UTC. The quoted price does not include taxes.
+:::
+
+##### Available boosts
+
+| Name                                    | Description                                                       |
+| --------------------------------------- | ----------------------------------------------------------------- |
+| Requests Boost for Hobby                | Adds 300,000 requests to the daily limit.   |
+| Requests Boost for Developer/Enterprise | Adds 1,000,000 requests to the daily limit. |     
+
 
 ## Projects
 
