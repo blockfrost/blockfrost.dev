@@ -127,8 +127,6 @@ module.exports = {
           routeBasePath: "/",
           sidebarPath: require.resolve("./src/sidebars.js"),
           editUrl: "https://github.com/blockfrost/blockfrost.dev/edit/master/",
-          docLayoutComponent: "@theme/DocPage",
-          docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi-docs
         },
         blog: {
           showReadingTime: true,
@@ -148,26 +146,5 @@ module.exports = {
       "data-domain": "blockfrost.dev",
     },
   ],
-  plugins: [
-    "@cmfcmf/docusaurus-search-local",
-    [
-      "docusaurus-plugin-openapi-docs",
-      {
-        id: "api",
-        docsPluginId: "classic",
-        config: {
-          blockfrost: {
-            downloadUrl:
-              "https://raw.githubusercontent.com/blockfrost/openapi/daf40b1a88463bebd5d562bcabb18d5c001bf83e/openapi.yaml",
-            specPath: "node_modules/@blockfrost/openapi/openapi.yaml",
-            outputDir: "./docs/api",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          },
-        },
-      },
-    ],
-  ],
-  themes: ["docusaurus-theme-openapi-docs"],
+  plugins: ["@cmfcmf/docusaurus-search-local"],
 };

@@ -147,14 +147,6 @@ html[data-theme="dark"] .docusaurus-highlight-code-line {
   display: none;
 }
 
-#request {
-  display: none;
-}
-
-.openapi__heading {
-  margin-bottom: 10px !important;
-}
-
 .custom-link {
   padding-right: 0.5ch;
 }
