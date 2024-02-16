@@ -12,10 +12,17 @@ The webhook endpoint URL should be set to a publicly accessible HTTPS URL, where
 ### Rollbacks and a required number of confirmations
 
 Events are sent to your webhook endpoint after reaching the number of confirmations you specified in Secure Webhook Settings.
-It may happen that the Cardano network rollbacks a few blocks, invalidating events that have been sent. Due to rollbacks, you may receive the same event multiple times.
+
+During a rollback, multiple blocks may be invalidated and replaced simultaneously. This can result in a flurry of events being dispatched to your webhook endpoint in an unpredictable order. Developers should account for this behavior by implementing logic to handle out-of-order delivery of block events.
 
 :::note Example
-Let's say you set up a Secure Webhook for a transaction event with the number of required confirmations set to 0. The transaction you are interested in gets included in a block so you will be notified about the transaction. Then the block is rolled back and the same transaction is included in a new block. You will receive another transaction event with the same transaction hash, but the hash of the block in which the transaction was included will differ from the first event).
+For instance, a notification about a block at a higher height might arrive before one for a lower height due to the asynchronous nature of these requests.
+:::
+
+Due to a rollback, you may receive the same event multiple times.
+
+:::note Example
+Let's say you set up a Secure Webhook for a transaction event with the number of required confirmations set to 0. The transaction you are interested in gets included in a block so you will be notified about the transaction. Then the block is rolled back and the same transaction is included in a new block. You will receive another transaction event with the same transaction hash, but the hash of the block in which the transaction was included will differ from the first event.
 :::
 
 We recommend verifying that the event you received has not been rolled back or increasing the number of required confirmations before the event is sent to your endpoint.
