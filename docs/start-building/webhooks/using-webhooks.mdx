@@ -13,7 +13,7 @@ The webhook endpoint URL should be set to a publicly accessible HTTPS URL, where
 
 Events are sent to your webhook endpoint after reaching the number of confirmations you specified in Secure Webhook Settings.
 
-During a rollback, multiple blocks may be invalidated and replaced simultaneously. This can result in a flurry of events being dispatched to your webhook endpoint in an unpredictable order. Developers should account for this behavior by implementing logic to handle out-of-order delivery of block events.
+During a rollback, multiple blocks may be invalidated and replaced simultaneously. This can result in a flurry of events being dispatched to your webhook endpoint in an unpredictable order. Developers should account for this behavior by implementing logic to handle out-of-order delivery of events.
 
 :::note Example
 For instance, a notification about a block at a higher height might arrive before one for a lower height due to the asynchronous nature of these requests.
@@ -336,7 +336,7 @@ Blockfrost employs a backoff strategy, waiting a few seconds before attempting t
 
 :::tip
 To help you with troubleshooting problems with your endpoint, check the list of recent failed requests in Secure Webhook settings in [Blockfrost Dashboard](https://blockfrost.io/dashboard).
-However, it's worth noting that if any of the retry attempts succeed, the operation is considered successful, and only one failed request will be logged if all attempts ultimately fail. 
+However, it's worth noting that if any of the retry attempts succeed, the operation is considered successful. Request is logged as failed only if all attempts to deliver the event fail.
 :::
 
 If your webhook endpoint doesn't respond with a successful status code (`2xx`) within few seconds then the request will time out.
