@@ -12,10 +12,17 @@ The webhook endpoint URL should be set to a publicly accessible HTTPS URL, where
 ### Rollbacks and a required number of confirmations
 
 Events are sent to your webhook endpoint after reaching the number of confirmations you specified in Secure Webhook Settings.
-It may happen that the Cardano network rollbacks a few blocks, invalidating events that have been sent. Due to rollbacks, you may receive the same event multiple times.
+
+During a rollback, multiple blocks may be invalidated and replaced simultaneously. This can result in a flurry of events being dispatched to your webhook endpoint in an unpredictable order. Developers should account for this behavior by implementing logic to handle out-of-order delivery of events.
 
 :::note Example
-Let's say you set up a Secure Webhook for a transaction event with the number of required confirmations set to 0. The transaction you are interested in gets included in a block so you will be notified about the transaction. Then the block is rolled back and the same transaction is included in a new block. You will receive another transaction event with the same transaction hash, but the hash of the block in which the transaction was included will differ from the first event).
+For instance, a notification about a block at a higher height might arrive before one for a lower height due to the asynchronous nature of these requests.
+:::
+
+Due to a rollback, you may receive the same event multiple times.
+
+:::note Example
+Let's say you set up a Secure Webhook for a transaction event with the number of required confirmations set to 0. The transaction you are interested in gets included in a block so you will be notified about the transaction. Then the block is rolled back and the same transaction is included in a new block. You will receive another transaction event with the same transaction hash, but the hash of the block in which the transaction was included will differ from the first event.
 :::
 
 We recommend verifying that the event you received has not been rolled back or increasing the number of required confirmations before the event is sent to your endpoint.
@@ -312,10 +319,24 @@ func main() {
 
 ### Retries
 
-In case your webhook endpoint is responding with one of following error status codes: `400`, `408`, `413`, `429`, `500`, `502`, `503`, `504`, `521`, `522` or `524`, Blockfrost will resend the request 2 more times with few seconds of backoff between each request. Body of the request is the same between retries, the ID of the retried request will be the same as the ID of the original request that failed.
+Blockfrost will attempt to resend the webhook request up to two additional times (making a total of three attempts, including the initial try) if your endpoint returns any of the following HTTP error status codes:
+- 400 Bad Request
+- 408 Request Timeout
+- 413 Payload Too Large
+- 429 Too Many Requests
+- 500 Internal Server Error
+- 502 Bad Gateway
+- 503 Service Unavailable
+- 504 Gateway Timeout
+- 521 Web Server Is Down
+- 522 Connection Timed Out
+- 524 A Timeout Occurred
+
+Blockfrost employs a backoff strategy, waiting a few seconds before attempting to resend the request. Body of the request is the same between retries, the ID of the retried request will be the same as the ID of the original request that failed.
 
 :::tip
 To help you with troubleshooting problems with your endpoint, check the list of recent failed requests in Secure Webhook settings in [Blockfrost Dashboard](https://blockfrost.io/dashboard).
+However, it's worth noting that if any of the retry attempts succeed, the operation is considered successful. Request is logged as failed only if all attempts to deliver the event fail.
 :::
 
 If your webhook endpoint doesn't respond with a successful status code (`2xx`) within few seconds then the request will time out.
