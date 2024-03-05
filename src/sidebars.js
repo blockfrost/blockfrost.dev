@@ -83,5 +83,11 @@ module.exports = {
       type: "doc",
       id: "contributing",
     },
+    {
+      type: "link",
+      className: "bold",
+      label: "OpenAPI specification",
+      href: "https://docs.blockfrost.io/",
+    },
   ],
 };
