@@ -8,7 +8,6 @@
     "deploy": "docusaurus deploy",
     "docusaurus": "docusaurus",
     "postinstall": "patch-package",
-    "regenerate-open-api": "yarn docusaurus clean-api-docs all && yarn docusaurus gen-api-docs all",
     "serve": "docusaurus serve",
     "start": "docusaurus clear && docusaurus start",
     "swizzle": "docusaurus swizzle",
@@ -28,15 +27,12 @@
     ]
   },
   "dependencies": {
-    "@blockfrost/openapi": "0.1.60",
     "@cmfcmf/docusaurus-search-local": "^0.11.0",
     "@docusaurus/core": "2.2.0",
     "@docusaurus/plugin-client-redirects": "2.2.0",
     "@docusaurus/preset-classic": "2.2.0",
     "@mdx-js/react": "^1.6.21",
     "clsx": "^1.1.1",
-    "docusaurus-plugin-openapi-docs": "v2.0.0-beta.3",
-    "docusaurus-theme-openapi-docs": "^1.7.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
