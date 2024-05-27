@@ -76,7 +76,7 @@ app.post(
     // Validate the webhook signature
     try {
       const event = verifyWebhookSignature(
-        JSON.stringify(request.body), // stringified request.body
+        JSON.stringify(request.body), // Stringified request.body (Note: In AWS Lambda you don't need to call JSON.stringify as event.body is already stringified)
         signatureHeader,
         SECRET_AUTH_TOKEN,
         600 // optional param to customize maximum allowed age of the webhook event, defaults to 600s
