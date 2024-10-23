@@ -17,10 +17,10 @@ Some capabilities, such as Workspaces and Premium Submit (_DEVELOPER_ and _ENTER
 
 ### Upgrading plan
 
-You have to be logged in order to perform the upgrade. You can upgrade your plan any time through clicking on you current plan name in the [dashboard](https://blockfrost.io/dashboard) or directly through [here](https://blockfrost.io/dashboard/plans) and then clicking **Upgrade plan**.
+You have to be logged in order to perform the upgrade. You can upgrade your plan any time through clicking on you current plan name in the [dashboard](https://blockfrost.io/dashboard) or directly through [here](https://blockfrost.io/dashboard/subscription) and then clicking **Upgrade plan**.
 
 :::tip
-If you wish to upgrade to Enterprise plan, please [contact our support](/support#contacting-support). To promptly expand your subscription limits, consider our readily available [Subscription Boosts](#aubscription-boosts).
+If you wish to upgrade to Enterprise plan, please [contact our support](/support#contacting-support). To promptly expand your subscription limits, consider our readily available [Subscription Boosts](#subscription-boosts).
 :::
 
 ![Blockfrost.io plans](/img/frontend_upgrade.png)
