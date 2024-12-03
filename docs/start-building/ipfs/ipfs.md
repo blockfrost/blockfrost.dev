@@ -74,6 +74,7 @@ curl "https://ipfs.blockfrost.io/api/v0/ipfs/pin/add/QmUCXMTcvuJpwHF3gABRr69ceQR
 {
   "ipfs_hash": "QmUCXMTcvuJpwHF3gABRr69ceQR2uEG2Fsik9CyWh8MUoQ",
   "state": "queued"
+  "filecoin": false
 }
 
 curl "https://ipfs.blockfrost.io/api/v0/ipfs/pin/list" \
@@ -85,7 +86,8 @@ curl "https://ipfs.blockfrost.io/api/v0/ipfs/pin/list" \
     "time_pinned": 1647366147642,
     "ipfs_hash": "QmUCXMTcvuJpwHF3gABRr69ceQR2uEG2Fsik9CyWh8MUoQ",
     "size": "5617",
-    "state": "queued"
+    "state": "queued",
+    "filecoin": false
   }
 ]
 
@@ -110,6 +112,7 @@ curl "https://ipfs.blockfrost.io/api/v0/ipfs/pin/list" \
     "ipfs_hash": "QmUCXMTcvuJpwHF3gABRr69ceQR2uEG2Fsik9CyWh8MUoQ",
     "size": "5617",
     "state": "pinned"
+    "filecoin": false,
   }
 ]
 
@@ -127,6 +130,38 @@ curl "https://ipfs.blockfrost.io/api/v0/ipfs/pin/remove/QmUCXMTcvuJpwHF3gABRr69c
 []
 
 ```
+
+## Filecoin
+
+Filecoin is an open source, decentralized perpetual file storage protocol that allows you to pay once for your files and store them long-term.
+
+In addition to pinning your files to the Blockfrost cluster, you have the choice of also pinning it to the Filecoin network.
+
+:::caution
+Once pinned to Filecoin, there is no way to unpin the file, as the storage is long-term.
+:::
+
+### Pinning a file to the Filecoin network
+
+In order to pin a file to the Filecoin network, use the `?filecoin=true` parameter on your request.
+
+```bash
+
+curl
+"https://ipfs.blockfrost.io/api/v0/ipfs/pin/add/QmUCXMTcvuJpwHF3gABRr69ceQR2uEG2Fsik9CyWh8MUoQ?filecoin=true"
+\
+  -X POST \
+  -H "project_id: $PROJECT_ID" \
+
+{
+  "ipfs_hash": "QmUCXMTcvuJpwHF3gABRr69ceQR2uEG2Fsik9CyWh8MUoQ",
+  "state": "queued"
+  "filecoin": true
+}
+```
+
+Please note it might take up to 72 hours for your Filecoin pin to be fully completed.
+
 
 ## Use cases
 
