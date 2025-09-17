@@ -23,8 +23,6 @@ In this example, we set `project_id` as an environment variable and then use it 
     { label: 'Cardano preprod', value: 'preprod', },
     { label: 'Cardano preview', value: 'preview', },
     { label: 'IPFS', value: 'ipfs', },
-    { label: 'Milkomeda mainnet', value: 'milkomeda-mainnet', },
-    { label: 'Milkomeda testnet', value: 'milkomeda-testnet', },
   ]
 }>
 <TabItem value="mainnet">
@@ -71,27 +69,6 @@ curl -H "project_id: $PROJECT_ID" https://ipfs.blockfrost.io/api/v0/pins/list
 ```
 
 </TabItem>
-<TabItem value="milkomeda-mainnet">
 
-```shell
-# Don't forget to replace the PROJECT_ID with your newly generated one!
-# The following PROJECT_ID is made up, NEVER share your PROJECT_ID publicly!!!
-export PROJECT_ID=milkmainnetBhXgL924l8MjGlM9NwGlAa4KDrcDFwlE
-
-curl -H "project_id: $PROJECT_ID" -H 'Content-Type: application/json' -d '{"jsonrpc": "2.0", "id": 1, "method": "eth_blockNumber", "params": []}' https://milkomeda-mainnet.blockfrost.io/api/v0/
-```
-
-</TabItem>
-<TabItem value="milkomeda-testnet">
-
-```shell
-# Don't forget to replace the PROJECT_ID with your newly generated one!
-# The following PROJECT_ID is made up, NEVER share your PROJECT_ID publicly!!!
-export PROJECT_ID=milktestnet7xXnVtBag8wGRZsnymqYZH8ChJ1PSF8U
-
-curl -H "project_id: $PROJECT_ID" -H 'Content-Type: application/json' -d '{"jsonrpc": "2.0", "id": 1, "method": "eth_blockNumber", "params": []}' https://milkomeda-testnet.blockfrost.io/api/v0/
-```
-
-</TabItem>
 </Tabs>
 ````

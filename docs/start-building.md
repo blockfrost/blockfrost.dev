@@ -25,16 +25,14 @@ Keep in mind we use pagination (100 items per default) and that it starts from p
 
 ### Available networks
 
-The default Blockfrost network is Cardano mainnet, but we also support Cardano testnets (preview and preprod), IPFS and Milkomeda networks.
+The default Blockfrost network is Cardano mainnet, but we also support Cardano testnets (preview and preprod) and IPFS networks.
 
-| _Name_            | _API Endpoint (network + version)_                |
-| ----------------- | ------------------------------------------------- |
-| Cardano mainnet   | <https://cardano-mainnet.blockfrost.io/api/v0/>   |
-| Cardano preprod   | <https://cardano-preprod.blockfrost.io/api/v0/>   |
-| Cardano preview   | <https://cardano-preview.blockfrost.io/api/v0/>   |
-| IPFS              | <https://ipfs.blockfrost.io/api/v0/>              |
-| Milkomeda mainnet | <https://milkomeda-mainnet.blockfrost.io/api/v0/> |
-| Milkomeda testnet | <https://milkomeda-testnet.blockfrost.io/api/v0/> |
+| _Name_          | _API Endpoint (network + version)_              |
+| --------------- | ----------------------------------------------- |
+| Cardano mainnet | <https://cardano-mainnet.blockfrost.io/api/v0/> |
+| Cardano preprod | <https://cardano-preprod.blockfrost.io/api/v0/> |
+| Cardano preview | <https://cardano-preview.blockfrost.io/api/v0/> |
+| IPFS            | <https://ipfs.blockfrost.io/api/v0/>            |
 
 The schema of full API endpoint path is a composition of the specific network, appended by the API version and the call itself.
 
