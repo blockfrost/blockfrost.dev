@@ -26,7 +26,6 @@ module.exports = {
       items: [
         "start-building/cardano/cardano",
         "start-building/ipfs/ipfs",
-        "start-building/milkomeda",
         "start-building/tor",
         {
           type: "category",
