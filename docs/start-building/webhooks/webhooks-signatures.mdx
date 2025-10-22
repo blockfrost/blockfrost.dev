@@ -211,12 +211,18 @@ Future<Response> handleWebhook(
   }
 
   // Validate using the SignatureValidator
-  if (!validator.validate(
-    signatureHeader: signatureHeader,
-    requestPayload: requestPayload,
-    secretAuthToken: secretToken,
-  )) {
-    return Response(400, body: 'Signature validation failed!');
+  try {
+    validator.validate(
+        requestPayload: requestPayload,
+        signatureHeader: signatureHeader,
+        secretAuthToken: secretToken);
+  } on SignatureValidationException catch (e) {
+    return Response(
+      400,
+      body: 'Signature validation failed! ${e.toString()}',
+    );
+  } catch (e) {
+    return Response.internalServerError(body: 'Signature validation failed!');
   }
 
   // Try to parse payload JSON
