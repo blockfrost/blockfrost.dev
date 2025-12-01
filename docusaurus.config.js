@@ -117,6 +117,9 @@ module.exports = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Blockfrost.io`,
     },
+    prism: {
+      additionalLanguages: ['dart'],
+    },
   },
   presets: [
     [
