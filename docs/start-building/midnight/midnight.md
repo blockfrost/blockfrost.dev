@@ -3,6 +3,10 @@ title: Midnight
 id: midnight
 ---
 
+import Tabs from '@theme/Tabs';
+
+import TabItem from '@theme/TabItem';
+
 The Midnight Indexer API exposes a GraphQL API that enables clients to query and subscribe to blockchain data — blocks, transactions, contracts, and wallet-related events — indexed from the Midnight blockchain.
 
 ## Quick Start
@@ -32,13 +36,47 @@ curl -X POST https://midnight-mainnet.blockfrost.io/api/v0 \
 
 ## Endpoints
 
-Blockfrost exposes three Midnight services:
+Blockfrost exposes three Midnight services per network:
+
+```mdx-code-block
+<Tabs
+  defaultValue="mainnet"
+  values={[
+    { label: 'Mainnet', value: 'mainnet', },
+    { label: 'Preprod', value: 'preprod', },
+    { label: 'Preview', value: 'preview', },
+  ]
+}>
+<TabItem value="mainnet">
 
 | Service              | URL                                                  |
 | -------------------- | ---------------------------------------------------- |
 | **Indexer API**      | `https://midnight-mainnet.blockfrost.io/api/v0`      |
 | **Indexer WebSocket**| `wss://midnight-mainnet.blockfrost.io/api/v0/ws`     |
 | **Node RPC**         | `https://rpc.midnight-mainnet.blockfrost.io`         |
+
+</TabItem>
+<TabItem value="preprod">
+
+| Service              | URL                                                  |
+| -------------------- | ---------------------------------------------------- |
+| **Indexer API**      | `https://midnight-preprod.blockfrost.io/api/v0`      |
+| **Indexer WebSocket**| `wss://midnight-preprod.blockfrost.io/api/v0/ws`     |
+| **Node RPC**         | `https://rpc.midnight-preprod.blockfrost.io`         |
+
+</TabItem>
+<TabItem value="preview">
+
+| Service              | URL                                                  |
+| -------------------- | ---------------------------------------------------- |
+| **Indexer API**      | `https://midnight-preview.blockfrost.io/api/v0`      |
+| **Indexer WebSocket**| `wss://midnight-preview.blockfrost.io/api/v0/ws`     |
+| **Node RPC**         | `https://rpc.midnight-preview.blockfrost.io`         |
+
+</TabItem>
+
+</Tabs>
+```
 
 **Indexer API** — Send GraphQL queries and mutations over HTTP POST. This is the main entry point for fetching blockchain data (blocks, transactions, contracts, DUST status).
 
@@ -55,21 +93,25 @@ All requests require a valid project ID. There are two ways to pass it:
 Include `project_id` as a request header.
 
 ```bash
-curl -X POST https://midnight-mainnet.blockfrost.io/api/v0 \
+curl -X POST https://midnight-{network}.blockfrost.io/api/v0 \
   -H "project_id: YOUR_PROJECT_ID" \
   -H "Content-Type: application/json" \
   -d '{"query": "{ block { hash height } }"}'
 ```
+
+Replace `{network}` with `mainnet`, `preprod`, or `preview`.
 
 **Query parameter**
 
 Append `?project_id=YOUR_PROJECT_ID` to the endpoint URL. Use this when your client doesn't support setting custom headers (e.g. Midnight.js SDK).
 
 ```text
-https://midnight-mainnet.blockfrost.io/api/v0?project_id=YOUR_PROJECT_ID
-wss://midnight-mainnet.blockfrost.io/api/v0/ws?project_id=YOUR_PROJECT_ID
-https://rpc.midnight-mainnet.blockfrost.io?project_id=YOUR_PROJECT_ID
+https://midnight-{network}.blockfrost.io/api/v0?project_id=YOUR_PROJECT_ID
+wss://midnight-{network}.blockfrost.io/api/v0/ws?project_id=YOUR_PROJECT_ID
+https://rpc.midnight-{network}.blockfrost.io?project_id=YOUR_PROJECT_ID
 ```
+
+Replace `{network}` with `mainnet`, `preprod`, or `preview`.
 
 ## Full API Reference
 
