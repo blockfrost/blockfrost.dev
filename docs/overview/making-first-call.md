@@ -22,6 +22,7 @@ In this example, we set `project_id` as an environment variable and then use it 
     { label: 'Cardano mainnet', value: 'mainnet', },
     { label: 'Cardano preprod', value: 'preprod', },
     { label: 'Cardano preview', value: 'preview', },
+    { label: 'Midnight mainnet', value: 'midnight', },
     { label: 'IPFS', value: 'ipfs', },
   ]
 }>
@@ -55,6 +56,20 @@ curl -H "project_id: $PROJECT_ID" https://cardano-preprod.blockfrost.io/api/v0/b
 export PROJECT_ID=previewEnrkKWDwlA9hV4IajI4ILrFdsHJpIqNC
 
 curl -H "project_id: $PROJECT_ID" https://cardano-preview.blockfrost.io/api/v0/blocks/latest
+```
+
+</TabItem>
+<TabItem value="midnight">
+
+```shell
+# Don't forget to replace the PROJECT_ID with your newly generated one!
+# The following PROJECT_ID is made up, NEVER share your PROJECT_ID publicly!!!
+export PROJECT_ID=nightmainnettEnrkKWDwlA9hV4IajI4ILrFdsHJpIqNC
+
+curl -X POST https://midnight-mainnet.blockfrost.io/api/v0 \
+  -H "project_id: $PROJECT_ID" \
+  -H "Content-Type: application/json" \
+  -d '{"query": "{ block { hash height timestamp } }"}'
 ```
 
 </TabItem>
