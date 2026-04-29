@@ -7,7 +7,7 @@ Blockfrost Secure Webhooks support various events such as Transaction, Block, Ep
 
 Each request body has the following fields:
 
-`id` - Unique identifier of the webhook request. Each request, even coming from the same webhook, will have a distinct ID. However, requests that fail are retried multiple times with the same ID. To learn more, see [Retries](./using-webhooks#retries).
+`id` - Stable identifier of the event. The `id` is deterministic: the same logical event always carries the same `id`, regardless of how many times it is delivered. Duplicate deliveries (from retries, network glitches, or internal failover) arrive with the **same `id`** the first delivery had, which makes `id` a natural idempotency key on your side. To learn more, see [At-least-once delivery](./using-webhooks#at-least-once-delivery-and-idempotency) and [Retries](./using-webhooks#retries).
 
 `created` - Unix timestamp (in seconds) with the time when our system detected the event.
 
@@ -20,7 +20,7 @@ Each request body has the following fields:
 `payload` - Event data. For the exact format of each event payload, see breakdown below.
 
 :::caution
-It may happen that Cardano network rollbacks a few blocks, invalidating the event that has been sent. Due to rollbacks, you may receive the same event multiple times. To learn more see [Rollbacks](./using-webhooks#rollbacks-and-a-required-number-of-confirmations).
+Webhook events are delivered **at least once**, so the same event may arrive more than once. Duplicate deliveries always carry the same `id`, so deduplicating on `id` is enough. See [At-least-once delivery](./using-webhooks#at-least-once-delivery-and-idempotency) and [Rollbacks](./using-webhooks#rollbacks-and-a-required-number-of-confirmations).
 :::
 
 ## Transaction
