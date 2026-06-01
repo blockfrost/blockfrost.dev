@@ -7,7 +7,7 @@ Personal Access Tokens (PATs) authenticate requests to the [Blockfrost Dashboard
 
 ## Creating a Personal Access Token
 
-1. Sign in to the dashboard at https://blockfrost.io/dashboard and open **Settings → Personal Access Tokens**.
+1. Sign in to the [Blockfrost Dashboard](https://blockfrost.io/dashboard) and open **Settings → Personal Access Tokens**.
 2. Click **Create token**. The create dialog asks for three things: a **name**, a **permission set**, and a **workspace selector**.
 3. **Name** — a free-form label (e.g. `terraform-prod`, `ci-deploy`). It's shown only in the token list; it doesn't affect what the token can do. The actual bearer secret is generated for you.
 4. **Permissions** — pick one of the presets (covered [below](#permission-presets)) or **Custom** to assemble scopes individually. The picker shows you exactly which scopes the token will carry; implied read-scopes (e.g. `webhooks:read` when you select `webhooks:write`) are auto-added and locked.
