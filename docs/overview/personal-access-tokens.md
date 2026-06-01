@@ -3,7 +3,7 @@ title: Personal Access Tokens
 id: personal-access-tokens
 ---
 
-Personal Access Tokens (PATs) authenticate requests to the [Blockfrost Dashboard API](https://docs.blockfrost.io/dashboard-api), which exposes the same account, workspace, project, and webhook management capabilities available through the Dashboard UI. Use a PAT to automate Blockfrost resource management from Terraform, CI/CD pipelines, command-line tools, internal platforms, or backend services—without requiring interactive access through a browser.
+Personal Access Tokens (PATs) authenticate requests to the [Blockfrost Dashboard API](https://docs.blockfrost.io/dashboard-api/), which exposes the same account, workspace, project, and webhook management capabilities available through the Dashboard UI. Use a PAT to automate Blockfrost resource management from Terraform, CI/CD pipelines, command-line tools, internal platforms, or backend services—without requiring interactive access through a browser.
 
 ## Creating a Personal Access Token
 
@@ -133,3 +133,7 @@ Rotation issues a fresh bearer secret for the same logical token. You can choose
 - **Narrow the workspace selector.** If a token only manages production resources, lock it to the production workspace — don't leave it on **All workspaces**.
 - **One token per consumer.** Mint a separate token per consumer (Terraform, CI, on-call bot, …) so you can revoke individually without disrupting others.
 - **Treat the secret like a password.** Store it in a secrets manager, not in a Git repo or `.env` committed file.
+
+## API reference
+
+For the full list of endpoints a PAT can call — request and response schemas, required scopes, and error codes — see the [Blockfrost Dashboard API reference](https://docs.blockfrost.io/dashboard-api/).
