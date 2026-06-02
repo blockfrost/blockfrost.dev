@@ -20,17 +20,7 @@ The bearer secret is shown only at creation time. Blockfrost stores only a hash,
 
 ## Token format
 
-A PAT is a single bearer string made of three parts:
-
-```
-bfm_live_<key_id>_<secret>
-```
-
-- **`bfm_live_`** — a fixed prefix that lets secret-scanning tools flag leaked tokens.
-- **`key_id`** — a short, **non-secret** public identifier for the token. It's safe to log, and it's what the dashboard shows in the [token list](#token-list) to identify a token without exposing its secret.
-- **`secret`** — the confidential part. Blockfrost stores only a hash of it, so the full token is shown only once, at creation.
-
-Treat the string as opaque and send it unchanged — don't split it apart yourself.
+PAT bearer secrets start with the prefix `bfm_live_`, which lets secret-scanning tools flag leaked tokens. Treat the rest of the string as opaque.
 
 ## Making a request
 
@@ -38,7 +28,7 @@ Send the full token as a bearer credential on every request. The API base URL is
 
 ```bash
 curl https://dashboard.blockfrost.io/api/v1/account \
-  -H "Authorization: Bearer bfm_live_abcdef123456_..."
+  -H "Authorization: Bearer bfm_live_..."
 ```
 
 ```json
