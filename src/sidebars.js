@@ -14,6 +14,7 @@ module.exports = {
         "overview/plans-and-billing",
         "overview/settings/access-filters",
         "overview/workspaces/workspaces",
+        "overview/personal-access-tokens",
       ],
     },
     {
