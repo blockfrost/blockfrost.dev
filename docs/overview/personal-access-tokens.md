@@ -20,13 +20,34 @@ The bearer secret is shown only at creation time. Blockfrost stores only a hash,
 
 ## Token format
 
-PAT bearer secrets start with the prefix `bfm_live_`. Treat the rest of the string as opaque.
+A PAT is a single bearer string made of three parts:
 
-Send the full string as a bearer token on every request:
+```
+bfm_live_<key_id>_<secret>
+```
+
+- **`bfm_live_`** — a fixed prefix that lets secret-scanning tools flag leaked tokens.
+- **`key_id`** — a short, **non-secret** public identifier for the token. It's safe to log, and it's what the dashboard shows in the [token list](#token-list) to identify a token without exposing its secret.
+- **`secret`** — the confidential part. Blockfrost stores only a hash of it, so the full token is shown only once, at creation.
+
+Treat the string as opaque and send it unchanged — don't split it apart yourself.
+
+## Making a request
+
+Send the full token as a bearer credential on every request. The API base URL is `https://dashboard.blockfrost.io/api/v1`:
 
 ```bash
 curl https://dashboard.blockfrost.io/api/v1/account \
-  -H "Authorization: Bearer bfm_live_..."
+  -H "Authorization: Bearer bfm_live_abcdef123456_..."
+```
+
+```json
+{
+  "id": "8a4359a3-3c53-4688-bfa9-507aaa249937",
+  "email": "alice@example.com",
+  "name": "Alice Doe",
+  "has_pending_deletion": false
+}
 ```
 
 ## Permissions
@@ -113,9 +134,11 @@ A PAT acts on behalf of the user who created it. If your role on a workspace is 
 
 ## Managing tokens
 
+PATs don't expire. Once created, a token stays valid until you [rotate](#rotation) its secret or [revoke](#revocation) it — so treat rotation and revocation as your only lifecycle controls.
+
 ### Token list
 
-**Settings → Personal Access Tokens** shows every PAT on the account with its `key_id` prefix (the bearer secret is never re-shown), name, scopes, workspace selector, and last-used timestamp. Use the last-used column to find tokens that have gone stale and revoke them.
+**Settings → Personal Access Tokens** identifies every PAT on the account by its `key_id` and a short preview of the secret's last characters (the secret itself is never re-shown), alongside its name, scopes, workspace selector, and last-used timestamp. Use the last-used column to find tokens that have gone stale and revoke them.
 
 ### Rotation
 
@@ -133,6 +156,36 @@ Rotation issues a fresh bearer secret for the same logical token. You can choose
 - **Narrow the workspace selector.** If a token only manages production resources, lock it to the production workspace — don't leave it on **All workspaces**.
 - **One token per consumer.** Mint a separate token per consumer (Terraform, CI, on-call bot, …) so you can revoke individually without disrupting others.
 - **Treat the secret like a password.** Store it in a secrets manager, not in a Git repo or `.env` committed file.
+
+## Errors
+
+Every error response uses the same JSON envelope — a stable, machine-checkable `error` code, a human-readable `message`, and optional `details`:
+
+```json
+{
+  "error": "insufficient_permission",
+  "message": "Token lacks the required scope for this action.",
+  "details": { "reason": "rbac", "required": "webhooks:write" }
+}
+```
+
+| Status | `error`                   | When it's returned                                                                          |
+| ------ | ------------------------- | ------------------------------------------------------------------------------------------- |
+| `400`  | `invalid_request`         | The request body or query parameters failed validation.                                     |
+| `401`  | `unauthorized`            | The token is missing, malformed, revoked, or rotated past its grace window.                 |
+| `402`  | `quota_exceeded`          | The action would exceed your plan's quota (e.g. too many projects or webhooks).             |
+| `403`  | `insufficient_permission` | The token lacks the required scope, or the target workspace isn't in its selector.          |
+| `403`  | `ip_not_allowed`          | The request's source IP isn't on the token's IP allowlist.                                  |
+| `403`  | `feature_not_available`   | The action requires a higher plan.                                                          |
+| `403`  | `forbidden`               | The action is blocked — for example, the account has a pending deletion.                    |
+| `404`  | `not_found`               | The resource doesn't exist, or the token can't see it.                                      |
+| `409`  | `conflict`                | The request conflicts with the resource's state (e.g. deleting a non-empty workspace).      |
+| `429`  | `rate_limited`            | The token exceeded its rate limit. `details.retry_after_seconds` says when to retry.        |
+| `500`  | `internal_error`          | An unexpected server error. Safe to retry.                                                  |
+
+## Rate limits
+
+Requests are rate-limited **per token**. When a token exceeds its limit the API returns `429 rate_limited` with a `retry_after_seconds` hint; back off and retry after that interval. For the current limits and headers, see the [Dashboard API reference](https://docs.blockfrost.io/dashboard-api/).
 
 ## API reference
 
