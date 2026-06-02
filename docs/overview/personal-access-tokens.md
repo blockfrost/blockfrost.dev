@@ -175,7 +175,7 @@ Every error response uses the same JSON envelope: a stable `error` code you can 
 
 ## Rate limits
 
-Requests are rate-limited **per token**. When a token goes over its limit, the API returns `429 rate_limited` with a `retry_after_seconds` hint, so back off and retry after that interval. For the current limits and headers, see the [Dashboard API reference](https://docs.blockfrost.io/dashboard-api/).
+Requests are rate-limited **per token**. When a token exceeds its limit, the API returns `429 rate_limited` with a `retry_after_seconds` hint, so back off and retry after that interval. For the current limits and headers, see the [Dashboard API reference](https://docs.blockfrost.io/dashboard-api/).
 
 ## API reference
 
