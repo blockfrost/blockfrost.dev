@@ -116,7 +116,7 @@ For every authenticated request, the Dashboard API runs three independent checks
 2. **Workspace selector** — if the endpoint targets a specific workspace, that workspace's UUID is allowed by the token's selector (`null` wildcard, or explicit list).
 3. **Workspace role** — the user behind the token still has at least the minimum role required for the action on that workspace.
 
-The role hierarchy is `collaborator` < `maintainer` < `administrator` < `owner`. Token scopes do not bypass the role hierarchy — a PAT minted by a `collaborator` cannot create projects no matter what scopes you select, because the underlying user still lacks `maintainer` on the target workspace. See [Roles](/overview/workspaces/workspaces#roles) for the full role-vs-permission grid.
+The role hierarchy is `collaborator` < `maintainer` < `administrator` < `owner`. Token scopes do not bypass the role hierarchy — a PAT minted by a `collaborator` cannot create projects no matter what scopes you select, because the underlying user still lacks `maintainer` on the target workspace. See [Roles](/overview/workspaces/#roles) for the full role-vs-permission grid.
 
 :::caution Tokens inherit user roles
 A PAT acts on behalf of the user who created it. If your role on a workspace is downgraded, every PAT you own loses the matching authority too — even tokens minted with "Full access". Rotate or re-mint when role changes.
@@ -128,7 +128,7 @@ PATs don't expire. Once created, a token stays valid until you [rotate](#rotatio
 
 ### Token list
 
-**Settings → Personal Access Tokens** identifies every PAT on the account by its `key_id` and a short preview of the secret's last characters (the secret itself is never re-shown), alongside its name, scopes, workspace selector, and last-used timestamp. Use the last-used column to find tokens that have gone stale and revoke them.
+**Settings → Personal Access Tokens** lists every PAT on the account by its name and a non-secret identifier (the secret itself is never re-shown), alongside its scopes, workspace selector, and last-used timestamp. Use the last-used column to find tokens that have gone stale and revoke them.
 
 ### Rotation
 
