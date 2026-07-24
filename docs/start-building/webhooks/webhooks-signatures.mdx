@@ -142,6 +142,106 @@ func main() {
 
 </TabItem>
 
+<TabItem value="dart" label="Dart / Flutter">
+
+```dart showLineNumbers
+import 'dart:io';
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:blockfrost_api/blockfrost_api.dart';
+import 'package:blockfrost_secure_webhooks/webhook_handler.dart';
+import 'package:shelf/shelf.dart';
+import 'package:shelf/shelf_io.dart' as io;
+import 'package:shelf_router/shelf_router.dart';
+
+// You will find your webhook secret auth token in your webhook settings in the Blockfrost Dashboard
+// Pass it as environment variable when starting the server:
+// BLOCKFROST_TOKEN='WEBHOOK-AUTH-TOKEN' dart run bin/server.dart
+const String secretAuthEnvToken = 'BLOCKFROST_TOKEN';
+const int port = 8080;
+
+// Main Method
+void main() async {
+  final secretToken = Platform.environment[secretAuthEnvToken];
+  if (secretToken == null || secretToken.isEmpty) {
+    print('FATAL: Missing environment variable $secretAuthEnvToken');
+    exit(1); // Exit if secret is not set
+  }
+
+  // path mapping with router configuration
+  final router = Router()
+    ..post(
+        '/webhook',
+        (Request request) => handleWebhook(
+            request: request,
+            secretToken: secretToken,
+            validator:
+                BlockfrostSignatureValidator())) // Map POST requests to /webhook
+    ..get('/status', (_) => Response.ok('ok')); // Simple test route
+
+  // Configure middleware (optional, but good practice for logging)
+  final handler =
+      Pipeline().addMiddleware(logRequests()).addHandler(router.call);
+
+  // Start the server
+  try {
+    final server = await io.serve(handler, InternetAddress.anyIPv4, port);
+    print('Server running on http://${server.address.host}:${server.port}');
+    print('Ready to receive webhooks at: http://localhost:$port/webhook');
+  } catch (e) {
+    print('Failed to start server: $e');
+  }
+}
+
+/// Request handler which handles the incoming webhook
+Future<Response> handleWebhook(
+    {required Request request,
+    required String secretToken,
+    required SignatureValidator validator}) async {
+  final String requestPayload = await request.readAsString();
+  final signatureHeader = request.headers['blockfrost-signature'];
+
+  // Verify request data is available
+  if (signatureHeader == null || signatureHeader.isEmpty) {
+    return Response(400, body: 'Missing signature header.');
+  }
+  if (requestPayload.isEmpty) {
+    return Response(400, body: 'Empty requestPayload.');
+  }
+
+  // Validate using the SignatureValidator
+  try {
+    validator.validate(
+        requestPayload: requestPayload,
+        signatureHeader: signatureHeader,
+        secretAuthToken: secretToken);
+  } on SignatureValidationException catch (e) {
+    return Response(
+      400,
+      body: 'Signature validation failed! ${e.toString()}',
+    );
+  } catch (e) {
+    return Response.internalServerError(body: 'Signature validation failed!');
+  }
+
+  // Try to parse payload JSON
+  try {
+    jsonDecode(requestPayload) as Map<String, dynamic>;
+  } catch (e) {
+    return Response.internalServerError(body: 'Failed to process JSON.');
+  }
+
+  // Signature is valid
+  return Response.ok(
+    jsonEncode({'status': 'Webhook received successfully ✅'}),
+    headers: {'content-type': 'application/json'},
+  );
+}
+```
+
+</TabItem>
+
 </Tabs>
 
 ## Verifying the signature manually
